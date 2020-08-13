@@ -118,6 +118,8 @@ class BinaryTreeInorderTraversal {
 
         /**
          * Morris Traversal, this implementation destroys the original tree structure.
+         * <p>
+         * A Morris Traversal Implementation's time cost is O(n).
          *
          * @param root
          * @return
