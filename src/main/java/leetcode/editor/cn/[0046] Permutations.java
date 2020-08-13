@@ -1,7 +1,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,33 +29,40 @@ class Permutations {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         private List<List<Integer>> permutations = new ArrayList<>();
-        private List<Integer> permutation = new ArrayList<>();
 
         private int len;
+        private Integer[] nums;
 
         public List<List<Integer>> permute(int[] nums) {
             len = nums.length;
-            // 两种 int[] ==> List<Integer> 的方法，第二种要更快一些
-            // permutation = Arrays.stream(nums).boxed().collect(Collectors.toList()); // int[] ==> List<Integer>
-            for (int num : nums) permutation.add(num);
-            if (len == 0) permutations.add(permutation);
-            else backtrack(0);
+            this.nums = new Integer[len];
+            for (int i = 0; i < len; i++) {
+                this.nums[i] = nums[i];
+            }
+            if (len == 0) {
+                permutations.add(Arrays.asList(this.nums));
+            } else {
+                backtrack(0);
+            }
             return permutations;
         }
 
         private void backtrack(int i) {
+            if (i == len)
+                permutations.add(Arrays.asList(nums.clone()));
             // select the element for the i-th position of output array in the [i, len]
             for (int j = i; j < len; j++) {
-                if (i == len - 1)
-                    permutations.add(new ArrayList<>(permutation));
-                else {
-                    Collections.swap(permutation, i, j); // pick j-th element
-                    backtrack(i + 1); // continue
-                    Collections.swap(permutation, i, j); // release and prepare for a brand new pick
-                }
+                swap(i, j);
+                backtrack(i + 1); // continue
+                swap(i, j);
             }
+        }
+
+        private void swap(int i, int j) {
+            Integer tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
-
 }
