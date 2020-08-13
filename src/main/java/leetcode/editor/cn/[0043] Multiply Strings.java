@@ -30,7 +30,32 @@ class MultiplyStrings {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String multiply(String num1, String num2) {
-            
+            if (num1.equals("0") || num2.equals("0")) return "0";
+            int m = num1.length(), n = num2.length();
+            int len = m + n;
+            int[] ans = new int[len];
+            // 多次使用 char[i] 一般会比多次使用 charAt(i) 要快
+            char[] num1Chars = num1.toCharArray(), num2Chars = num2.toCharArray();
+            for (int i = m - 1; i >= 0; i--) {
+                for (int j = n - 1; j >= 0; j--) {
+                    int prod = (num1Chars[i] - '0')
+                            * (num2Chars[j] - '0');
+                    // 由于进位比较复杂，直接在该位置上进行累加，最后再进行进位即可
+                    ans[i + j + 1] += prod;
+                }
+            }
+            for (int i = len - 1; i > 0; i--) {
+                if (ans[i] >= 10) {
+                    ans[i - 1] += ans[i] / 10;
+                    ans[i] %= 10;
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            int index = ans[0] == 0 ? 1 : 0;
+            while (index < len) {
+                sb.append(ans[index++]);
+            }
+            return sb.toString();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
