@@ -1,6 +1,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,11 +32,12 @@ class Permutations {
         private List<Integer> permutation = new ArrayList<>();
 
         private int len;
-        private int[] nums;
 
         public List<List<Integer>> permute(int[] nums) {
             len = nums.length;
-            this.nums = nums;
+            // 两种 int[] ==> List<Integer> 的方法，第二种要更快一些
+            // permutation = Arrays.stream(nums).boxed().collect(Collectors.toList()); // int[] ==> List<Integer>
+            for (int num : nums) permutation.add(num);
             if (len == 0) permutations.add(permutation);
             else backtrack(0);
             return permutations;
@@ -44,22 +46,14 @@ class Permutations {
         private void backtrack(int i) {
             // select the element for the i-th position of output array in the [i, len]
             for (int j = i; j < len; j++) {
-                permutation.add(nums[j]); // pick the j-th element
                 if (i == len - 1)
                     permutations.add(new ArrayList<>(permutation));
                 else {
-                    swap(i, j);
+                    Collections.swap(permutation, i, j); // pick j-th element
                     backtrack(i + 1); // continue
-                    swap(i, j);
+                    Collections.swap(permutation, i, j); // release and prepare for a brand new pick
                 }
-                permutation.remove(i); // release this pick, prepare for the next pick
             }
-        }
-
-        private void swap(int i, int j) {
-            int num = nums[i];
-            nums[i] = nums[j];
-            nums[j] = num;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
