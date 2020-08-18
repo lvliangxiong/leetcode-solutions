@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class LongestPalindromicSubstringTest {
     @Test
     void longestPalindrome() {
-        LongestPalindromicSubstring.Solution solution = new LongestPalindromicSubstring().new Solution();
+        LongestPalindromicSubstring.ManacherSolution solution = new LongestPalindromicSubstring().new ManacherSolution();
         Assertions.assertEquals("bb", solution.longestPalindrome("cbbd"));
     }
 }

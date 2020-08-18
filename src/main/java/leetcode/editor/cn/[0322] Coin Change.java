@@ -59,7 +59,11 @@ class CoinChange {
 
     public class Solution2 {
         /**
-         * 自下而上的动态规划
+         * 自下而上的动态规划。
+         * <p>
+         * 考虑这样一个问题，对于固定 amount 的钱，我们使用硬币进行兑换，可以将此问题，抽象为『多次选择多个硬币，使得最终的面值
+         * 和刚好为 amount』，因此第一次选择时，必然是 coins 数组中的一种，这里进行枚举：
+         * dp[i] = min(dp[i-coins[j]] + 1)
          *
          * @param coins
          * @param amount
@@ -71,7 +75,7 @@ class CoinChange {
             Arrays.fill(dp, max);
             dp[0] = 0;
             for (int i = 1; i <= amount; i++) {
-                for (int j = 0; j < coins.length; j++) {
+                for (int j = 0; j < coins.length; j++) { // 枚举第一次选择的硬币面值
                     if (coins[j] <= i) {
                         dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
                     }
