@@ -47,7 +47,7 @@ class SortColors {
             if (n <= 1) return;
             int zero = 0, two = n - 1;
             int cur = 0;
-            while (cur < two) { // 注意循环停止条件
+            while (cur <= two) { // 注意循环停止条件
                 if (nums[cur] == 0) {
                     swap(nums, cur, zero);
                     zero++;

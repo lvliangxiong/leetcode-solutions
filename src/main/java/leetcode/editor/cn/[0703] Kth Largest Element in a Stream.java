@@ -41,7 +41,7 @@ class KthLargestElementInAStream {
     class KthLargest {
 
         /**
-         * 堆顶保存第 k 大的数，对于该 Heap，所有节点的值都比其父节点的值要大。
+         * 最小堆，堆顶保存第 k 大的数，对于该 Heap，所有节点的值都比其父节点的值要大。
          * Smaller elements are located at higher positions.
          */
         int[] heap;
