@@ -83,7 +83,7 @@ class KMP {
     /**
      * build DP array, which has the information where the pattern pointer should be replaced when failed.
      */
-    private void buildDP() {
+    public void buildDP() {
         int M = pat.length();
         dp = new int[M][256];
         dp[0][pat.charAt(0)] = 1; // base case
