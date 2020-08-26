@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[491]Increasing Subsequences",
-    "frontendQuestionId": "491",
+    "formTitle": "[17]Letter Combinations of a Phone Number",
+    "frontendQuestionId": "17",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
-    "questionId": "491",
+    "questionId": "17",
     "status": "ac",
-    "title": "Increasing Subsequences",
-    "titleSlug": "increasing-subsequences"
+    "title": "Letter Combinations of a Phone Number",
+    "titleSlug": "letter-combinations-of-a-phone-number"
   },
   {
     "articleLive": 2,
@@ -163,7 +163,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "13",
-    "status": "",
+    "status": "ac",
     "title": "Roman to Integer",
     "titleSlug": "roman-to-integer"
   },
@@ -202,18 +202,6 @@
     "status": "ac",
     "title": "3Sum Closest",
     "titleSlug": "3sum-closest"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[17]Letter Combinations of a Phone Number",
-    "frontendQuestionId": "17",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "17",
-    "status": "",
-    "title": "Letter Combinations of a Phone Number",
-    "titleSlug": "letter-combinations-of-a-phone-number"
   },
   {
     "articleLive": 2,
@@ -319,7 +307,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "26",
-    "status": "",
+    "status": "ac",
     "title": "Remove Duplicates from Sorted Array",
     "titleSlug": "remove-duplicates-from-sorted-array"
   },
@@ -331,7 +319,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "27",
-    "status": "",
+    "status": "notac",
     "title": "Remove Element",
     "titleSlug": "remove-element"
   },
@@ -5890,6 +5878,18 @@
     "status": "lock",
     "title": "The Maze",
     "titleSlug": "the-maze"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[491]Increasing Subsequences",
+    "frontendQuestionId": "491",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "491",
+    "status": "ac",
+    "title": "Increasing Subsequences",
+    "titleSlug": "increasing-subsequences"
   },
   {
     "articleLive": 2,
