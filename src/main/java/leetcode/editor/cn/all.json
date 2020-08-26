@@ -331,7 +331,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "28",
-    "status": "",
+    "status": "ac",
     "title": "Implement strStr()",
     "titleSlug": "implement-strstr"
   },
@@ -463,7 +463,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "39",
-    "status": "",
+    "status": "ac",
     "title": "Combination Sum",
     "titleSlug": "combination-sum"
   },
