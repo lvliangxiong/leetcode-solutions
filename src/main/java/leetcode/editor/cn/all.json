@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[17]Letter Combinations of a Phone Number",
-    "frontendQuestionId": "17",
+    "formTitle": "[332]Reconstruct Itinerary",
+    "frontendQuestionId": "332",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
-    "questionId": "17",
-    "status": "ac",
-    "title": "Letter Combinations of a Phone Number",
-    "titleSlug": "letter-combinations-of-a-phone-number"
+    "questionId": "332",
+    "status": "",
+    "title": "Reconstruct Itinerary",
+    "titleSlug": "reconstruct-itinerary"
   },
   {
     "articleLive": 2,
@@ -202,6 +202,18 @@
     "status": "ac",
     "title": "3Sum Closest",
     "titleSlug": "3sum-closest"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[17]Letter Combinations of a Phone Number",
+    "frontendQuestionId": "17",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "17",
+    "status": "ac",
+    "title": "Letter Combinations of a Phone Number",
+    "titleSlug": "letter-combinations-of-a-phone-number"
   },
   {
     "articleLive": 2,
@@ -475,7 +487,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "40",
-    "status": "",
+    "status": "ac",
     "title": "Combination Sum II",
     "titleSlug": "combination-sum-ii"
   },
@@ -871,7 +883,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "73",
-    "status": "",
+    "status": "notac",
     "title": "Set Matrix Zeroes",
     "titleSlug": "set-matrix-zeroes"
   },
@@ -3970,18 +3982,6 @@
     "status": "",
     "title": "Verify Preorder Serialization of a Binary Tree",
     "titleSlug": "verify-preorder-serialization-of-a-binary-tree"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[332]Reconstruct Itinerary",
-    "frontendQuestionId": "332",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "332",
-    "status": "",
-    "title": "Reconstruct Itinerary",
-    "titleSlug": "reconstruct-itinerary"
   },
   {
     "articleLive": 2,
