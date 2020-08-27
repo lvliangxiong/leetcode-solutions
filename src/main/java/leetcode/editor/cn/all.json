@@ -427,7 +427,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "35",
-    "status": "",
+    "status": "ac",
     "title": "Search Insert Position",
     "titleSlug": "search-insert-position"
   },
@@ -463,7 +463,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "38",
-    "status": "",
+    "status": "ac",
     "title": "Count and Say",
     "titleSlug": "count-and-say"
   },
@@ -9031,7 +9031,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "754",
-    "status": "",
+    "status": "ac",
     "title": "Cracking the Safe",
     "titleSlug": "cracking-the-safe"
   },
@@ -12340,7 +12340,7 @@
     "formTitle": "[1029]Two City Scheduling",
     "frontendQuestionId": "1029",
     "leaf": true,
-    "level": 1,
+    "level": 2,
     "nodeType": "def",
     "questionId": "1095",
     "status": "",
