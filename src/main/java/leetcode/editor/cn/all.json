@@ -7,7 +7,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "332",
-    "status": "",
+    "status": "ac",
     "title": "Reconstruct Itinerary",
     "titleSlug": "reconstruct-itinerary"
   },
@@ -883,7 +883,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "73",
-    "status": "notac",
+    "status": "ac",
     "title": "Set Matrix Zeroes",
     "titleSlug": "set-matrix-zeroes"
   },
@@ -18754,6 +18754,18 @@
     "status": "",
     "title": "Stone Game V",
     "titleSlug": "stone-game-v"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1564]Put Boxes Into the Warehouse I",
+    "frontendQuestionId": "1564",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1703",
+    "status": "lock",
+    "title": "Put Boxes Into the Warehouse I",
+    "titleSlug": "put-boxes-into-the-warehouse-i"
   },
   {
     "articleLive": 2,
