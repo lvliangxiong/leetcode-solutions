@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[332]Reconstruct Itinerary",
-    "frontendQuestionId": "332",
+    "formTitle": "[657]Robot Return to Origin",
+    "frontendQuestionId": "657",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
-    "questionId": "332",
-    "status": "ac",
-    "title": "Reconstruct Itinerary",
-    "titleSlug": "reconstruct-itinerary"
+    "questionId": "657",
+    "status": "",
+    "title": "Robot Return to Origin",
+    "titleSlug": "robot-return-to-origin"
   },
   {
     "articleLive": 2,
@@ -679,7 +679,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "56",
-    "status": "",
+    "status": "ac",
     "title": "Merge Intervals",
     "titleSlug": "merge-intervals"
   },
@@ -703,7 +703,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "58",
-    "status": "",
+    "status": "ac",
     "title": "Length of Last Word",
     "titleSlug": "length-of-last-word"
   },
@@ -3607,7 +3607,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "300",
-    "status": "",
+    "status": "ac",
     "title": "Longest Increasing Subsequence",
     "titleSlug": "longest-increasing-subsequence"
   },
@@ -3985,6 +3985,18 @@
   },
   {
     "articleLive": 2,
+    "formTitle": "[332]Reconstruct Itinerary",
+    "frontendQuestionId": "332",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "332",
+    "status": "ac",
+    "title": "Reconstruct Itinerary",
+    "titleSlug": "reconstruct-itinerary"
+  },
+  {
+    "articleLive": 2,
     "formTitle": "[333]Largest BST Subtree",
     "frontendQuestionId": "333",
     "leaf": true,
@@ -4111,7 +4123,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "343",
-    "status": "",
+    "status": "ac",
     "title": "Integer Break",
     "titleSlug": "integer-break"
   },
@@ -5455,7 +5467,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "455",
-    "status": "",
+    "status": "ac",
     "title": "Assign Cookies",
     "titleSlug": "assign-cookies"
   },
@@ -7870,18 +7882,6 @@
     "status": "lock",
     "title": "Coin Path",
     "titleSlug": "coin-path"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[657]Robot Return to Origin",
-    "frontendQuestionId": "657",
-    "leaf": true,
-    "level": 1,
-    "nodeType": "def",
-    "questionId": "657",
-    "status": "",
-    "title": "Robot Return to Origin",
-    "titleSlug": "robot-return-to-origin"
   },
   {
     "articleLive": 2,
