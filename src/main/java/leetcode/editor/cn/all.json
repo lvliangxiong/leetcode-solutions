@@ -7,7 +7,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "871",
-    "status": "",
+    "status": "ac",
     "title": "Keys and Rooms",
     "titleSlug": "keys-and-rooms"
   },
@@ -18781,8 +18781,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5499]Detect Pattern of Length M Repeated K or More Times",
-    "frontendQuestionId": "5499",
+    "formTitle": "[1566]Detect Pattern of Length M Repeated K or More Times",
+    "frontendQuestionId": "1566",
     "leaf": true,
     "level": 1,
     "nodeType": "def",
@@ -18793,8 +18793,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5500]Maximum Length of Subarray With Positive Product",
-    "frontendQuestionId": "5500",
+    "formTitle": "[1567]Maximum Length of Subarray With Positive Product",
+    "frontendQuestionId": "1567",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
@@ -18805,8 +18805,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5501]Minimum Number of Days to Disconnect Island",
-    "frontendQuestionId": "5501",
+    "formTitle": "[1568]Minimum Number of Days to Disconnect Island",
+    "frontendQuestionId": "1568",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
@@ -18817,8 +18817,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5502]Number of Ways to Reorder Array to Get Same BST",
-    "frontendQuestionId": "5502",
+    "formTitle": "[1569]Number of Ways to Reorder Array to Get Same BST",
+    "frontendQuestionId": "1569",
     "leaf": true,
     "level": 3,
     "nodeType": "def",
