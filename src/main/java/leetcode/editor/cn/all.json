@@ -6463,7 +6463,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "538",
-    "status": "",
+    "status": "ac",
     "title": "Convert BST to Greater Tree",
     "titleSlug": "convert-bst-to-greater-tree"
   },
@@ -6523,7 +6523,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "543",
-    "status": "",
+    "status": "ac",
     "title": "Diameter of Binary Tree",
     "titleSlug": "diameter-of-binary-tree"
   },
