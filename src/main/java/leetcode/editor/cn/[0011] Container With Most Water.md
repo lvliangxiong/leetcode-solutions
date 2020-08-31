@@ -14,4 +14,4 @@
 
 <pre>
 <strong>Input:</strong> [1,8,6,2,5,4,8,3,7]
-<strong>Output:</strong> 49</pre><div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div>\n<div><li>👍 1768</li><li>👎 0</li></div>
+<strong>Output:</strong> 49</pre><div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div><div><li>👍 1768</li><li>👎 0</li></div>

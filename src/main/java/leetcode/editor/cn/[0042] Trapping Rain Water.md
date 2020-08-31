@@ -8,4 +8,4 @@
 <pre>
 <strong>Input:</strong> [0,1,0,2,1,0,1,3,2,1,2,1]
 <strong>Output:</strong> 6</pre>
-<div><div>Related Topics</div><div><li>栈</li><li>数组</li><li>双指针</li></div></div>\n<div><li>👍 1514</li><li>👎 0</li></div>
+<div><div>Related Topics</div><div><li>栈</li><li>数组</li><li>双指针</li></div></div><div><li>👍 1514</li><li>👎 0</li></div>

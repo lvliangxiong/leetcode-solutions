@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[557]Reverse Words in a String III",
-    "frontendQuestionId": "557",
+    "formTitle": "[841]Keys and Rooms",
+    "frontendQuestionId": "841",
     "leaf": true,
-    "level": 1,
+    "level": 2,
     "nodeType": "def",
-    "questionId": "557",
+    "questionId": "871",
     "status": "",
-    "title": "Reverse Words in a String III",
-    "titleSlug": "reverse-words-in-a-string-iii"
+    "title": "Keys and Rooms",
+    "titleSlug": "keys-and-rooms"
   },
   {
     "articleLive": 2,
@@ -331,7 +331,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "27",
-    "status": "notac",
+    "status": "ac",
     "title": "Remove Element",
     "titleSlug": "remove-element"
   },
@@ -847,7 +847,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "70",
-    "status": "",
+    "status": "ac",
     "title": "Climbing Stairs",
     "titleSlug": "climbing-stairs"
   },
@@ -1699,7 +1699,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "141",
-    "status": "",
+    "status": "ac",
     "title": "Linked List Cycle",
     "titleSlug": "linked-list-cycle"
   },
@@ -1711,7 +1711,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "142",
-    "status": "",
+    "status": "ac",
     "title": "Linked List Cycle II",
     "titleSlug": "linked-list-cycle-ii"
   },
@@ -2587,7 +2587,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "215",
-    "status": "",
+    "status": "ac",
     "title": "Kth Largest Element in an Array",
     "titleSlug": "kth-largest-element-in-an-array"
   },
@@ -6685,6 +6685,18 @@
   },
   {
     "articleLive": 2,
+    "formTitle": "[557]Reverse Words in a String III",
+    "frontendQuestionId": "557",
+    "leaf": true,
+    "level": 1,
+    "nodeType": "def",
+    "questionId": "557",
+    "status": "ac",
+    "title": "Reverse Words in a String III",
+    "titleSlug": "reverse-words-in-a-string-iii"
+  },
+  {
+    "articleLive": 2,
     "formTitle": "[558]Logical OR of Two Binary Grids Represented as Quad-Trees",
     "frontendQuestionId": "558",
     "leaf": true,
@@ -8863,7 +8875,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "739",
-    "status": "",
+    "status": "ac",
     "title": "Daily Temperatures",
     "titleSlug": "daily-temperatures"
   },
@@ -10078,18 +10090,6 @@
     "status": "",
     "title": "Magic Squares In Grid",
     "titleSlug": "magic-squares-in-grid"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[841]Keys and Rooms",
-    "frontendQuestionId": "841",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "871",
-    "status": "",
-    "title": "Keys and Rooms",
-    "titleSlug": "keys-and-rooms"
   },
   {
     "articleLive": 2,
