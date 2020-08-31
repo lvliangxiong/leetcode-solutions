@@ -6979,7 +6979,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "581",
-    "status": "",
+    "status": "ac",
     "title": "Shortest Unsorted Continuous Subarray",
     "titleSlug": "shortest-unsorted-continuous-subarray"
   },
@@ -7411,7 +7411,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "617",
-    "status": "",
+    "status": "ac",
     "title": "Merge Two Binary Trees",
     "titleSlug": "merge-two-binary-trees"
   },
@@ -7459,7 +7459,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "621",
-    "status": "",
+    "status": "ac",
     "title": "Task Scheduler",
     "titleSlug": "task-scheduler"
   },
