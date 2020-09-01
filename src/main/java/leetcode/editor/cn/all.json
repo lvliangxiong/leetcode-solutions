@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[841]Keys and Rooms",
-    "frontendQuestionId": "841",
+    "formTitle": "[486]Predict the Winner",
+    "frontendQuestionId": "486",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
-    "questionId": "871",
-    "status": "ac",
-    "title": "Keys and Rooms",
-    "titleSlug": "keys-and-rooms"
+    "questionId": "486",
+    "status": "",
+    "title": "Predict the Winner",
+    "titleSlug": "predict-the-winner"
   },
   {
     "articleLive": 2,
@@ -5263,7 +5263,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "438",
-    "status": "",
+    "status": "ac",
     "title": "Find All Anagrams in a String",
     "titleSlug": "find-all-anagrams-in-a-string"
   },
@@ -5383,7 +5383,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "448",
-    "status": "",
+    "status": "ac",
     "title": "Find All Numbers Disappeared in an Array",
     "titleSlug": "find-all-numbers-disappeared-in-an-array"
   },
@@ -5539,7 +5539,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "461",
-    "status": "",
+    "status": "ac",
     "title": "Hamming Distance",
     "titleSlug": "hamming-distance"
   },
@@ -5830,18 +5830,6 @@
     "status": "",
     "title": "Max Consecutive Ones",
     "titleSlug": "max-consecutive-ones"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[486]Predict the Winner",
-    "frontendQuestionId": "486",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "486",
-    "status": "",
-    "title": "Predict the Winner",
-    "titleSlug": "predict-the-winner"
   },
   {
     "articleLive": 2,
@@ -10090,6 +10078,18 @@
     "status": "",
     "title": "Magic Squares In Grid",
     "titleSlug": "magic-squares-in-grid"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[841]Keys and Rooms",
+    "frontendQuestionId": "841",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "871",
+    "status": "ac",
+    "title": "Keys and Rooms",
+    "titleSlug": "keys-and-rooms"
   },
   {
     "articleLive": 2,
