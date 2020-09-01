@@ -77,28 +77,28 @@ class PathSumIi {
 
     class OptimisedSolution {
         private List<Integer> path = new ArrayList<>();
-        private List<List<Integer>> paths = new ArrayList<>();
+        private List<List<Integer>> ans = new ArrayList<>();
 
         public List<List<Integer>> pathSum(TreeNode root, int sum) {
-            backtrack(root, sum);
-            return paths;
+            if (root != null) backtrack(root, sum);
+            return ans;
         }
 
         private void backtrack(TreeNode root, int target) {
-            if (root == null) return;
             path.add(root.val); // add current node anyway
 
             if (root.left == null && root.right == null) {
                 // leaf node
                 if (root.val == target) {
                     // a right path found
-                    paths.add(new ArrayList<>(path));
+                    ans.add(new ArrayList<>(path));
                 }
+            } else {
+                // if root is a non-leaf node
+                int newTarget = target - root.val;
+                if (root.left != null) backtrack(root.left, newTarget); // try left path
+                if (root.right != null) backtrack(root.right, newTarget); // try right path
             }
-            // if root is a non-leaf node
-            int newTarget = target - root.val;
-            backtrack(root.left, newTarget); // try left path
-            backtrack(root.right, newTarget); // try right path
             path.remove(path.size() - 1); // remove the newly add node, backtrack
         }
     }
