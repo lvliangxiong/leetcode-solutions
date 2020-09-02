@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[486]Predict the Winner",
-    "frontendQuestionId": "486",
+    "formTitle": "[剑指 Offer 20]表示数值的字符串 LCOF",
+    "frontendQuestionId": "剑指 Offer 20",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
-    "questionId": "486",
+    "questionId": "100290",
     "status": "",
-    "title": "Predict the Winner",
-    "titleSlug": "predict-the-winner"
+    "title": "表示数值的字符串 LCOF",
+    "titleSlug": "biao-shi-shu-zhi-de-zi-fu-chuan-lcof"
   },
   {
     "articleLive": 2,
@@ -823,7 +823,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "68",
-    "status": "",
+    "status": "ac",
     "title": "Text Justification",
     "titleSlug": "text-justification"
   },
@@ -5251,7 +5251,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "437",
-    "status": "",
+    "status": "ac",
     "title": "Path Sum III",
     "titleSlug": "path-sum-iii"
   },
@@ -5833,6 +5833,18 @@
   },
   {
     "articleLive": 2,
+    "formTitle": "[486]Predict the Winner",
+    "frontendQuestionId": "486",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "486",
+    "status": "ac",
+    "title": "Predict the Winner",
+    "titleSlug": "predict-the-winner"
+  },
+  {
+    "articleLive": 2,
     "formTitle": "[487]Max Consecutive Ones II",
     "frontendQuestionId": "487",
     "leaf": true,
@@ -5923,7 +5935,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "494",
-    "status": "",
+    "status": "ac",
     "title": "Target Sum",
     "titleSlug": "target-sum"
   },
@@ -18808,7 +18820,7 @@
     "formTitle": "[1568]Minimum Number of Days to Disconnect Island",
     "frontendQuestionId": "1568",
     "leaf": true,
-    "level": 2,
+    "level": 3,
     "nodeType": "def",
     "questionId": "1691",
     "status": "",
@@ -19234,18 +19246,6 @@
     "status": "",
     "title": "正则表达式匹配 LCOF",
     "titleSlug": "zheng-ze-biao-da-shi-pi-pei-lcof"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[剑指 Offer 20]表示数值的字符串 LCOF",
-    "frontendQuestionId": "剑指 Offer 20",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "100290",
-    "status": "",
-    "title": "表示数值的字符串 LCOF",
-    "titleSlug": "biao-shi-shu-zhi-de-zi-fu-chuan-lcof"
   },
   {
     "articleLive": 2,
