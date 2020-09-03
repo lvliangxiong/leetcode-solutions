@@ -54,7 +54,7 @@ class NQueens {
          * Queen 是国际象棋中实力最强的一种棋子，它可以在横、竖、斜方向上，走 1 ~ 7 步，并吃掉该位置上的棋子。
          * 这个 n 皇后问题来源于一个很有名的问题，叫『八皇后问题』。在『八皇后问题』中，任意两个皇后不能在同一
          * 行、同一列和同一斜线上。而这个『n 皇后』问题中的皇后，也做了推广，她应该是可以走 1 ~ n-1 步，也就是
-         * 说此问题中，仍然要求任意两个皇后不能在同一行、同一列和同一斜线上。
+         * 说在此问题中，仍然要求任意两个皇后不能在同一行、同一列和同一斜线上。
          * <p>
          * 1. 枚举法，复杂度为 n^n
          * 2. 排列组合，复杂度为 n!
@@ -65,22 +65,22 @@ class NQueens {
          */
         public List<List<String>> solveNQueens(int n) {
             this.n = n;
-            this.boards = new String[n];
-            this.queens = new int[n];
-            this.attackableCols = new boolean[n];
+            boards = new String[n];
+            queens = new int[n];
+            attackableCols = new boolean[n];
             // 同一条 45 度斜线上 row + col 为定值，范围 [0, 2n-2]
-            this.attackableHills = new boolean[n << 1];
+            attackableHills = new boolean[n << 1];
             // 同一条 135 度斜线上，row - col 为定值，范围 [-(n-1), n-1]，整体偏移 n，则为 [1, 2n-1]
-            this.attackableDales = new boolean[n << 1];
+            attackableDales = new boolean[n << 1];
 
-            this.solutions.clear();
+            solutions.clear();
 
-            /* boards stores n strings, whose char at index is 'Q, while others are '.'
-             * for example, for n = 4, boards is a list of following strings:
-             * "Q..."
-             * ".Q.."
-             * "..Q."
-             * "...Q"
+            /* boards is initialized to n strings. For the i-th string in boards, character at i is 'Q, while others
+             * are '.', for example, for n = 4, boards is a list of following strings:
+             *  "Q..."
+             *  ".Q.."
+             *  "..Q."
+             *  "...Q"
              * */
             for (int i = 0; i < n; i++) {
                 StringBuilder row = new StringBuilder();
@@ -90,12 +90,13 @@ class NQueens {
                 }
                 boards[i] = row.toString();
             }
+
             place(0);
             return solutions;
         }
 
         private void place(int row) {
-            // 对于第 row 行，有 n 种下子法
+            // 对于第 row 行，有 n 种下子选择，即将 Queue 放置在 0 ~ n-1 列
             for (int col = 0; col < n; col++) {
                 if (isPlaceable(row, col)) {
                     placeQueen(row, col);
@@ -108,6 +109,7 @@ class NQueens {
 
         private void placeQueen(int row, int col) {
             queens[row] = col;
+            // 更新处于新位置攻击范围内的列和斜线位置
             attackableCols[col] = true;
             attackableHills[col + row] = true;
             attackableDales[col - row + n] = true;
@@ -130,7 +132,7 @@ class NQueens {
         }
 
         /**
-         * 每次下子只针对某行下一个 Queen，因此不会出现两个 Queen 在同一行内的情况，只需要考虑两个 Queen 是否
+         * 每次下子只针对某行放置一个 Queen，因此不会出现两个 Queen 在同一行内的情况，只需要考虑两个 Queen 是否
          * 在同一列，同一斜线上即可。
          *
          * @param row
@@ -139,6 +141,7 @@ class NQueens {
          */
         private boolean isPlaceable(int row, int col) {
             if (attackableCols[col] || attackableHills[row + col] || attackableDales[col - row + n]) {
+                // 如果当前位置已处于其他 Queue 的攻击范围，那么该位置不能被放置
                 return false;
             } else {
                 return true;
