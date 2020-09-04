@@ -45,4 +45,3 @@
 <p><strong>Follow up:</strong></p>
 
 <p>Can you solve it using <em>O(1)</em> (i.e. constant) memory?</p>
-<div><div>Related Topics</div><div><li>链表</li><li>双指针</li></div></div><div><li>👍 732</li><li>👎 0</li></div>

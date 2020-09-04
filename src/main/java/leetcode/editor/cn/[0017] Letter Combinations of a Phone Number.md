@@ -14,4 +14,3 @@
 <p><strong>Note:</strong></p>
 
 <p>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
-<div><div>Related Topics</div><div><li>字符串</li><li>回溯算法</li></div></div><div><li>👍 846</li><li>👎 0</li></div>

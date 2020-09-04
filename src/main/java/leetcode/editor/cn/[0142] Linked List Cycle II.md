@@ -40,4 +40,3 @@
 
 <p><b>Follow-up</b>:<br />
 Can you solve it without using extra space?</p>
-<div><div>Related Topics</div><div><li>链表</li><li>双指针</li></div></div><div><li>👍 599</li><li>👎 0</li></div>

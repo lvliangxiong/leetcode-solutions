@@ -18,4 +18,3 @@
 <strong>Input:</strong> [2,1,5,6,2,3]
 <strong>Output:</strong> 10
 </pre>
-<div><div>Related Topics</div><div><li>栈</li><li>数组</li></div></div><div><li>👍 835</li><li>👎 0</li></div>
