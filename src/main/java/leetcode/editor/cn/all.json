@@ -7,7 +7,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "257",
-    "status": "",
+    "status": "ac",
     "title": "Binary Tree Paths",
     "titleSlug": "binary-tree-paths"
   },
@@ -235,7 +235,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "19",
-    "status": "",
+    "status": "ac",
     "title": "Remove Nth Node From End of List",
     "titleSlug": "remove-nth-node-from-end-of-list"
   },
@@ -271,7 +271,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "22",
-    "status": "",
+    "status": "ac",
     "title": "Generate Parentheses",
     "titleSlug": "generate-parentheses"
   },
@@ -3607,7 +3607,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "301",
-    "status": "",
+    "status": "ac",
     "title": "Remove Invalid Parentheses",
     "titleSlug": "remove-invalid-parentheses"
   },
@@ -3739,7 +3739,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "312",
-    "status": "",
+    "status": "ac",
     "title": "Burst Balloons",
     "titleSlug": "burst-balloons"
   },
@@ -18838,6 +18838,18 @@
     "status": "lock",
     "title": "Dot Product of Two Sparse Vectors",
     "titleSlug": "dot-product-of-two-sparse-vectors"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1571]Warehouse Manager",
+    "frontendQuestionId": "1571",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1718",
+    "status": "lock",
+    "title": "Warehouse Manager",
+    "titleSlug": "warehouse-manager"
   },
   {
     "articleLive": 2,
