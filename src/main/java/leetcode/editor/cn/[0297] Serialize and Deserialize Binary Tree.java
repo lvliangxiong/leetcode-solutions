@@ -52,28 +52,48 @@ class SerializeAndDeserializeBinaryTree {
      * </pre>
      */
     public class Codec {
+        TreeNode NULL = new TreeNode();
 
         // Encodes a tree to a single string.
         public String serialize(TreeNode root) {
             Integer[] arr = toArray(root);
-            return arr.toString();
+            StringBuilder sb = new StringBuilder();
+            sb.append('[');
+            for (Integer num : arr) {
+                sb.append(num).append(',');
+            }
+            if (arr.length > 0) sb.setLength(sb.length() - 1);
+            sb.append(']');
+            return sb.toString();
         }
 
         private Integer[] toArray(TreeNode root) {
+            if (root == null) return new Integer[0];
             // BFS traversal
-            Deque<TreeNode> queue = new ArrayDeque<>();
-            TreeNode cur = root;
-            queue.offer(cur);
-            List<Integer> ans = new ArrayList<>();
-            while (!queue.isEmpty()) {
-                cur = queue.poll();
-                if (cur == null) {
-
-                } else {
-                    queue.offer()
+            Deque<TreeNode> current = new ArrayDeque<>();
+            Deque<TreeNode> next = new ArrayDeque<>();
+            current.offer(root);
+            List<Integer> ans = new ArrayList<>(); // ArrayList allows null, but ArrayDeque doesn't
+            int size = 0;
+            while (!current.isEmpty()) {
+                boolean end = true;
+                while (!current.isEmpty()) {
+                    TreeNode cur = current.poll();
+                    if (cur != NULL) {
+                        ans.add(cur.val);
+                        size = ans.size();
+                        next.add(cur.left == null ? NULL : cur.left);
+                        if (end && next.peekLast() != NULL) end = false;
+                        next.add(cur.right == null ? NULL : cur.right);
+                        if (end && next.peekLast() != NULL) end = false;
+                    } else ans.add(null);
                 }
+                if (end) break;
+                Deque<TreeNode> tmp = current;
+                current = next;
+                next = tmp;
             }
-            ans.set();
+            return ans.toArray(new Integer[size]);
         }
 
         // Decodes your encoded data to tree.
@@ -103,6 +123,7 @@ class SerializeAndDeserializeBinaryTree {
         }
 
         private Integer[] toArray(String data) {
+            if (data.equals("[]")) return new Integer[0];
             String[] nums = data.substring(1, data.length() - 1).split(",");
             int n = nums.length;
             Integer[] ans = new Integer[n];
@@ -118,4 +139,70 @@ class SerializeAndDeserializeBinaryTree {
     // codec.deserialize(codec.serialize(root));
     //leetcode submit region end(Prohibit modification and deletion)
 
+
+    /**
+     * T -> (T) num (T) | X
+     */
+    public class BNFCodec {
+        int index = 0;
+
+        public String serialize(TreeNode root) {
+            // String concatenate by + operator is really expensive, use StringBuilder or StringBuffer instead.
+            StringBuilder sb = new StringBuilder();
+            serializeHelper(root, sb);
+            return sb.toString();
+        }
+
+        private void serializeHelper(TreeNode root, StringBuilder sb) {
+            if (root == null) sb.append('X');
+            else {
+                sb.append('(');
+                serializeHelper(root.left, sb);
+                sb.append(')');
+                sb.append(root.val);
+                sb.append('(');
+                serializeHelper(root.right, sb);
+                sb.append(')');
+            }
+        }
+
+        public TreeNode deserialize(String data) {
+            return parse(data);
+        }
+
+        public TreeNode parse(String data) {
+            // X 代表空树
+            if (data.charAt(index) == 'X') {
+                ++index;
+                return null;
+            }
+            // 处理 (left subtree) num (right subtree) 形式的字符串
+            TreeNode cur = new TreeNode(0); // 初始化根节点
+            cur.left = parseSubtree(data);
+            cur.val = parseInt(data); // 为根节点重新赋值
+            cur.right = parseSubtree(data);
+            return cur;
+        }
+
+        public TreeNode parseSubtree(String data) {
+            ++index; // 跳过左括号
+            TreeNode subtree = parse(data);
+            ++index; // 跳过右括号
+            return subtree;
+        }
+
+        public int parseInt(String data) {
+            int x = 0, sign = 1;
+            // 当前字符为符号位 -
+            if (!Character.isDigit(data.charAt(index))) {
+                sign = -1;
+                ++index;
+            }
+            // 处理连续的数字字符
+            while (Character.isDigit(data.charAt(index))) {
+                x = x * 10 + data.charAt(index++) - '0';
+            }
+            return x * sign;
+        }
+    }
 }
