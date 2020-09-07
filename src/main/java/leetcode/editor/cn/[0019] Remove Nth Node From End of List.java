@@ -37,13 +37,13 @@ class RemoveNthNodeFromEndOfList {
      * </pre>
      */
     class Solution {
-        public ListNode removeNthFromEnd(ListNode head, int n) {
-            ListNode cur = head;
+        public Node removeNthFromEnd(Node head, int n) {
+            Node cur = head;
             for (int i = 0; i < n; i++) {
                 cur = cur.next;
             }
             if (cur == null) return head.next; // remove the first node
-            ListNode preN = head;
+            Node preN = head;
             while (cur.next != null) {
                 preN = preN.next;
                 cur = cur.next;

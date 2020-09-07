@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 class MyHashMap {
     static final double LOAD_FACTOR = 0.5;
 
-    ListNode[] table;
+    Node[] table;
     int size;
     int capacity;
 
@@ -56,16 +56,16 @@ class MyHashMap {
 
     public MyHashMap(int capacity) {
         this.capacity = capacity;
-        table = new ListNode[capacity];
+        table = new Node[capacity];
     }
 
     private void grow(int newCapacity) {
-        ListNode[] buffer = table;
+        Node[] buffer = table;
         capacity = newCapacity;
-        table = new ListNode[capacity];
+        table = new Node[capacity];
         int old = size;
         size = 0; // 重置 size
-        for (ListNode head : buffer) {
+        for (Node head : buffer) {
             while (head != null) {
                 put(head.key, head.value);
                 head = head.next;
@@ -78,12 +78,12 @@ class MyHashMap {
      */
     public void put(int key, int value) {
         int h = hash(key);
-        ListNode head = table[h];
+        Node head = table[h];
         if (head == null) {
             // insert
-            table[h] = new ListNode(key, value);
+            table[h] = new Node(key, value);
         } else {
-            ListNode tail = head;
+            Node tail = head;
             while (head != null) {
                 // found same key, then update value
                 if (head.key == key) {
@@ -94,7 +94,7 @@ class MyHashMap {
                 head = head.next;
             }
             // not found, then insert at the tail
-            ListNode node = new ListNode(key, value);
+            Node node = new Node(key, value);
             tail.next = node;
             node.pre = tail;
         }
@@ -109,7 +109,7 @@ class MyHashMap {
      */
     public int get(int key) {
         int h = hash(key);
-        ListNode head = table[h];
+        Node head = table[h];
         if (head == null) return -1;
         while (head != null) {
             if (head.key == key) return head.value;
@@ -123,10 +123,10 @@ class MyHashMap {
      */
     public void remove(int key) {
         int h = hash(key);
-        ListNode head = table[h];
+        Node head = table[h];
         if (head == null) return; // not found
         boolean found = false;
-        ListNode target = head;
+        Node target = head;
         while (target != null) {
             if (target.key == key) {
                 found = true;
@@ -156,16 +156,16 @@ class MyHashMap {
     }
 }
 
-class ListNode {
+class Node {
     int key;
     int value;
-    ListNode pre;
-    ListNode next;
+    Node pre;
+    Node next;
 
-    public ListNode() {
+    public Node() {
     }
 
-    public ListNode(int key, int value) {
+    public Node(int key, int value) {
         this.key = key;
         this.value = value;
     }

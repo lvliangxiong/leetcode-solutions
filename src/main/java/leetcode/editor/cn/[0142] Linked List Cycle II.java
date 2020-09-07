@@ -24,16 +24,16 @@ class LinkedListCycleIi {
          * @param head
          * @return
          */
-        public ListNode detectCycle(ListNode head) {
+        public Node detectCycle(Node head) {
             if (head == null || head.next == null) return null;
-            ListNode tortoise = head.next;
-            ListNode rabbit = head.next.next;
+            Node tortoise = head.next;
+            Node rabbit = head.next.next;
             while (rabbit != null && rabbit.next != null && tortoise != rabbit) {
                 tortoise = tortoise.next;
                 rabbit = rabbit.next.next;
             }
             if (tortoise != rabbit) return null; // no loop
-            ListNode be = head;
+            Node be = head;
             while (be != tortoise) {
                 tortoise = tortoise.next;
                 be = be.next;

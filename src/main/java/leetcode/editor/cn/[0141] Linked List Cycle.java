@@ -18,10 +18,10 @@ class LinkedListCycle {
      * </pre>
      */
     public class Solution {
-        public boolean hasCycle(ListNode head) {
+        public boolean hasCycle(Node head) {
             if (head == null || head.next == null) return false;
-            ListNode tortoise = head.next;
-            ListNode rabbit = head.next.next;
+            Node tortoise = head.next;
+            Node rabbit = head.next.next;
             while (rabbit != null && rabbit.next != null && rabbit != tortoise) {
                 tortoise = tortoise.next;
                 rabbit = rabbit.next.next;
