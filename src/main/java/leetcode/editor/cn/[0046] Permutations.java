@@ -39,11 +39,10 @@ class Permutations {
             for (int i = 0; i < len; i++) {
                 this.nums[i] = nums[i];
             }
-            if (len == 0) {
+            if (len == 0)
                 permutations.add(Arrays.asList(this.nums));
-            } else {
+            else
                 backtrack(0);
-            }
             return permutations;
         }
 

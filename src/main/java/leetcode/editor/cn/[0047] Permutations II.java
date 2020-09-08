@@ -30,7 +30,7 @@ class PermutationsIi {
 
         private int len;
         private int[] nums;
-        private boolean[] visited;
+        private boolean[] selected;
 
         public List<List<Integer>> permuteUnique(int[] nums) {
             len = nums.length;
@@ -40,7 +40,7 @@ class PermutationsIi {
                 permutations.add(permutation);
             } else {
                 this.nums = nums;
-                visited = new boolean[len];
+                selected = new boolean[len];
                 backtrack(0);
             }
             return permutations;
@@ -49,15 +49,19 @@ class PermutationsIi {
         private void backtrack(int i) {
             if (i == len)
                 permutations.add(new ArrayList<>(permutation));
-            // select the element for the i-th position of output array in the [i, len]
+
+            // select the element for the i-th position of output array
             for (int j = 0; j < len; j++) {
-                if (visited[j]) continue;
-                if (j != 0 && !visited[j - 1] && nums[j - 1] == nums[j]) continue;
+                // if the j-th element of original array has been selected, skip
+                if (selected[j]) continue;
+
+                // always only choose the first one if there are duplicate element
+                if (j != 0 && !selected[j - 1] && nums[j - 1] == nums[j]) continue;
 
                 permutation.add(nums[j]);
-                visited[j] = true;
+                selected[j] = true;
                 backtrack(i + 1); // continue
-                visited[j] = false;
+                selected[j] = false;
                 permutation.remove(i);
             }
         }
