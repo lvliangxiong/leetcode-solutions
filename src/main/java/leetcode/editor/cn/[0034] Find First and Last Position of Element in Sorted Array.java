@@ -39,26 +39,30 @@ class FindFirstAndLastPositionOfElementInSortedArray {
         public int[] searchRange(int[] nums, int target) {
             int n = nums.length;
             if (n == 0) return new int[]{-1, -1};
-            int low = 0, high = n - 1;
-            // search for the start
-            while (low < high) {
-                int start = (low + high) >>> 1;
-                if (nums[start] < target) low = start + 1;
-                else high = start;
-            }
-            int start = 0;
-            if (nums[low] != target) return new int[]{-1, -1};
-            else start = low;
-            // search for the end
-            low = start;
-            high = nums.length - 1;
-            while (low < high) {
-                int end = (low + high + 1) >>> 1;
-                if (nums[end] > target) high = end - 1;
-                else low = end;
-            }
-            return new int[]{start, high};
+            int start = indexOf(nums, target);
+            if (start >= n || nums[start] != target) return new int[]{-1, -1};
+            return new int[]{start, indexOf(nums, target + 1) - 1};
         }
+
+        /**
+         * Return the first occurrence index of target, if the target doesn't exist, return the index where it should be
+         * inserted.
+         *
+         * @param nums
+         * @param target
+         * @return
+         */
+        private int indexOf(int[] nums, int target) {
+            int low = 0, high = nums.length - 1;
+            while (low < high) {
+                if (nums[low] == target) return low;
+                int mid = (low + high) >>> 1;
+                if (nums[mid] < target) low = mid + 1;
+                else high = mid;
+            }
+            return nums[low] >= target ? low : low + 1;
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
