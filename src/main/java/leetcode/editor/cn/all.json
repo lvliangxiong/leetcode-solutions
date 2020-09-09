@@ -391,7 +391,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "32",
-    "status": "",
+    "status": "ac",
     "title": "Longest Valid Parentheses",
     "titleSlug": "longest-valid-parentheses"
   },
@@ -403,7 +403,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "33",
-    "status": "",
+    "status": "ac",
     "title": "Search in Rotated Sorted Array",
     "titleSlug": "search-in-rotated-sorted-array"
   },
