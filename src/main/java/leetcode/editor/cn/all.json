@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[637]Average of Levels in Binary Tree",
-    "frontendQuestionId": "637",
+    "formTitle": "[39]Combination Sum",
+    "frontendQuestionId": "39",
     "leaf": true,
-    "level": 1,
+    "level": 2,
     "nodeType": "def",
-    "questionId": "637",
-    "status": "",
-    "title": "Average of Levels in Binary Tree",
-    "titleSlug": "average-of-levels-in-binary-tree"
+    "questionId": "39",
+    "status": "ac",
+    "title": "Combination Sum",
+    "titleSlug": "combination-sum"
   },
   {
     "articleLive": 2,
@@ -469,18 +469,6 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[39]Combination Sum",
-    "frontendQuestionId": "39",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "39",
-    "status": "ac",
-    "title": "Combination Sum",
-    "titleSlug": "combination-sum"
-  },
-  {
-    "articleLive": 2,
     "formTitle": "[40]Combination Sum II",
     "frontendQuestionId": "40",
     "leaf": true,
@@ -595,7 +583,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "49",
-    "status": "ac",
+    "status": "",
     "title": "Group Anagrams",
     "titleSlug": "group-anagrams"
   },
@@ -739,7 +727,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "61",
-    "status": "ac",
+    "status": "",
     "title": "Rotate List",
     "titleSlug": "rotate-list"
   },
@@ -775,7 +763,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "64",
-    "status": "ac",
+    "status": "notac",
     "title": "Minimum Path Sum",
     "titleSlug": "minimum-path-sum"
   },
@@ -5320,7 +5308,7 @@
     "formTitle": "[443]String Compression",
     "frontendQuestionId": "443",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
     "questionId": "443",
     "status": "",
@@ -7642,6 +7630,18 @@
     "status": "",
     "title": "Exclusive Time of Functions",
     "titleSlug": "exclusive-time-of-functions"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[637]Average of Levels in Binary Tree",
+    "frontendQuestionId": "637",
+    "leaf": true,
+    "level": 1,
+    "nodeType": "def",
+    "questionId": "637",
+    "status": "",
+    "title": "Average of Levels in Binary Tree",
+    "titleSlug": "average-of-levels-in-binary-tree"
   },
   {
     "articleLive": 2,
@@ -10072,7 +10072,7 @@
     "formTitle": "[840]Magic Squares In Grid",
     "frontendQuestionId": "840",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
     "questionId": "870",
     "status": "",
@@ -10180,7 +10180,7 @@
     "formTitle": "[849]Maximize Distance to Closest Person",
     "frontendQuestionId": "849",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
     "questionId": "879",
     "status": "",
@@ -11380,7 +11380,7 @@
     "formTitle": "[949]Largest Time for Given Digits",
     "frontendQuestionId": "949",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
     "questionId": "986",
     "status": "",
@@ -18949,30 +18949,6 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[1580]Put Boxes Into the Warehouse II",
-    "frontendQuestionId": "1580",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "1719",
-    "status": "lock",
-    "title": "Put Boxes Into the Warehouse II",
-    "titleSlug": "put-boxes-into-the-warehouse-ii"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[1581]Customer Who Visited but Did Not Make Any Transactions",
-    "frontendQuestionId": "1581",
-    "leaf": true,
-    "level": 1,
-    "nodeType": "def",
-    "questionId": "1724",
-    "status": "lock",
-    "title": "Customer Who Visited but Did Not Make Any Transactions",
-    "titleSlug": "customer-who-visited-but-did-not-make-any-transactions"
-  },
-  {
-    "articleLive": 2,
     "formTitle": "[LCP 01]Guess Numbers",
     "frontendQuestionId": "LCP 01",
     "leaf": true,
@@ -20020,7 +19996,7 @@
     "formTitle": "[剑指 Offer 66]构建乘积数组 LCOF",
     "frontendQuestionId": "剑指 Offer 66",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
     "questionId": "100338",
     "status": "",
