@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[637]Average of Levels in Binary Tree",
-    "frontendQuestionId": "637",
+    "formTitle": "[94]Binary Tree Inorder Traversal",
+    "frontendQuestionId": "94",
     "leaf": true,
-    "level": 1,
+    "level": 2,
     "nodeType": "def",
-    "questionId": "637",
+    "questionId": "94",
     "status": "ac",
-    "title": "Average of Levels in Binary Tree",
-    "titleSlug": "average-of-levels-in-binary-tree"
+    "title": "Binary Tree Inorder Traversal",
+    "titleSlug": "binary-tree-inorder-traversal"
   },
   {
     "articleLive": 2,
@@ -439,7 +439,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "36",
-    "status": "",
+    "status": "ac",
     "title": "Valid Sudoku",
     "titleSlug": "valid-sudoku"
   },
@@ -499,7 +499,7 @@
     "level": 3,
     "nodeType": "def",
     "questionId": "41",
-    "status": "",
+    "status": "ac",
     "title": "First Missing Positive",
     "titleSlug": "first-missing-positive"
   },
@@ -1126,18 +1126,6 @@
     "status": "ac",
     "title": "Restore IP Addresses",
     "titleSlug": "restore-ip-addresses"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[94]Binary Tree Inorder Traversal",
-    "frontendQuestionId": "94",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "94",
-    "status": "ac",
-    "title": "Binary Tree Inorder Traversal",
-    "titleSlug": "binary-tree-inorder-traversal"
   },
   {
     "articleLive": 2,
@@ -7642,6 +7630,18 @@
     "status": "",
     "title": "Exclusive Time of Functions",
     "titleSlug": "exclusive-time-of-functions"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[637]Average of Levels in Binary Tree",
+    "frontendQuestionId": "637",
+    "leaf": true,
+    "level": 1,
+    "nodeType": "def",
+    "questionId": "637",
+    "status": "ac",
+    "title": "Average of Levels in Binary Tree",
+    "titleSlug": "average-of-levels-in-binary-tree"
   },
   {
     "articleLive": 2,
@@ -18970,6 +18970,54 @@
     "status": "lock",
     "title": "Customer Who Visited but Did Not Make Any Transactions",
     "titleSlug": "customer-who-visited-but-did-not-make-any-transactions"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1582]Special Positions in a Binary Matrix",
+    "frontendQuestionId": "1582",
+    "leaf": true,
+    "level": 1,
+    "nodeType": "def",
+    "questionId": "1704",
+    "status": "",
+    "title": "Special Positions in a Binary Matrix",
+    "titleSlug": "special-positions-in-a-binary-matrix"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1583]Count Unhappy Friends",
+    "frontendQuestionId": "1583",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1705",
+    "status": "",
+    "title": "Count Unhappy Friends",
+    "titleSlug": "count-unhappy-friends"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1584]Min Cost to Connect All Points",
+    "frontendQuestionId": "1584",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1706",
+    "status": "",
+    "title": "Min Cost to Connect All Points",
+    "titleSlug": "min-cost-to-connect-all-points"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1585]Check If String Is Transformable With Substring Sort Operations",
+    "frontendQuestionId": "1585",
+    "leaf": true,
+    "level": 3,
+    "nodeType": "def",
+    "questionId": "1707",
+    "status": "",
+    "title": "Check If String Is Transformable With Substring Sort Operations",
+    "titleSlug": "check-if-string-is-transformable-with-substring-sort-operations"
   },
   {
     "articleLive": 2,
