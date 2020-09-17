@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[94]Binary Tree Inorder Traversal",
-    "frontendQuestionId": "94",
+    "formTitle": "[47]Permutations II",
+    "frontendQuestionId": "47",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
-    "questionId": "94",
+    "questionId": "47",
     "status": "ac",
-    "title": "Binary Tree Inorder Traversal",
-    "titleSlug": "binary-tree-inorder-traversal"
+    "title": "Permutations II",
+    "titleSlug": "permutations-ii"
   },
   {
     "articleLive": 2,
@@ -565,18 +565,6 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[47]Permutations II",
-    "frontendQuestionId": "47",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "47",
-    "status": "ac",
-    "title": "Permutations II",
-    "titleSlug": "permutations-ii"
-  },
-  {
-    "articleLive": 2,
     "formTitle": "[48]Rotate Image",
     "frontendQuestionId": "48",
     "leaf": true,
@@ -1003,7 +991,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "83",
-    "status": "",
+    "status": "ac",
     "title": "Remove Duplicates from Sorted List",
     "titleSlug": "remove-duplicates-from-sorted-list"
   },
@@ -1126,6 +1114,18 @@
     "status": "ac",
     "title": "Restore IP Addresses",
     "titleSlug": "restore-ip-addresses"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[94]Binary Tree Inorder Traversal",
+    "frontendQuestionId": "94",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "94",
+    "status": "ac",
+    "title": "Binary Tree Inorder Traversal",
+    "titleSlug": "binary-tree-inorder-traversal"
   },
   {
     "articleLive": 2,
@@ -2011,7 +2011,7 @@
     "level": 1,
     "nodeType": "def",
     "questionId": "168",
-    "status": "",
+    "status": "ac",
     "title": "Excel Sheet Column Title",
     "titleSlug": "excel-sheet-column-title"
   },
@@ -3580,7 +3580,7 @@
     "formTitle": "[299]Bulls and Cows",
     "frontendQuestionId": "299",
     "leaf": true,
-    "level": 1,
+    "level": 2,
     "nodeType": "def",
     "questionId": "299",
     "status": "",
@@ -19018,6 +19018,18 @@
     "status": "",
     "title": "Check If String Is Transformable With Substring Sort Operations",
     "titleSlug": "check-if-string-is-transformable-with-substring-sort-operations"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1586]Binary Search Tree Iterator II",
+    "frontendQuestionId": "1586",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1729",
+    "status": "",
+    "title": "Binary Search Tree Iterator II",
+    "titleSlug": "binary-search-tree-iterator-ii"
   },
   {
     "articleLive": 2,
