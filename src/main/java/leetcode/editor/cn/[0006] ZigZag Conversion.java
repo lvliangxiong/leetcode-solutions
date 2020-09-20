@@ -67,6 +67,7 @@ class ZigzagConversion {
                 ret.append(sb);
             }
             return ret.toString();
+
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
