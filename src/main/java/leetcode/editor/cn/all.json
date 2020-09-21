@@ -1,15 +1,15 @@
 [
   {
     "articleLive": 2,
-    "formTitle": "[78]Subsets",
-    "frontendQuestionId": "78",
+    "formTitle": "[538]Convert BST to Greater Tree",
+    "frontendQuestionId": "538",
     "leaf": true,
-    "level": 2,
+    "level": 1,
     "nodeType": "def",
-    "questionId": "78",
+    "questionId": "538",
     "status": "ac",
-    "title": "Subsets",
-    "titleSlug": "subsets"
+    "title": "Convert BST to Greater Tree",
+    "titleSlug": "convert-bst-to-greater-tree"
   },
   {
     "articleLive": 2,
@@ -934,6 +934,18 @@
     "status": "ac",
     "title": "Combinations",
     "titleSlug": "combinations"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[78]Subsets",
+    "frontendQuestionId": "78",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "78",
+    "status": "ac",
+    "title": "Subsets",
+    "titleSlug": "subsets"
   },
   {
     "articleLive": 2,
@@ -6442,18 +6454,6 @@
     "status": "",
     "title": "Complex Number Multiplication",
     "titleSlug": "complex-number-multiplication"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[538]Convert BST to Greater Tree",
-    "frontendQuestionId": "538",
-    "leaf": true,
-    "level": 1,
-    "nodeType": "def",
-    "questionId": "538",
-    "status": "ac",
-    "title": "Convert BST to Greater Tree",
-    "titleSlug": "convert-bst-to-greater-tree"
   },
   {
     "articleLive": 2,
@@ -19027,7 +19027,7 @@
     "level": 2,
     "nodeType": "def",
     "questionId": "1729",
-    "status": "",
+    "status": "lock",
     "title": "Binary Search Tree Iterator II",
     "titleSlug": "binary-search-tree-iterator-ii"
   },
@@ -19045,8 +19045,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5503]Sum of All Odd Length Subarrays",
-    "frontendQuestionId": "5503",
+    "formTitle": "[1588]Sum of All Odd Length Subarrays",
+    "frontendQuestionId": "1588",
     "leaf": true,
     "level": 1,
     "nodeType": "def",
@@ -19057,20 +19057,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5504]Make Sum Divisible by P",
-    "frontendQuestionId": "5504",
-    "leaf": true,
-    "level": 2,
-    "nodeType": "def",
-    "questionId": "1694",
-    "status": "",
-    "title": "Make Sum Divisible by P",
-    "titleSlug": "make-sum-divisible-by-p"
-  },
-  {
-    "articleLive": 2,
-    "formTitle": "[5505]Maximum Sum Obtained of Any Permutation",
-    "frontendQuestionId": "5505",
+    "formTitle": "[1589]Maximum Sum Obtained of Any Permutation",
+    "frontendQuestionId": "1589",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
@@ -19081,8 +19069,20 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5506]Strange Printer II",
-    "frontendQuestionId": "5506",
+    "formTitle": "[1590]Make Sum Divisible by P",
+    "frontendQuestionId": "1590",
+    "leaf": true,
+    "level": 2,
+    "nodeType": "def",
+    "questionId": "1694",
+    "status": "",
+    "title": "Make Sum Divisible by P",
+    "titleSlug": "make-sum-divisible-by-p"
+  },
+  {
+    "articleLive": 2,
+    "formTitle": "[1591]Strange Printer II",
+    "frontendQuestionId": "1591",
     "leaf": true,
     "level": 3,
     "nodeType": "def",
@@ -19093,8 +19093,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5519]Rearrange Spaces Between Words",
-    "frontendQuestionId": "5519",
+    "formTitle": "[1592]Rearrange Spaces Between Words",
+    "frontendQuestionId": "1592",
     "leaf": true,
     "level": 1,
     "nodeType": "def",
@@ -19105,8 +19105,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5520]Split a String Into the Max Number of Unique Substrings",
-    "frontendQuestionId": "5520",
+    "formTitle": "[1593]Split a String Into the Max Number of Unique Substrings",
+    "frontendQuestionId": "1593",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
@@ -19117,8 +19117,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5521]Maximum Non Negative Product in a Matrix",
-    "frontendQuestionId": "5521",
+    "formTitle": "[1594]Maximum Non Negative Product in a Matrix",
+    "frontendQuestionId": "1594",
     "leaf": true,
     "level": 2,
     "nodeType": "def",
@@ -19129,8 +19129,8 @@
   },
   {
     "articleLive": 2,
-    "formTitle": "[5522]Minimum Cost to Connect Two Groups of Points",
-    "frontendQuestionId": "5522",
+    "formTitle": "[1595]Minimum Cost to Connect Two Groups of Points",
+    "frontendQuestionId": "1595",
     "leaf": true,
     "level": 3,
     "nodeType": "def",
