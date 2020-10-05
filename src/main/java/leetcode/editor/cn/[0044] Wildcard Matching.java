@@ -93,4 +93,61 @@ class WildcardMatching {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    class GreedySolution {
+        public boolean isMatch(String s, String p) {
+            int sRight = s.length(), pRight = p.length();
+            // p 的末尾不是 *，对 s 和 p 进行反向依次字符匹配，直到遇到字符 * 或者字符全部匹配完成
+            while (sRight > 0 && pRight > 0 && p.charAt(pRight - 1) != '*') {
+                if (charMatch(s.charAt(sRight - 1), p.charAt(pRight - 1))) {
+                    --sRight;
+                    --pRight;
+                } else {
+                    // 出现不匹配的字符，直接返回 false
+                    return false;
+                }
+            }
+            // 如果 pRight 为 0，表示 p 字符串中没有字符 *
+            if (pRight == 0) {
+                return sRight == 0;
+            }
+
+            int sIndex = 0, pIndex = 0;
+            int sRecord = -1, pRecord = -1;
+
+            while (sIndex < sRight && pIndex < pRight) {
+                // 从左向右匹配
+                if (p.charAt(pIndex) == '*') {
+                    ++pIndex;
+                    sRecord = sIndex;
+                    pRecord = pIndex;
+                } else if (charMatch(s.charAt(sIndex), p.charAt(pIndex))) {
+                    ++sIndex;
+                    ++pIndex;
+                } else if (sRecord != -1 /*sRecord = -1 则说明 p 开头的字符不是 *，也就是没有重新匹配的机会*/
+                        && sRecord + 1 < sRight) {
+                    // 出现不匹配的字符，需要移动 s 和 p 上的指针，重新进行匹配
+                    ++sRecord;
+                    sIndex = sRecord;
+                    pIndex = pRecord;
+                } else {
+                    return false;
+                }
+            }
+            return allStars(p, pIndex, pRight);
+        }
+
+        public boolean allStars(String str, int left, int right) {
+            for (int i = left; i < right; ++i) {
+                if (str.charAt(i) != '*') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public boolean charMatch(char u, char v) {
+            return u == v || v == '?';
+        }
+    }
+
 }
