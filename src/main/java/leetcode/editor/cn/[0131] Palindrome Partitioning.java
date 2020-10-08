@@ -66,6 +66,7 @@ class PalindromePartitioning {
          * 使用 Manacher 算法计算所有的回文子串，记录在 isPalindrome 数组中
          *
          * @param s
+         * @see PalindromicSubstrings.Solution
          */
         public void manacher(String s) {
             // 添加占位符，例如 "aabb" 会被替换为 "#a#a#b#b#"
