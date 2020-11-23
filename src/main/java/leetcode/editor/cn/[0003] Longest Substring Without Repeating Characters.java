@@ -35,7 +35,7 @@ class LongestSubstringWithoutRepeatingCharacters {
     class Solution {
         /**
          * 使用 HashMap 记录遍历过的字符的索引位置。
-         * 使用 数组记录当然会更快，但是由于题目没有给出字符串的字符范围，所以不太好进行数组大小的声明。
+         * 使用 数组 进行记录当然会更快，但是由于题目没有给出字符串的字符范围，所以不太好进行数组大小的声明。
          *
          * @param s
          * @return
@@ -45,6 +45,7 @@ class LongestSubstringWithoutRepeatingCharacters {
             int n = s.length();
             if (n <= 1) return n;
             Map<Character, Integer> position = new HashMap<>();
+            // 维护快慢指针之间的子字符串不包含重复字符
             int current = 0, start = 0, max = 0;
             while (current < n) {
                 char ch = s.charAt(current);
@@ -64,30 +65,24 @@ class LongestSubstringWithoutRepeatingCharacters {
          * @return
          */
         public int lengthOfLongestSubstringBrutally(String s) {
-            if (null == s || s.isEmpty()) {
-                return 0;
-            }
+            if (s == null) return 0;
+            int n = s.length();
+            if (n <= 1) return n;
             char[] chars = s.toCharArray();
-            int maxSubLength = 1;
-            int startIndex = 0; // 当前无重复最大字符串起始位置
-            int endIndex = 0; // 当前无重复最大字符串结束位置
-            boolean reInit;
-            for (int i = 1; i < chars.length; i++) { // 当前字符索引位置
-                reInit = false;
-                // 遍历 [startIndex, endIndex]，如果其中有和当前字符相同的字符，说明需要进行更新
-                for (int j = startIndex; j <= endIndex; j++) {
-                    if (chars[j] == chars[i]) {
-                        maxSubLength = Math.max(maxSubLength, endIndex - startIndex + 1);
-                        startIndex = j + 1;
-                        endIndex = i;
-                        reInit = true;
+            int start = 0, end = 0, current = 1, max = 1;
+            while (current < n) {
+                char ch = chars[current];
+                for (int i = start; i <= end; i++) {
+                    if (chars[i] == ch) {
+                        start = i + 1;
                         break;
                     }
                 }
-                if (!reInit)
-                    endIndex++;
+                end++;
+                current++;
+                max = Math.max(max, end - start + 1);
             }
-            return Math.max(maxSubLength, endIndex - startIndex + 1);
+            return max;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
