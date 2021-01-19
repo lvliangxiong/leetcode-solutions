@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.*;
 
 /**
@@ -58,6 +59,9 @@ class ThreeSum {
             for (int i = 0; i <= n - 3; i++) {
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
 
+                if (nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
+                if (nums[i] + nums[n - 2] + nums[n - 1] < 0) continue;
+
                 int target = -nums[i];
                 // 在一个递增的数组的 [i+1, n-1] 索引范围内，寻找两个和为 target 的数
                 int left = i + 1, right = n - 1;
@@ -66,13 +70,12 @@ class ThreeSum {
                     int sum = le + ri;
                     if (sum == target) {
                         ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                        // 移动到下一个不相同的数
                         while (left < right && nums[left] == le) left++;
                         while (left < right && nums[right] == ri) right--;
                     } else if (sum < target) {
-                        left++; // 增大
+                        left++;
                     } else {
-                        right--; // 减小
+                        right--;
                     }
                 }
             }

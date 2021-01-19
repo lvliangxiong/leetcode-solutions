@@ -1,5 +1,7 @@
 package leetcode.editor.cn;
 
+import leetcode.editor.cn.linkedlist.ListNode;
+
 /**
  * <pre>
  * Given a linked list, remove the n-th node from the end of list and return its head.
@@ -37,13 +39,13 @@ class RemoveNthNodeFromEndOfList {
      * </pre>
      */
     class Solution {
-        public Node removeNthFromEnd(Node head, int n) {
-            Node cur = head;
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode cur = head;
             for (int i = 0; i < n; i++) {
                 cur = cur.next;
             }
             if (cur == null) return head.next; // remove the first node
-            Node preN = head;
+            ListNode preN = head;
             while (cur.next != null) {
                 preN = preN.next;
                 cur = cur.next;
