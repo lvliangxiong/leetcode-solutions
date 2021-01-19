@@ -1,5 +1,7 @@
 package leetcode.editor.cn;
 
+import java.util.Arrays;
+
 /**
  * <pre>
  * Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
@@ -62,25 +64,29 @@ class RegularExpressionMatching {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isMatch(String s, String p) {
+            if (p.startsWith("*")) throw new IllegalArgumentException("Pattern should not begin with '*'");
             int m = s.length(), n = p.length();
-            /* dp[i][j] 表示 s 的前 i 个字符是否和 p 的前 j 个字符匹配。
-             * 1. p[j] 是一个小写字母，那么
-             *  dp[i][j] = dp[i-1][j-1] if p[j] == s[i] else false
+            /* dp[i][j] 表示 s 的前 i 个字符是否和 p 的前 j 个字符匹配。p[i]，s[i] 表示 p 和 s 的第 i 个字符。
+             * 1. p[j] 是一个小写字母，那么：
+             *      dp[i][j] = dp[i-1][j-1] if p[j] == s[i] else false
              * 2. p[j] 是 '*'，那么：
-             *  dp[i][j] = dp[i][j-2] if p[j-1] != s[i] else (dp[i][j-2] || dp[i-1][j])
+             *      dp[i][j] = dp[i][j-2] if p[j-1] != s[i] else (dp[i][j-2] || dp[i-1][j])
              * 3. p[j] 是 '.'，那么：
-             *  dp[i][j] = dp[i-1][j-1]
+             *      dp[i][j] = dp[i-1][j-1]
              */
             boolean[][] dp = new boolean[m + 1][n + 1];
-            dp[0][0] = true; // 空串和空串是匹配的
+            // 空串和空串是匹配的，空串和任意字符都不匹配，即 dp[0][0] = true，dp[i][0] = false (i != 0)
+            dp[0][0] = true;
             for (int i = 0; i <= m; i++) {
                 for (int j = 1; j <= n; j++) {
                     if (p.charAt(j - 1) == '*') {
-                        dp[i][j] = dp[i][j - 2];
+                        // p 中第 j 个字符为 *
+                        dp[i][j] = dp[i][j - 2]; // * 重复前面一个字符 0 次
                         if (match(s, i, p, j - 1)) {
                             dp[i][j] = dp[i][j] || dp[i - 1][j];
                         }
                     } else {
+                        // p 中第 j 个字符不是 *，则比较 s 的第 i 个字符和 p 的第 j 个字符
                         if (match(s, i, p, j)) {
                             dp[i][j] = dp[i - 1][j - 1];
                         }
@@ -91,7 +97,7 @@ class RegularExpressionMatching {
         }
 
         private boolean match(String s, int i, String p, int j) {
-            if (i == 0) return false;
+            if (i == 0 || j == 0) return i == j;
             if (p.charAt(j - 1) == '.') return true;
             return s.charAt(i - 1) == p.charAt(j - 1);
         }

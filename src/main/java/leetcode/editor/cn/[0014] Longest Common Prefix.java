@@ -36,7 +36,7 @@ class LongestCommonPrefix {
             if (n == 1) return strs[0];
 
             StringBuilder sb = new StringBuilder();
-            int index = 0;
+            int index = 0; // 比较所有字符串索引为 index 位置的字符
             boolean stop = false;
             while (true) {
                 int count = 0;

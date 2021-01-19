@@ -43,6 +43,7 @@ class ReverseInteger {
             boolean isPositive = x >= 0;
             int ret = 0; // 结果
             while (x != 0) {
+                // Java 中，% 代表的是数学概念中的取余操作，求商的时候向 0 取整数
                 int bit = x % 10; // 最右一位数字，如果原数为负数，则 bit 也为负数
                 if ((isPositive && ret <= (Integer.MAX_VALUE - bit) / 10) ||
                         (!isPositive && ret >= (Integer.MIN_VALUE - bit) / 10)) {

@@ -74,12 +74,12 @@ class LongestSubstringWithoutRepeatingCharacters {
                 char ch = chars[current];
                 for (int i = start; i <= end; i++) {
                     if (chars[i] == ch) {
-                        start = i + 1;
+                        start = i + 1; // 更新 start
                         break;
                     }
                 }
-                end++;
-                current++;
+                end = current;
+                current++; // 更新 current
                 max = Math.max(max, end - start + 1);
             }
             return max;

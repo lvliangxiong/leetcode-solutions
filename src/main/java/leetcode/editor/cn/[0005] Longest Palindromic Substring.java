@@ -23,19 +23,28 @@ class LongestPalindromicSubstring {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 中心扩展算法
+         *
+         * @param s
+         * @return
+         */
         public String longestPalindrome(String s) {
             int len = s.length(), max = 0, center = 0;
             if (len <= 1) return s;
             char[] chars = s.toCharArray();
-            int count = (len << 1) + 1;
+            int count = (len << 1) + 1; // n 个字符的字符串，有 2n+1 个中心
             for (int i = 0; i < count; i++) {
                 int length;
                 if ((i & 1) == 0) {
+                    // i 为偶数，扩展后的回文字符串长度为奇数
                     length = expand(chars, (i >> 1) - 1, (i >> 1) + 1);
                 } else {
+                    // i 为奇数，扩展后的回文字符串长度为偶数
                     length = expand(chars, i - 1 >> 1, i + 1 >> 1);
                 }
                 if (max < length) {
+                    // 更新当前已查找到的最大子回文串的长度和中心位置
                     max = length;
                     center = i;
                 }
@@ -68,15 +77,17 @@ class LongestPalindromicSubstring {
             for (int i = 0; i < len; i++)
                 chars[i] = (i & 1) == 0 ? '#' : s.charAt(i - 1 >> 1);
 
-            int center = -1; // 对称中心
+            int center = -1; // 具有最右边界的回文子串的对称中心
             int right = -1; // 以 center 为中心的最长回文子串的右边界
             int[] arms = new int[len]; // 存储已计算过的『臂长』
             int start = 0, end = -1; // 遍历过程中的最长子串
 
-            for (int i = 1; i < len - 1; i++) { // 注意添加了 '#' 后，中心扩展的位置
+            // 注意添加了 '#' 后，中心扩展的位置（用字符 # 代替了原字符之间的位置）
+            // 注意边界位置的字符都是 #，并且回文串的长度都是奇数
+            for (int i = 1; i < len - 1; i++) {
                 int arm;
                 if (right > i) {
-                    // 使用前面计算过的结果简化计算
+                    // 使用前面计算过的结果简化计算 rightSym --- iSym ------ center ------ i --- right
                     int iSym = (center << 1) - i;
                     int minArm = Math.min(arms[iSym], right - i);
                     arm = computeArm(chars, i - minArm, i + minArm);
@@ -95,6 +106,7 @@ class LongestPalindromicSubstring {
                     end = i + arm;
                 }
             }
+            // 注意这里的索引位置和原字符串的索引位置需要进行映射
             return s.substring(start >> 1, (end >> 1));
         }
 

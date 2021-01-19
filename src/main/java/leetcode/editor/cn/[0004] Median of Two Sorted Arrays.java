@@ -84,13 +84,13 @@ class MedianOfTwoSortedArrays {
 
                 // 逐步缩小 k
                 int half = k >> 1;
-                // [startIndex, newIndex] 区间最多包含了 k/2 个元素
+                // [startIndex, newIndex] 区间最多包含了 half 个元素
                 int newIndex1 = Math.min(startIndex1 + half, len1) - 1;
                 int newIndex2 = Math.min(startIndex2 + half, len2) - 1;
-                // pivot 之前包含了 k/2 - 2 个元素
+                // pivot 之前（不包含 pivot）最多包含了 half-1 个元素
                 int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
                 if (pivot1 <= pivot2) {
-                    // pivot1 不可能是第 k 小数，因为 (k/2 - 1) + (k/2 - 1) <= k - 2，即 pivot1 最多是第 k-1 小数
+                    // pivot1 不可能是第 k 小数，因为 (half - 1) + (half - 1) = 2*half -2 <= k - 2，即 pivot1 最多是第 k-1 小数
                     k -= (newIndex1 - startIndex1 + 1); // 排除 [startIndex1, newIndex1] 之间的所有元素，缩小 k 的值
                     startIndex1 = newIndex1 + 1;
                 } else {

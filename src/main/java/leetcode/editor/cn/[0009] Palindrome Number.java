@@ -34,7 +34,8 @@ class PalindromeNumber {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isPalindrome(int x) {
-            if (x <= 0 || (x % 10 == 0 && x != 0)) return x == 0;
+            if (x == 0) return true;
+            if (x < 0 || ((x % 10 == 0) && x != 0)) return false;
             int y = 0, z = x;
             while (x > 0) {
                 y = 10 * y + x % 10;

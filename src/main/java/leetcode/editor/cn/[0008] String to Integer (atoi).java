@@ -21,7 +21,7 @@ package leetcode.editor.cn;
  *
  *     Only the space character ' ' is considered as whitespace character.
  *     Assume we are dealing with an environment which could only store integers within the 32-bit
- *     signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of
+ *     signed integer range: [−2^31,  2^31 − 1]. If the numerical value is out of the range of
  *     representable values, INT_MAX (2^31 − 1) or INT_MIN (−2^31) is returned.
  *
  * Example 1:
@@ -54,7 +54,7 @@ package leetcode.editor.cn;
  * Input: "-91283472332"
  * Output: -2147483648
  * Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
- *              Thefore INT_MIN (−2^31) is returned.
+ *              Therefore INT_MIN (−2^31) is returned.
  *
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/string-to-integer-atoi
@@ -85,7 +85,7 @@ class StringToIntegerAtoi {
                     }
                 } else {
                     if (Character.isDigit(ch)) {
-                        int bit = ch - '0';
+                        int bit = ch - '0'; // 由于是单个处理的，这里的 bit 必定是非负数
                         if (isPositive) {
                             if (ret <= (Integer.MAX_VALUE - bit) / 10) {
                                 ret = ret * 10 + bit;

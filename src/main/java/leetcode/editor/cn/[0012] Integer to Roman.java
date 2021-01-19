@@ -82,14 +82,15 @@ class IntegerToRoman {
         }};
 
         public String intToRoman(int num) {
-            int i = 1;
+            int i = 1; // 代表位数，个位为 1，十位为 10，百位为 100 ...
             String ans = "";
-            while (num > 0) {
-                int j = num % 10;
-                int n = j * i;
+            while (num > 0) { // 一位一位的处理
+                int j = num % 10; // 取当前最低位
+                int n = j * i; // 该位的实际大小
                 if (mapping.containsKey(n)) {
                     ans = mapping.get(n) + ans;
                 } else {
+                    // j = 0 2 3 6 7 8 时，该位由 i 和 5i 拼凑出来
                     for (int k = 0; k < (j < 5 ? j : j - 5); k++) {
                         ans = mapping.get(i) + ans;
                     }
