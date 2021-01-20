@@ -54,16 +54,19 @@ class RemoveElement {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int removeElement(int[] nums, int val) {
-            int n = nums.length, notVal = n - 1;
-            while (notVal >= 0 && nums[notVal] == val) notVal--;
-            for (int i = 0; i <= notVal; i++) {
-                if (nums[i] == val) {
-                    nums[i] = nums[notVal];
-                    nums[notVal] = val;
-                    while (notVal >= 0 && nums[notVal] == val) notVal--;
+            int n = nums.length, notValIndex = n - 1;
+            while (notValIndex >= 0 && nums[notValIndex] == val) notValIndex--;
+
+            int index = 0;
+            while (index <= notValIndex) {
+                if (nums[index] == val) {
+                    nums[index] = nums[notValIndex];
+                    nums[notValIndex] = val;
+                    while (notValIndex >= index && nums[notValIndex] == val) notValIndex--;
                 }
+                index++;
             }
-            return notVal + 1;
+            return index;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
