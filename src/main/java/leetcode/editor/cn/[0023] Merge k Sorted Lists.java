@@ -46,7 +46,7 @@ class MergeKSortedLists {
         }
 
         /**
-         * 分治，两两合并
+         * 分治，两两合并，时间复杂度为 O(knlogk)，空间复杂度为 O(logk)
          *
          * @param lists
          * @param low
@@ -84,6 +84,8 @@ class MergeKSortedLists {
 
     /**
      * 使用优先队列进行实现，也可以使用自己实现的 Heap 结构。
+     * 时间复杂度为 O(knlogk)
+     * 空间复杂度为 O(k)
      *
      * @see KthLargestElementInAStream.KthLargest#KthLargest(int, int[])
      */

@@ -32,6 +32,13 @@ class GenerateParentheses {
             return ans;
         }
 
+        /**
+         * 回溯法解决组合问题
+         *
+         * @param sb
+         * @param remained     还剩余多少左括号没有添加进入 sb
+         * @param remainedLeft 已添加进入 sb 的左括号还剩余多少没有匹配的右括号
+         */
         private void backtrack(StringBuilder sb, int remained, int remainedLeft) {
             if (remained == 0 && remainedLeft == 0) ans.add(sb.toString());
             if (remained > 0) {

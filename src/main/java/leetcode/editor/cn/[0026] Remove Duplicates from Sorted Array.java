@@ -52,13 +52,15 @@ class RemoveDuplicatesFromSortedArray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int removeDuplicates(int[] nums) {
-            int n = nums.length, p = 0;
-            for (int i = 0; i < n; i++) {
-                if (i != p) {
+            int n = nums.length, p = 0, i = 0;
+            if (n <= 1) return n;
+            while (i < n) {
+                if (i != p)
                     nums[p] = nums[i];
-                }
+                int num = nums[i];
+                while (i < n && nums[i] == num)
+                    i++; // i 更新到下一个和 num 不相等的位置，如果全部相等，那么 i = n
                 p++;
-                while (i < n - 1 && nums[i] == nums[i + 1]) i++;
             }
             return p;
         }
