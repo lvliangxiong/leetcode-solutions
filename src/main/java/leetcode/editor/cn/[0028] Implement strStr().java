@@ -106,6 +106,7 @@ class ImplementStrstr {
 
     /**
      * https://leetcode-cn.com/problems/implement-strstr/solution/shi-xian-strstr-by-leetcode/
+     * 此方法，还是会有 hash 碰撞的风险，不建议使用。
      */
     class RabinKarpSolution {
         public int charToInt(int idx, String s) {

@@ -14,5 +14,9 @@ class ImplementStrstrTest {
         ImplementStrstr.Solution solution = new ImplementStrstr().new Solution();
         Assertions.assertEquals(2, solution.strStr("hello", "ll"));
         Assertions.assertEquals(-1, solution.strStr("aaaaa", "bba"));
+
+        ImplementStrstr.RabinKarpSolution solution2 = new ImplementStrstr().new RabinKarpSolution();
+        // 这个测试例无法通过
+        Assertions.assertEquals(-1, solution2.strStr("bbbbbbbbbbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbbbhzujtzz"));
     }
 }

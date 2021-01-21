@@ -36,14 +36,25 @@ package leetcode.editor.cn;
 class DivideTwoIntegers {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 使用 divisor * 2 ^ n 去逼近 dividend。
+         * 如果使用一个数组将这些大小进行保存，还可以进一步减少计算量（贪心算法），但是会增加空间使用。
+         *
+         * @param dividend
+         * @param divisor
+         * @return
+         */
         public int divide(int dividend, int divisor) {
-            boolean negative = (dividend > 0) ^ (divisor > 0); // 最终结果是否为负数
+            // 最终结果是否为负数
+            boolean negative = (dividend > 0) ^ (divisor > 0);
             // 将除数和被除数均转为负数后，再参与计算
             if (dividend > 0) dividend = -dividend;
             if (divisor > 0) divisor = -divisor;
+
             int result = 0;
             while (dividend <= divisor) {
                 int tmpResult = -1, tempDivisor = divisor;
+                // 使用 divisor * 2 ^ n 去逼近 dividend
                 while (dividend <= (tempDivisor << 1)) {
                     if (tempDivisor <= (Integer.MIN_VALUE >> 1)) break;
                     tmpResult = tmpResult << 1;
@@ -58,18 +69,17 @@ class DivideTwoIntegers {
             }
             return result;
         }
-    }
-    //leetcode submit region end(Prohibit modification and deletion)
 
-    class Solution2 {
         /**
+         * 将乘法转化为指数和对数运算：
          * x/y = e^(log(x/y)) = e^(log(x) - log(y))
+         * 但是会有浮点数的计算误差，因此不建议使用这种方法。
          *
          * @param dividend
          * @param divisor
          * @return
          */
-        public int divide(int dividend, int divisor) {
+        public int divideByExponent(int dividend, int divisor) {
             // boundary case
             if (divisor == Integer.MIN_VALUE) {
                 if (dividend == Integer.MIN_VALUE) return 1;
@@ -77,6 +87,7 @@ class DivideTwoIntegers {
             }
             double ret, e = 1E-9;
             if (dividend == Integer.MIN_VALUE) {
+                // Integer.MIN_VALUE = 2 ^ (-31) ，无法转为正数进行计算（会产生溢出），因此需要进行间接计算
                 double log2E16 = Math.log(1 << 16);
                 double log2 = Math.log(2);
                 ret = Math.exp(log2E16 + log2E16 - log2 - Math.log(Math.abs(divisor)));
@@ -85,4 +96,5 @@ class DivideTwoIntegers {
             return dividend > 0 ^ divisor > 0 ? (int) -(ret + e) : (int) (ret + e);
         }
     }
+    //leetcode submit region end(Prohibit modification and deletion)
 }
