@@ -48,20 +48,19 @@ class GroupAnagrams {
         public List<List<String>> groupAnagrams(String[] strs) {
             Map<String, List<String>> map = new HashMap<>();
             for (String str : strs) {
-                String key = helper(str);
-                List<String> list = map.computeIfAbsent(key, k -> new ArrayList<>());
-                list.add(str);
+                String key = computeHash(str);
+                map.computeIfAbsent(key, k -> new ArrayList<>()).add(str);
             }
             return new ArrayList<>(map.values());
         }
 
         /**
-         * 将 str 按照字典序进行排序
+         * 计算一个特殊的字符串作为给定字符串
          *
          * @param str
          * @return
          */
-        private String helper(String str) {
+        private String computeHash(String str) {
             int[] count = new int[26];
             for (char ch : str.toCharArray()) {
                 count[ch - 'a']++;
@@ -71,9 +70,6 @@ class GroupAnagrams {
              * 2. 构造一个新的字符串，该字符串由各种字符的数量构成和分割符构成 */
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 26; i++) {
-                /*for (int j = 0; j < count[i]; j++) {
-                    sb.append((char) ('a' + i));
-                }*/
                 sb.append(count[i]).append("#");
             }
             return sb.toString();

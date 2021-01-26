@@ -52,7 +52,7 @@ class PermutationsIi {
 
             // select the element for the i-th position of output array
             for (int j = 0; j < len; j++) {
-                // if the j-th element of original array has been selected, skip
+                // if the j-th element of sorted array has been selected, skip
                 if (selected[j]) continue;
 
                 // always only choose the first one if there are duplicate element

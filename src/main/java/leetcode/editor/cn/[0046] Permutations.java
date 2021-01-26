@@ -36,9 +36,7 @@ class Permutations {
         public List<List<Integer>> permute(int[] nums) {
             len = nums.length;
             this.nums = new Integer[len];
-            for (int i = 0; i < len; i++) {
-                this.nums[i] = nums[i];
-            }
+            Arrays.setAll(this.nums, i -> nums[i]);
             if (len == 0)
                 permutations.add(Arrays.asList(this.nums));
             else
