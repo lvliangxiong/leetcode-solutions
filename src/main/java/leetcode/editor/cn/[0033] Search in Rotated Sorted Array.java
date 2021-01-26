@@ -33,7 +33,7 @@ package leetcode.editor.cn;
  *     1 <= nums.length <= 5000
  *     -10^4 <= nums[i] <= 10^4
  *     All values of nums are unique.
- *     nums is guranteed to be rotated at some pivot.
+ *     nums is guaranteed to be rotated at some pivot.
  *     -10^4 <= target <= 10^4
  *
  * 来源：力扣（LeetCode）
@@ -44,14 +44,21 @@ class SearchInRotatedSortedArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 变形的二分法
+         *
+         * @param nums
+         * @param target
+         * @return
+         */
         public int search(int[] nums, int target) {
             int n = nums.length;
             if (n == 1) return nums[0] == target ? 0 : -1;
-            // split to two ascending sub array at mid, i.e. [0, mid] and [mid+1, n-1]
             int low = 0, high = n - 1;
-            if (target < nums[low] && target > nums[high]) return -1;
-            boolean targetInFirstHalf = target >= nums[low];
+            if (target < nums[0] && target > nums[n - 1]) return -1;
+            boolean targetInFirstHalf = target >= nums[0];
             while (low < high) {
+                // split to two sub array at mid, i.e. [0, mid] and [mid+1, n-1]
                 int mid = (low + high) >>> 1;
                 if (nums[mid] == target) return mid;
                 if (nums[mid] >= nums[0]) {

@@ -44,8 +44,8 @@ class JumpGame {
             dp[0] = true;
             for (int i = 1; i < n; i++) {
                 for (int j = i - 1; j >= 0; j--) {
+                    // 从起点位置是否可以跳跃到 j，从 j 是否可以跳跃到 i
                     if (dp[j] && nums[j] >= (i - j)) {
-                        // 从起点位置是否可以跳跃到 j，从 j 是否可以跳跃到 i
                         dp[i] = true;
                         break;
                     }

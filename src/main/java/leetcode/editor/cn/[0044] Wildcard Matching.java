@@ -61,17 +61,27 @@ class WildcardMatching {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * @param s
+         * @param p
+         * @return
+         * @see RegularExpressionMatching.Solution#isMatch(String, String)
+         */
         public boolean isMatch(String s, String p) {
             int sLen = s.length();
             int pLen = p.length();
             // dp[i][j] 代表字符串 p 的前 j 个字符能否和字符串 s 的前 i 个字符匹配
             boolean dp[][] = new boolean[sLen + 1][pLen + 1];
-            // 只有连续的字符 * 和空串可以匹配空串
+
+            // 初始化 i = 0
             dp[0][0] = true;
             for (int j = 1; j <= pLen; j++) {
+                // 只有连续的字符 * 和空串可以匹配空串
                 if (p.charAt(j - 1) == '*') dp[0][j] = true;
                 else break;
             }
+
+            // i > 0
             for (int i = 1; i <= sLen; i++) {
                 for (int j = 1; j <= pLen; j++) {
                     char ch = p.charAt(j - 1); // p 字符串的第 j 个字符
@@ -93,10 +103,16 @@ class WildcardMatching {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    /**
+     * 贪婪算法：
+     * 思考形如 *u1*u2*u3*u4*.....*un* 的 pattern 字符串应该如何匹配？
+     * <p>
+     * https://leetcode-cn.com/problems/wildcard-matching/solution/tong-pei-fu-pi-pei-by-leetcode-solution/
+     */
     class GreedySolution {
         public boolean isMatch(String s, String p) {
             int sRight = s.length(), pRight = p.length();
-            // p 的末尾不是 *，对 s 和 p 进行反向依次字符匹配，直到遇到字符 * 或者字符全部匹配完成
+            // 从字符串末尾开始进行匹配，直到指针 pRight 位置上的字符为 * 或者匹配完成
             while (sRight > 0 && pRight > 0 && p.charAt(pRight - 1) != '*') {
                 if (charMatch(s.charAt(sRight - 1), p.charAt(pRight - 1))) {
                     --sRight;
@@ -114,16 +130,17 @@ class WildcardMatching {
             int sIndex = 0, pIndex = 0;
             int sRecord = -1, pRecord = -1;
 
+            // 从左向右匹配
             while (sIndex < sRight && pIndex < pRight) {
-                // 从左向右匹配
                 if (p.charAt(pIndex) == '*') {
-                    ++pIndex;
+                    ++pIndex; // 使用 * 匹配空字符串
+                    // 记录 sIndex 和 pIndex 的位置，用于后续匹配失败后调整 sIndex 和 pIndex
                     sRecord = sIndex;
                     pRecord = pIndex;
                 } else if (charMatch(s.charAt(sIndex), p.charAt(pIndex))) {
                     ++sIndex;
                     ++pIndex;
-                } else if (sRecord != -1 /*sRecord = -1 则说明 p 开头的字符不是 *，也就是没有重新匹配的机会*/
+                } else if (sRecord != -1 /*sRecord == -1 则说明 p 的当前索引位置前面没有字符 *，也就是没有重新匹配的机会*/
                         && sRecord + 1 < sRight) {
                     // 出现不匹配的字符，需要移动 s 和 p 上的指针，重新进行匹配
                     ++sRecord;

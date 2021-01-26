@@ -3,6 +3,12 @@ package leetcode.editor.cn;
 class SudokuSolver {
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * 类似于 N-Queens 问题的解法，也就是回溯！
+     *
+     * @see NQueens.Solution#solveNQueens(int)
+     */
     class Solution {
         int[] rows = new int[9];
         int[] cols = new int[9];
@@ -58,10 +64,11 @@ class SudokuSolver {
                         } else {
                             if (backtrack(board, row, col + 1)) return true;
                         }
-                        unplace(board, row, col);
+                        unplace(board, row, col); // 回溯
                     }
                 }
             } else return true;
+
             return false;
         }
 

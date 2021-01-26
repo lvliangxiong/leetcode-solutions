@@ -32,7 +32,10 @@ class FirstMissingPositive {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /**
-         * 改变原数组的元素，将某个数字是否出现过和该数字相对应的索引位置的元素的正负性联系起来。
+         * 使用元素的正负记录信息：
+         * 1. nums[i] < 0 表明 i 已出现过
+         * 2. nums[i] > 0 表明 i 还未出现
+         * 缺点是需要改变原数组，并且要额外处理本身就小于 0 的数字。
          *
          * @param nums
          * @return
@@ -40,18 +43,19 @@ class FirstMissingPositive {
         public int firstMissingPositive(int[] nums) {
             int n = nums.length;
             for (int i = 0; i < n; i++) {
+                // 原始数组中 <= 0 的数，全部设置为 n+1
                 if (nums[i] <= 0) nums[i] = n + 1;
             }
             for (int i = 0; i < n; i++) {
                 int num = Math.abs(nums[i]);
-                if (num > 0 && num <= n && nums[num - 1] > 0) {
+                if (num >= 1 && num <= n && nums[num - 1] > 0) {
                     // 原始数组中元素为 1 ~ n 的元素是没有变化的，也是我们需要进行记录的
                     nums[num - 1] *= -1;
                 }
             }
+            // 找到第一个不是负数的元素的索引位置
             for (int i = 1; i <= n; i++) {
                 if (nums[i - 1] > 0) {
-                    // i 不存在于原始数组中
                     return i;
                 }
             }

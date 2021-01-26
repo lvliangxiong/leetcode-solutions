@@ -24,6 +24,12 @@ class NextPermutation {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 为了完成题目的要求，需要交换一对逆序对，并且保证交换的逆序对中，较小数尽量大，较大数尽量大。
+         * 这个问题使用作图的方式可以更好地进行理解：i+1 索引位置的点其实是该数组的最后一个极大值点。
+         *
+         * @param nums
+         */
         public void nextPermutation(int[] nums) {
             int i = nums.length - 2;
             // find the last pair which nums[i] < nums[i+1] (descending)
@@ -39,6 +45,7 @@ class NextPermutation {
                 }
                 swap(nums, i, j);
             }
+            // 交换之后，[i+1, len-1] 索引范围内，仍然是递减的，需要将其翻转，变成递增序列
             // reverse the element in [i+1, len-1] to get a least sequence
             reverse(nums, i + 1);
         }

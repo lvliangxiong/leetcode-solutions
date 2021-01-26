@@ -35,10 +35,22 @@ class SearchInsertPosition {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * @param nums
+         * @param target
+         * @return
+         * @see FindFirstAndLastPositionOfElementInSortedArray.Solution#indexOf(int[], int)
+         */
         public int searchInsert(int[] nums, int target) {
-            int low = 0, high = nums.length - 1;
-            if (nums.length == 1) return target <= nums[0] ? 0 : 1; // 数组仅有一个元素
+            if (nums == null) return -1;
+            int len = nums.length;
+            if (len == 0) return 0;
+
+            int low = 0, high = len - 1;
+            if (target <= nums[low]) return 0;
             if (target >= nums[high]) return target == nums[high] ? high : high + 1;
+
+            // 数组中至少有两个元素，且 nums[0] < target < nums[len-1]
             while (low < high) {
                 int mid = (low + high) >>> 1;
                 if (nums[mid] == target) {

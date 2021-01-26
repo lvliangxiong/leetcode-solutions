@@ -34,7 +34,6 @@ import java.util.*;
  * ]
  *
  *
- *
  * Constraints:
  *
  *     1 <= candidates.length <= 30
@@ -52,23 +51,36 @@ class CombinationSum {
     class Solution {
 
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
-            Arrays.sort(candidates);
+            Arrays.sort(candidates); // 排序后，可以进行剪枝提升计算效率
             return combinationSum(candidates, target, 0);
         }
 
+        /**
+         * 这种递归的解法，思路和 BFS 类似。
+         *
+         * @param candidates
+         * @param target
+         * @param begin
+         * @return
+         */
         private List<List<Integer>> combinationSum(int[] candidates, int target, int begin) {
             // 递归终止条件
-            if (target == 0) return new ArrayList<List<Integer>>() {{
-                add(new ArrayList<>());
-            }}; // 成功
+            if (target == 0) return new ArrayList<>() {
+                {
+                    add(new ArrayList<>());
+                }
+            };
+
             if (begin == candidates.length) return new ArrayList<>(); // 失败
-            // 继续递归
+
+            // trial and error
             int most = target / candidates[begin], remained = target % candidates[begin];
-            if (most == 0) return new ArrayList<>(); // 减枝
+            if (most == 0) return new ArrayList<>(); // 因为进行了排序操作，所以可以进行剪枝
+
             List<List<Integer>> ans = new ArrayList<>();
             for (int j = most; j >= 0; j--) {
                 List<List<Integer>> list = combinationSum(candidates, remained, begin + 1);
-                if (list.size() > 0) {
+                if (list.size() > 0) { // 一次性添加 j 个 candidates[begin] 是可行解
                     for (List<Integer> com : list) {
                         for (int k = 0; k < j; k++) {
                             com.add(candidates[begin]);
@@ -83,6 +95,9 @@ class CombinationSum {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    /**
+     * DFS + BackTrack
+     */
     class DFSSolution {
 
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
@@ -108,16 +123,56 @@ class CombinationSum {
             }
 
             for (int i = begin; i < len; i++) {
-                // 重点理解这里剪枝，前提是候选数组已经有序，
+                // 重点理解这里剪枝，前提是候选数组已经有序
                 if (target < candidates[i]) {
                     break;
                 }
 
                 path.addLast(candidates[i]);
-                dfs(candidates, i, len, target - candidates[i], path, result);
-                path.removeLast();
+                dfs(candidates, i /*注意这里是 i，表明后续添加到 path 中的元素的索引必须不小于 i*/,
+                        len, target - candidates[i], path, result);
+                path.removeLast(); // 回溯
             }
         }
     }
 
+    /**
+     * 此问题类似于『背包问题』中的『完全背包』问题，因此可以使用 DP 的思路进行解决。
+     *
+     * @see RegularExpressionMatching.Solution#isMatch(String, String)
+     */
+    class DPSolution {
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            Arrays.sort(candidates);
+            List<List<Integer>> ans = new ArrayList<>();
+            int len = candidates.length;
+            /*
+             * dp[i][j] 表示使用 candidates 前 i 个元素组合出 j 的所有组合列表。
+             * dp[i][j] = {dp[i-1][j], dp[i-1][j-candidates[i]], ... , dp[i-1][j-candidates[i] * most]}
+             * 其等效形式是：
+             * dp[i][j] = {dp[i-1][j], dp[i][j-candidates[i]]}
+             * 和正则表达式的解题思路有点类似。
+             * */
+            List<List<Integer>> dp[] = new ArrayList[target + 1]; // 这里进行了空间优化，注意这里不能使用泛型
+
+            // i = 0
+            Arrays.setAll(dp, i -> new ArrayList<>());
+            dp[0].add(new ArrayList<>()); // 初始状态下，和为 0 的组合（solution）有一个
+
+            // i >= 1
+            for (int i = 0; i < len; i++) {
+                if (candidates[i] > target) break; // 剪枝
+                for (int j = candidates[i]; j <= target; j++) {
+                    // 重新计算 dp[j]，对新添加入考虑范围的 candidates[i] 进行 trial and error
+                    for (List<Integer> com : dp[j - candidates[i]]) {
+                        List<Integer> copy = new ArrayList<>();
+                        copy.add(candidates[i]);
+                        copy.addAll(com);
+                        dp[j].add(copy);
+                    }
+                }
+            }
+            return dp[target];
+        }
+    }
 }

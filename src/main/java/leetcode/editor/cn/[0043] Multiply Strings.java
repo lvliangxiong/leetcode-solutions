@@ -40,18 +40,17 @@ class MultiplyStrings {
                 for (int j = n - 1; j >= 0; j--) {
                     int prod = (num1Chars[i] - '0')
                             * (num2Chars[j] - '0');
-                    // 由于进位比较复杂，直接在该位置上进行累加，最后再进行进位即可
-                    ans[i + j + 1] += prod;
+                    ans[i + j + 1] += prod; // 由于进位比较复杂，直接在该位置上进行累加，最后再进行进位即可
                 }
             }
-            for (int i = len - 1; i > 0; i--) {
+            for (int i = len - 1; i > 0; i--) { // ans 数组中，索引大的位置是低位
                 if (ans[i] >= 10) {
-                    ans[i - 1] += ans[i] / 10;
+                    ans[i - 1] += ans[i] / 10; // 进位
                     ans[i] %= 10;
                 }
             }
             StringBuilder sb = new StringBuilder();
-            int index = ans[0] == 0 ? 1 : 0;
+            int index = ans[0] == 0 ? 1 : 0; // 起始位置
             while (index < len) {
                 sb.append(ans[index++]);
             }

@@ -44,18 +44,34 @@ class CombinationSumIi {
     class Solution {
         List<List<Integer>> ans = new ArrayList<>();
 
+        /**
+         * 这里使用 DFS + Backtracking 的思路进行求解，其实也可以将其转化为『多重背包』问题进行求解。
+         *
+         * @param candidates
+         * @param target
+         * @return
+         */
         public List<List<Integer>> combinationSum2(int[] candidates, int target) {
             Arrays.sort(candidates);
-            dfs(candidates, 0, candidates.length, target, new ArrayDeque<Integer>());
+            dfs(candidates, 0, candidates.length, target, new ArrayDeque<>());
             return ans;
         }
 
+        /**
+         * Backtracking
+         *
+         * @param candidates
+         * @param start
+         * @param end
+         * @param target
+         * @param path
+         */
         private void dfs(int[] candidates, int start, int end, int target, Deque<Integer> path) {
             if (target == 0) {
                 ans.add(new ArrayList<>(path));
                 return;
             }
-            if (start == end) return;
+            if (start == end) return; // 搜索失败
 
             // 计算连续相同的元素个数，start 指向该连续相同元素的最后一个元素的索引
             int count = 1;
@@ -64,19 +80,22 @@ class CombinationSumIi {
                 count++;
             }
             count = Math.min(count, target / candidates[start]);
-            if (count == 0) return;
+            if (count == 0) return; // 当前元素太大，后续的元素比当前元素更大，搜索直接停止
+
             // 对于多个相同元素，对选择的个数进行遍历
             int remained = target;
+
+            // 一个都不添加
+            dfs(candidates, start + 1, end, remained, path);
+            // 添加至少一个
             for (int i = 0; i < count; i++) {
-                path.addLast(candidates[start]);
+                path.offerLast(candidates[start]);
                 remained -= candidates[start];
-            }
-            for (int i = 0; i <= count; i++) {
                 dfs(candidates, start + 1, end, remained, path);
-                if (i != count) {
-                    path.removeLast();
-                    remained += candidates[start];
-                }
+            }
+            // 回溯
+            for (int i = 0; i < count; i++) {
+                path.pollLast();
             }
         }
     }
