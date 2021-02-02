@@ -98,14 +98,14 @@ class MaximumSubarray {
          * @param right
          * @return
          */
-        private Status get(int[] nums, int left, int right) {
+        private IntervalStatus get(int[] nums, int left, int right) {
             if (left == right) {
-                return new Status(nums[left]);
+                return new IntervalStatus(nums[left]);
             }
             int mid = (left + right) >>> 1;
             // divide and conquer in [left, mid] and [mid+1, right]
-            Status l = get(nums, left, mid);
-            Status r = get(nums, mid + 1, right);
+            IntervalStatus l = get(nums, left, mid);
+            IntervalStatus r = get(nums, mid + 1, right);
             return pushUp(l, r);
         }
 
@@ -116,30 +116,30 @@ class MaximumSubarray {
          * @param r
          * @return
          */
-        private Status pushUp(Status l, Status r) {
+        private IntervalStatus pushUp(IntervalStatus l, IntervalStatus r) {
             int sum = l.sum + r.sum;
             int lMax = Math.max(l.lMax, l.sum + r.lMax);
             int rMax = Math.max(r.rMax, r.sum + l.rMax);
             int max = Math.max(Math.max(l.max, r.max), l.rMax + r.lMax);
-            return new Status(sum, max, lMax, rMax);
+            return new IntervalStatus(sum, max, lMax, rMax);
         }
 
     }
 
-    class Status {
+    class IntervalStatus {
         int sum; // [left, right] 的区间和
-        int max; // [left, right] 区间内的最大子序列和
-        int lMax; // [left, right] 区间内以 left 为左端点的最大子序列和
-        int rMax; // [left, right] 区间内以 right 为右端点的最大子序列和
+        int max; // [left, right] 区间内的最大连续子序列和
+        int lMax; // [left, right] 区间内以 left 为左端点的最大连续子序列和
+        int rMax; // [left, right] 区间内以 right 为右端点的最大连续子序列和
 
-        public Status(int sum, int max, int lMax, int rMax) {
+        public IntervalStatus(int sum, int max, int lMax, int rMax) {
             this.sum = sum;
             this.max = max;
             this.lMax = lMax;
             this.rMax = rMax;
         }
 
-        public Status(int num) {
+        public IntervalStatus(int num) {
             this(num, num, num, num);
         }
     }

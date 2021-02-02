@@ -91,17 +91,20 @@ class NQueens {
                 boards[i] = row.toString();
             }
 
-            place(0);
+            backtrack(0);
             return solutions;
         }
 
-        private void place(int row) {
+        private void backtrack(int row) {
+            if (row == n) {
+                addSolution();
+                return;
+            }
             // 对于第 row 行，有 n 种下子选择，即将 Queue 放置在 0 ~ n-1 列
             for (int col = 0; col < n; col++) {
                 if (isPlaceable(row, col)) {
                     placeQueen(row, col);
-                    if (row == n - 1) addSolution();
-                    else place(row + 1); // 继续下子
+                    backtrack(row + 1); // 继续下子
                     removeQueen(row, col); // 回溯
                 }
             }
