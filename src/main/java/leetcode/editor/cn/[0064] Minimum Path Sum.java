@@ -34,23 +34,25 @@ class MinimumPathSum {
             m = grid.length;
             n = grid[0].length;
             memo = new int[m][n];
-            return dfs(grid, 0, 0);
+            return helper(grid, 0, 0);
         }
 
         /**
-         * Return the minimum pathSum from given start to bottom right.
+         * Return the minimum pathSum from given start (i,j) to bottom right.
+         * <p>
+         * Recursion + Memorization.
          *
          * @param grid
          * @param i
          * @param j
          * @return
          */
-        private int dfs(int[][] grid, int i, int j) {
+        private int helper(int[][] grid, int i, int j) {
             if (memo[i][j] != 0) return memo[i][j];
             if (i == m - 1 && j == n - 1) return grid[i][j];
             int sum = Integer.MAX_VALUE;
-            if (i < m - 1) sum = Math.min(sum, grid[i][j] + dfs(grid, i + 1, j));
-            if (j < n - 1) sum = Math.min(sum, grid[i][j] + dfs(grid, i, j + 1));
+            if (i < m - 1) sum = Math.min(sum, grid[i][j] + helper(grid, i + 1, j));
+            if (j < n - 1) sum = Math.min(sum, grid[i][j] + helper(grid, i, j + 1));
             memo[i][j] = sum;
             return sum;
         }

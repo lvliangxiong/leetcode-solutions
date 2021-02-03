@@ -54,10 +54,12 @@ class RotateList {
             }
             // If the number of nodes equals to k or 1, just return head.
             if ((i == 1 || i == k) && curr == null) return head;
-            // the number of nodes is lager than k, reduce the scale of k and retry.
+            // If the number of nodes is less than k, reduce the scale of k and retry.
             if (i < k) {
+                // i is the number of nodes in the list
                 k %= i;
                 if (k == 0) return head;
+                // Recompute the k-th node of the list start from the start
                 i = 0;
                 curr = head;
                 while (i < k && curr != null) {

@@ -24,7 +24,6 @@ package leetcode.editor.cn;
  * impossible to reach the last index.
  *
  *
- *
  * Constraints:
  *
  *     1 <= nums.length <= 3 * 10^4

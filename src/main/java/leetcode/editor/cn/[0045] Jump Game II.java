@@ -105,10 +105,10 @@ class JumpGameIi {
             for (int i = 0; i < length - 1; i++) {
                 maxPosition = Math.max(maxPosition, i + nums[i]);
 
-                // 调整更新 steps 的边界条件
                 if (i == end) {
                     end = maxPosition;
                     steps++;
+                    // [i+1, maxPosition] 之间的元素是仅 step 步可以到达的
                 }
             }
             return steps;
