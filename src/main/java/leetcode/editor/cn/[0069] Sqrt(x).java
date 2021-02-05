@@ -38,6 +38,7 @@ class Sqrtx {
             int low = 1, high = x;
             while (low < high) {
                 int mid = (low + high) >>> 1;
+                // 考虑到计算 mid*mid 可能会溢出，因此这里进行一个简单的变形
                 if (mid < x / mid) {
                     low = mid + 1;
                 } else {
@@ -58,6 +59,7 @@ class Sqrtx {
         public int sqrtByPocketCalculatorAlgorithm(int x) {
             if (x == 0) return 0;
             int ans = (int) Math.exp(0.5 * Math.log(x));
+            // 这里已经可以确定 ans*ans 的量级大概就是 x，因此我们可以保证 (ans+1)*(ans+1) 不会超出 long 的范围
             return (long) (ans + 1) * (ans + 1) <= x ? ans + 1 : ans;
         }
 
@@ -76,7 +78,7 @@ class Sqrtx {
             while (true) {
                 double xi = 0.5 * (x0 + C / x0); // 下一个近似解
                 // 终止条件
-                if (Math.abs(x0 - xi) < 1e-7) {
+                if (x0 - xi < 1e-7) {
                     break;
                 }
                 x0 = xi;

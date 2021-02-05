@@ -39,7 +39,7 @@ class ClimbingStairs {
     class Solution {
         public int climbStairs(int n) {
             if (n <= 2) return n;
-            int ways = 2, pre = 1;
+            int ways = 2, pre = 1; // 2 级阶梯和 1 级阶梯的方法数
             for (int i = 3; i <= n; i++) {
                 int tmp = ways;
                 ways = ways + pre;

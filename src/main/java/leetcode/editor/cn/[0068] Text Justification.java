@@ -47,7 +47,7 @@ import java.util.List;
  * ]
  * Explanation: Note that the last line is "shall be    " instead of "shall     be",
  *              because the last line must be left-justified instead of fully-justified.
- *              Note that the second line is also left-justified becase it contains only one word.
+ *              Note that the second line is also left-justified because it contains only one word.
  *
  * Example 3:
  *
@@ -79,6 +79,7 @@ class TextJustification {
             for (int i = 0; i < n; i++) {
                 int start = i, end = i, len = words[i].length(); // 至少可以容纳一个单词
                 while (end + 1 < n && len + words[end + 1].length() + 1 <= maxWidth) {
+                    // 尽可能多地添加单词
                     end++;
                     len += words[end].length() + 1;
                 }
@@ -90,21 +91,25 @@ class TextJustification {
                 } else {
                     // 多个单词
                     int wordCount = end - start + 1;
+                    // 将 remainedSpace 个空格平均分配到 wordCount - 1 个空隙中
                     int basicSpaceCount = 1 + remainedSpaces / (wordCount - 1);
                     int extraSpaceCount = remainedSpaces % (wordCount - 1);
                     for (int j = start, k = 0; j <= end; j++, k++) {
                         sb.append(words[j]);
                         if (j == end) break;
                         if (end == n - 1) {
-                            sb.append(" ");
+                            // 这是最后一行，仅仅左对齐即可，单词之间只需要一个空格
+                            sb.append(' ');
                         } else {
-                            for (int p = 0; p < basicSpaceCount; p++) sb.append(" ");
-                            if (k < extraSpaceCount) sb.append(" "); // 多余的空格分布在靠左边的单词间隔处
+                            for (int p = 0; p < basicSpaceCount; p++) sb.append(' ');
+                            // 多余的空格分布在靠左边的前 extraSpaceCount 个单词间隔处，每个间隔插入一个空格
+                            if (k < extraSpaceCount) sb.append(' ');
                         }
                     }
                 }
+                // 最后一行或者仅有一个单词的行，需要填充末尾的空格
                 if (end == n - 1 || end == start) {
-                    for (int j = 0; j < remainedSpaces; j++) sb.append(" ");
+                    for (int j = 0; j < remainedSpaces; j++) sb.append(' ');
                 }
                 ans.add(sb.toString());
                 i = end;

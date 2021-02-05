@@ -56,6 +56,7 @@ class PlusOne {
                 }
             }
             if (carry == 0) return digits;
+            // 最高位有进位
             int[] ans = new int[n + 1];
             ans[0] = 1;
             System.arraycopy(digits, 0, ans, 1, n);

@@ -39,7 +39,7 @@ class AddBinary {
                 a = b;
                 b = c;
             }
-            int m = a.length(), n = b.length();
+            int m = a.length(), n = b.length(); // m >= b
             char[] cb = b.toCharArray();
             StringBuilder sb = new StringBuilder(a);
             int i = m - 1, j = n - 1, carry = 0;
