@@ -15,6 +15,7 @@ package leetcode.editor.cn;
  * Input: word1 = "horse", word2 = "ros"
  * Output: 3
  * Explanation:
+ *
  * horse -> rorse (replace 'h' with 'r')
  * rorse -> rose (remove 'r')
  * rose -> ros (remove 'e')
@@ -39,7 +40,7 @@ class EditDistance {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /**
-         * 编辑距离算法被数据科学家广泛应用，是用作机器翻译和语音识别评价标准的基本算法。
+         * 编辑距离算法（Edit Distance）被数据科学家广泛应用，是用作机器翻译和语音识别评价标准的基本算法。
          * <p>
          * 1. 对单词 A 删除一个字符和对单词 B 插入一个字符是等价的。
          * 2. 对单词 A 插入一个字符和对单词 B 删除一个字符是等价的。

@@ -37,7 +37,9 @@ class SortColors {
          *               ^              ^         ^
          *               |              |         |
          *              zero           cur       two
-         *
+         * zero :=> next position should be put zero
+         * cur :=> next position waiting for judging where to put it, position in [zero, cur) should be all ones.
+         * two :=> position larger than two are all twos.
          * </pre>
          *
          * @param nums
@@ -48,19 +50,24 @@ class SortColors {
             int zero = 0, two = n - 1;
             int cur = 0;
             while (cur <= two) { // 注意循环停止条件
-                if (nums[cur] == 0) {
-                    swap(nums, cur, zero);
-                    zero++;
-                    // 交换后，更新 cur，这是因为和 cur 交换的 zero 位置，要么是其自身，也就是 cur == zero，要么是 1
-                    // 因此对 cur 和 zero 位置进行交换后，该位置的值就是正确的了，无需再进行判断
-                    cur++;
-                } else if (nums[cur] == 1) {
-                    cur++;
-                } else {
-                    // 当 nums[cur] == 2 时，不需要 cur++
-                    // 因为和 two 位置的交换需要重新对 cur 位置的值进行判断
-                    swap(nums, cur, two);
-                    two--;
+                switch (nums[cur]) {
+                    case 0:
+                        if (cur != zero)
+                            swap(nums, cur, zero);
+                        zero++;
+                        // 交换后，更新 cur，这是因为和 cur 交换的 zero 位置，要么是其自身，也就是 cur == zero，要么是 1
+                        // 因此对 cur 和 zero 位置进行交换后，该位置的值就是正确的了，无需再进行判断
+                        cur++;
+                        break;
+                    case 1:
+                        cur++;
+                        break;
+                    default:
+                        // 当 nums[cur] == 2 时，不需要 cur++
+                        // 因为和 two 位置的交换需要重新对 cur 位置的值进行判断
+                        swap(nums, cur, two);
+                        two--;
+                        break;
                 }
             }
         }

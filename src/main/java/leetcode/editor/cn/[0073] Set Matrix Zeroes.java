@@ -7,7 +7,7 @@ class SetMatrixZeroes {
         /**
          * Idea 1: Using an auxiliary matrix to memorise places should be set to 0.
          * Idea 2: Using two auxiliary array to memorise rows and cols should be set to 0.
-         * Idea 3: Using
+         * Idea 3: Using matrix border to mark which column or row should be set to 0
          *
          * @param matrix
          */
@@ -15,7 +15,7 @@ class SetMatrixZeroes {
             int m = matrix.length;
             int n = matrix[0].length;
 
-            int fc = -1;
+            int fc = -1; // 第 1 列是否需要清 0
             for (int row = 0; row < m; row++) {
                 for (int col = 0; col < n; col++) {
                     if (matrix[row][col] == 0) {
