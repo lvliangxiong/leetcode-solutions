@@ -31,7 +31,7 @@ class LargestRectangleInHistogram {
         }
 
         /**
-         * 单调栈实现
+         * 单调栈实现：单调递增的单调栈
          *
          * @param heights
          * @return
@@ -45,11 +45,10 @@ class LargestRectangleInHistogram {
             Deque<Integer> stack = new ArrayDeque<>(); // 栈中存放柱体的索引位置
             int area = 0;
             for (int i = 0; i < tmp.length; i++) {
-                /* 对栈中柱体来说，栈中的下一个柱体就是其『左边第一个小于自身的柱体』，因此这是一个单调栈数据结构。
-                 * 若当前柱体 i 的高度小于栈顶柱体的高度，说明 i 是栈顶柱体的『右边第一个小于栈顶柱体的柱体』。
-                 * 因此以栈顶柱体为高的矩形的左右宽度边界就确定了，可以计算面积。 */
+                /* 在『当前柱体』进栈之前，将位于栈顶的、高度高于『当前柱体』的柱体出栈：保证入栈之前，栈顶的柱体是『当前柱体』
+                 * 左边第一个高度不高于『当前柱体』的柱体。*/
                 while (!stack.isEmpty() && tmp[stack.peek()] > tmp[i]) {
-                    int h = tmp[stack.pop()]; // 以栈顶柱高为高
+                    int h = tmp[stack.pop()];
                     area = Math.max(area, (i - stack.peek() - 1) * h);
                 }
                 stack.push(i);
@@ -61,7 +60,8 @@ class LargestRectangleInHistogram {
     //leetcode submit region end(Prohibit modification and deletion)
     class DpSolution {
         /**
-         * 利用动态规划，对于每一个柱体，计算出其左右边界。
+         * 利用动态规划，对于每一个柱体，计算出其左右边界。这里计算出『左右边界』的方式其实和单调栈计算左右边界的原理有
+         * 异曲同工之妙！
          *
          * @param heights
          * @return

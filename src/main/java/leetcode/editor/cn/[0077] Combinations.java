@@ -78,8 +78,11 @@ class Combinations {
     //leetcode submit region end(Prohibit modification and deletion)
 
 
-    class BinarySolution {
+    class DictOrderSolution {
         /**
+         * 字典序法
+         * https://leetcode-cn.com/problems/combinations/solution/zu-he-by-leetcode-solution/
+         *
          * @param n
          * @param k
          * @return

@@ -10,7 +10,6 @@ package leetcode.editor.cn;
  * If target is found in the array return its index, otherwise, return -1.
  *
  *
- *
  * Example 1:
  *
  * Input: nums = [4,5,6,7,0,1,2], target = 0

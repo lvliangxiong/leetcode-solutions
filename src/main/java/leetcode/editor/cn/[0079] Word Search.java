@@ -40,8 +40,8 @@ class WordSearch {
         private int cols;
 
         public boolean exist(char[][] board, String word) {
-            this.rows = board.length;
-            this.cols = board[0].length;
+            rows = board.length;
+            cols = board[0].length;
             char[] chars = word.toCharArray();
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
