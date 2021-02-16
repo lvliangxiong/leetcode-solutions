@@ -52,8 +52,7 @@ class BurstBalloons {
             int n = nums.length;
             val = new int[n + 2];
             memo = new int[n + 2][n + 2]; // 存储中间计算结果，加速计算
-            // 首尾添加 1，便于后续计算
-            val[0] = val[n + 1] = 1;
+            val[0] = val[n + 1] = 1; // 首尾添加 1，便于后续计算
             System.arraycopy(nums, 0, val, 1, n);
             return solve(0, n + 1);
         }
@@ -72,9 +71,9 @@ class BurstBalloons {
                 // (left, right) 至少包含一个元素
                 // 枚举填满开区间 (left, right) 时，第一次被添加的元素位置为 mid
                 for (int mid = left + 1; mid < right; mid++) {
-                    /*这里可以看作除了(left, right)区间内的元素，其它位置均已经被添加过了，可以参考注释总的例子反向逆推进行理解。*/
-                    max = Math.max(max, solve(left, mid) + solve(mid, right) +
-                            val[left] * val[mid] * val[right]);
+                    // 这里可以看作除了(left, right)区间内的元素，其它位置均已经被添加过了，
+                    // 可以参考注释总的例子反向逆推进行理解。
+                    max = Math.max(solve(left, mid) + solve(mid, right) + val[left] * val[mid] * val[right], max);
                 }
             } else {
                 max = 0;
@@ -105,10 +104,11 @@ class BurstBalloons {
             // dp[i][j] 表示填满开区间 (i,j) 能得到的最多硬币数
             for (int i = n - 1; i >= 0; i--) {
                 for (int j = i + 2; j <= n + 1; j++) {
+                    /* i : n-1 -----> 0
+                     * j : i+2 -----> n+1
+                     * 可以保证 dp[i][mid] 和 dp[mid][j] 都计算过。*/
                     for (int mid = i + 1; mid < j; mid++) {
-                        int sum = val[i] * val[mid] * val[j];
-                        sum += dp[i][mid] + dp[mid][j];
-                        dp[i][j] = Math.max(dp[i][j], sum);
+                        dp[i][j] = Math.max(dp[i][j], val[i] * val[mid] * val[j] + dp[i][mid] + dp[mid][j]);
                     }
                 }
             }

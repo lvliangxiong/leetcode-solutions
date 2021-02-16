@@ -62,11 +62,12 @@ class MaximalRectangle {
 
             int ret = 0;
             for (int j = 0; j < n; j++) {
-                // 对于每一列，使用基于柱状图的方法
+                // 对于每一列，使用基于柱状图的方法。
                 // leftOneCount[.][j] 相当于一个旋转了 90 度的柱状图。
                 int[] up = new int[m];
                 int[] down = new int[m];
 
+                // 利用单调栈结构，获取上边界（向上查找第一个柱高小于当前柱高的位置）
                 Deque<Integer> stack = new LinkedList<>();
                 for (int i = 0; i < m; i++) {
                     while (!stack.isEmpty() && leftOneCount[stack.peek()][j] >= leftOneCount[i][j]) {
@@ -76,6 +77,7 @@ class MaximalRectangle {
                     stack.push(i);
                 }
                 stack.clear();
+                // 相同的方式，反向遍历一次
                 for (int i = m - 1; i >= 0; i--) {
                     while (!stack.isEmpty() && leftOneCount[stack.peek()][j] >= leftOneCount[i][j]) {
                         stack.pop();
@@ -86,7 +88,7 @@ class MaximalRectangle {
 
                 for (int i = 0; i < m; i++) {
                     int width = down[i] - up[i] - 1;
-                    int area = width * leftOneCount[i][j];
+                    int area = width * leftOneCount[i][j] /*柱高*/;
                     ret = Math.max(ret, area);
                 }
             }
@@ -123,17 +125,17 @@ class MaximalRectangle {
                         if (matrix[i][j] == '1') height[j]++;
                         else height[j] = 0;
                     }
-                    // update left
+                    // 对于当前柱高，找到其可能的左边界，左边界最多在 left[j]，和 curLeft 取较近的一个（也就是较大的一个）
                     for (int j = 0; j < n; j++) {
                         if (matrix[i][j] == '1') left[j] = Math.max(left[j], curLeft);
                         else {
                             // 当为字符 0 时，height 为 0，因此 left 和 right 可以随便取值，并不影响最后计算的面积。
-                            // 但是为了下次遍历，这里取了 left 的初始值，也就是 0
+                            // 但是为了方便下次遍历，这里取了 left 的初始值，也就是 0
                             left[j] = 0;
                             curLeft = j + 1;
                         }
                     }
-                    // update right
+                    // 对于当前柱高，找到其可能的右边界，右边界最多在 right[j]，和 curRight 取较近的一个（也就是较小的一个）
                     for (int j = n - 1; j >= 0; j--) {
                         if (matrix[i][j] == '1') right[j] = Math.min(right[j], curRight);
                         else {
@@ -150,3 +152,4 @@ class MaximalRectangle {
             }
         }
     }
+}

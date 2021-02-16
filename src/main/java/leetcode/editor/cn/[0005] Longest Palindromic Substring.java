@@ -120,4 +120,80 @@ class LongestPalindromicSubstring {
         }
     }
 
+    class DpSolution {
+        /**
+         * 区间 DP 问题
+         *
+         * @param s
+         * @return
+         * @see LongestPalindromicSubsequence.Solution#longestPalindromeSubseq(String)
+         */
+        public String longestPalindrome(String s) {
+            int n = s.length();
+            if (n <= 1) return s;
+            boolean[][] dp = new boolean[n][n];
+            char[] chs = s.toCharArray();
+            int ansLen = -1, ansStart = -1, ansEnd = -1;
+            for (int len = 1; len <= n; len++) {
+                for (int start = 0; start + len <= n; start++) {
+                    int end = start + len - 1;
+                    if (len == 1)
+                        dp[start][end] = true;
+                    else {
+                        boolean flag = chs[start] == chs[end];
+                        if (len == 2)
+                            dp[start][end] = flag;
+                        else
+                            dp[start][end] = flag && dp[start + 1][end - 1];
+                    }
+                    if (dp[start][end] && len > ansLen) {
+                        ansLen = len;
+                        ansStart = start;
+                        ansEnd = end;
+                    }
+                }
+            }
+            return s.substring(ansStart, ansEnd + 1);
+        }
+    }
+
+    class OptimisedDpSolution {
+        /**
+         * @param s
+         * @return
+         * @see LongestPalindromicSubsequence.OptimisedSolution#longestPalindromeSubseq(String)
+         */
+        public String longestPalindrome(String s) {
+            int n = s.length();
+            if (n <= 1) return s;
+            /*
+             * dp[i][j] = dp[i+1][j-1] if s[i] == s[j] else false
+             * */
+            boolean[] dp = new boolean[n];
+            char[] chs = s.toCharArray();
+            int ansLen = 1, ansStart = 0, ansEnd = 0;
+            for (int i = n - 1; i >= 0; i--) {
+                dp[i] = true;
+                for (int j = n - 1; j > i; j--) {
+                    if (chs[i] == chs[j]) {
+                        if (j == i + 1)
+                            dp[j] = true;
+                        else
+                            dp[j] = dp[j - 1];
+                    } else {
+                        dp[j] = false;
+                    }
+                    if (dp[j]) {
+                        if (j - i + 1 > ansLen) {
+                            ansLen = j - i + 1;
+                            ansStart = i;
+                            ansEnd = j;
+                        }
+                    }
+                }
+            }
+            return s.substring(ansStart, ansEnd + 1);
+        }
+    }
+
 }
