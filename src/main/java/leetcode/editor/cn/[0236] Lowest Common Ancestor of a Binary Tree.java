@@ -38,7 +38,7 @@ class LowestCommonAncestorOfABinaryTree {
          * @return
          */
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            dfs(root, p, q);
+            helper(root, p, q);
             return ans;
         }
 
@@ -50,13 +50,21 @@ class LowestCommonAncestorOfABinaryTree {
          * @param q
          * @return
          */
-        private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
-            // times++;
-            if (root == null) return false; // 如果 root 为 null，返回 false
-            if (ans != null) return true; // ans 不是 null 意味着已经找到 LCR，无需继续 DFS
-            boolean inLeft = dfs(root.left, p, q);
-            if (ans != null) return true; // double check to achieve early pruning
-            boolean inRight = dfs(root.right, p, q);
+        private boolean helper(TreeNode root, TreeNode p, TreeNode q) {
+            if (root == null) return false;
+
+            // ans 不是 null 意味着已经找到 LCR，无需继续递归查找，root 必定是 LCA 的祖先节点，因此直接返回 true!
+            if (ans != null) return true;
+            // 进入左子树进行查找
+            boolean inLeft = helper(root.left, p, q);
+            // 这里如果 ans 不为 null，说明是 p, q 都在其左子树中找到的，因此直接返回 true 即可！
+            if (ans != null) return true;
+            // 进入右子树进行查找
+            boolean inRight = helper(root.right, p, q);
+            // 这里如果 ans 不为 null，说明是 p, q 都在其右子树中找到的，因此直接返回 true 即可！
+            if (ans != null) return true;
+
+            // 判断当前节点是不是目标 LCA
             boolean isItself = root.val == p.val || root.val == q.val;
             if (ans == null)
                 if (inLeft && inRight || (isItself && (inLeft || inRight)))
@@ -69,30 +77,30 @@ class LowestCommonAncestorOfABinaryTree {
 
 
     /**
-     * 使用一个 Hashmap 存储 子节点-父节点 的 key-value 对
+     * 使用一个 HashMap 存储『子节点的值-父节点』的 key-value 对
      */
-    class HashSolution {
-        Map<Integer, TreeNode> parent = new HashMap<Integer, TreeNode>();
-        Set<Integer> visited = new HashSet<Integer>();
+    class HashMapSolution {
+        Map<Integer, TreeNode> parent = new HashMap<>();
+        Set<Integer> visited = new HashSet<>();
 
         /**
          * populate HashMap parent
          *
          * @param root
          */
-        public void dfs(TreeNode root) {
+        public void helper(TreeNode root) {
             if (root.left != null) {
                 parent.put(root.left.val, root);
-                dfs(root.left);
+                helper(root.left);
             }
             if (root.right != null) {
                 parent.put(root.right.val, root);
-                dfs(root.right);
+                helper(root.right);
             }
         }
 
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            dfs(root);
+            helper(root);
             // find all the parents of p and add them into Set visited
             while (p != null) {
                 visited.add(p.val);

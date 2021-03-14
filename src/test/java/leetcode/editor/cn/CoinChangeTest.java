@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class CoinChangeTest {
     @Test
     void coinChange() {
-        CoinChange.Solution2 solution = new CoinChange().new Solution2();
+        CoinChange.DpSolution solution = new CoinChange().new DpSolution();
         Assertions.assertEquals(3, solution.coinChange(new int[]{1, 2, 5}, 11));
         Assertions.assertEquals(20, solution.coinChange(new int[]{186, 419, 83, 408}, 6249));
     }

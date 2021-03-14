@@ -29,7 +29,7 @@ class LowestCommonAncestorOfABinarySearchTree {
          * @param q
          * @return
          * @see LowestCommonAncestorOfABinaryTree.Solution
-         * @see LowestCommonAncestorOfABinaryTree.HashSolution
+         * @see LowestCommonAncestorOfABinaryTree.HashMapSolution
          */
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             List<TreeNode> pathP = getPath(root, p);

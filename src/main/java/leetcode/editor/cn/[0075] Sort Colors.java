@@ -37,12 +37,13 @@ class SortColors {
          *               ^              ^         ^
          *               |              |         |
          *              zero           cur       two
-         * zero :=> next position should be put zero
+         * zero :=> next position should be put zero, and position less than zero are all zeros.
          * cur :=> next position waiting for judging where to put it, position in [zero, cur) should be all ones.
-         * two :=> position larger than two are all twos.
+         * two :=> next position should be put two, and position larger than two are all twos.
          * </pre>
          *
          * @param nums
+         * @see SortAnArray.Solution#partition(int[], int, int)
          */
         public void sortColors(int[] nums) {
             int n = nums.length;
@@ -53,18 +54,18 @@ class SortColors {
                 switch (nums[cur]) {
                     case 0:
                         if (cur != zero)
+                            // 将遇到的 0 放到 zero 位置
+                            // zero 原本的值一定被判断过了！所以可以同时更新 cur！
                             swap(nums, cur, zero);
                         zero++;
-                        // 交换后，更新 cur，这是因为和 cur 交换的 zero 位置，要么是其自身，也就是 cur == zero，要么是 1
-                        // 因此对 cur 和 zero 位置进行交换后，该位置的值就是正确的了，无需再进行判断
                         cur++;
                         break;
                     case 1:
                         cur++;
                         break;
                     default:
-                        // 当 nums[cur] == 2 时，不需要 cur++
-                        // 因为和 two 位置的交换需要重新对 cur 位置的值进行判断
+                        // 将遇到的 2 放到 two 位置，由于原来的 two 位置上的值（没有被判断过，因此 1，2，3 均有可能）被交换到
+                        // 了 cur 位置，因此不能移动 cur 的值，下次循环继续进行判断！
                         swap(nums, cur, two);
                         two--;
                         break;

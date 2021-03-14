@@ -91,8 +91,10 @@ class MergeKSortedLists {
      */
     class HeapSolution {
         public ListNode mergeKLists(ListNode[] lists) {
+            if (lists == null) return null;
             ListNode ans = null, current = null;
             PriorityQueue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(node -> node.val));
+            // 使用各链表的头节点对 heap 进行初始化
             for (ListNode head : lists) {
                 if (head != null) heap.add(head);
             }

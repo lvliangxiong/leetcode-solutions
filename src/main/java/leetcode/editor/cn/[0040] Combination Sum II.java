@@ -62,20 +62,20 @@ class CombinationSumIi {
          *
          * @param candidates
          * @param start
-         * @param end
+         * @param len
          * @param target
          * @param path
          */
-        private void dfs(int[] candidates, int start, int end, int target, Deque<Integer> path) {
+        private void dfs(int[] candidates, int start, int len, int target, Deque<Integer> path) {
             if (target == 0) {
                 ans.add(new ArrayList<>(path));
                 return;
             }
-            if (start == end) return; // 搜索失败
+            if (start == len) return; // 搜索失败
 
             // 计算连续相同的元素个数，start 指向该连续相同元素的最后一个元素的索引
             int count = 1;
-            while (start < end - 1 && candidates[start] == candidates[start + 1]) {
+            while (start < len - 1 && candidates[start] == candidates[start + 1]) {
                 start++;
                 count++;
             }
@@ -86,12 +86,12 @@ class CombinationSumIi {
             int remained = target;
 
             // 一个都不添加
-            dfs(candidates, start + 1, end, remained, path);
+            dfs(candidates, start + 1, len, remained, path);
             // 添加至少一个
             for (int i = 0; i < count; i++) {
                 path.offerLast(candidates[start]);
                 remained -= candidates[start];
-                dfs(candidates, start + 1, end, remained, path);
+                dfs(candidates, start + 1, len, remained, path);
             }
             // 回溯
             for (int i = 0; i < count; i++) {

@@ -23,7 +23,7 @@ package leetcode.editor.cn;
  *
  * Follow up:
  *
- * Coud you solve it without converting the integer to a string?
+ * Could you solve it without converting the integer to a string?
  *
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/palindrome-number

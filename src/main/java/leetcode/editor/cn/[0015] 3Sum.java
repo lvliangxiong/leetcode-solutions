@@ -1,7 +1,8 @@
 package leetcode.editor.cn;
 
-import javax.swing.text.StyledEditorKit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <pre>
@@ -9,7 +10,6 @@ import java.util.*;
  * triplets in the array which gives the sum of zero.
  *
  * Notice that the solution set must not contain duplicate triplets.
- *
  *
  *
  * Example 1:
@@ -58,7 +58,7 @@ class ThreeSum {
 
             for (int i = 0; i <= n - 3; i++) {
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
-
+                // 剪枝
                 if (nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
                 if (nums[i] + nums[n - 2] + nums[n - 1] < 0) continue;
 

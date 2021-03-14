@@ -80,7 +80,8 @@ class CombinationSum {
             List<List<Integer>> ans = new ArrayList<>();
             for (int j = most; j >= 0; j--) {
                 List<List<Integer>> list = combinationSum(candidates, remained, begin + 1);
-                if (list.size() > 0) { // 一次性添加 j 个 candidates[begin] 是可行解
+                if (list.size() > 0) {
+                    // 一次性添加 j 个 candidates[begin] 是可行解
                     for (List<Integer> com : list) {
                         for (int k = 0; k < j; k++) {
                             com.add(candidates[begin]);
@@ -157,12 +158,12 @@ class CombinationSum {
 
             // i = 0
             Arrays.setAll(dp, i -> new ArrayList<>());
-            dp[0].add(new ArrayList<>()); // 初始状态下，和为 0 的组合（solution）有一个
+            dp[0].add(new ArrayList<>()); // i == 0 时，和为 0 的组合（solution）有一个
 
             // i >= 1
             for (int i = 0; i < len; i++) {
                 if (candidates[i] > target) break; // 剪枝
-                for (int j = candidates[i]; j <= target; j++) {
+                for (int j = candidates[i]; j <= target; j++) { // 思考为什么 j 从 candidates[i] 开始？
                     // 重新计算 dp[j]，对新添加入考虑范围的 candidates[i] 进行 trial and error
                     for (List<Integer> com : dp[j - candidates[i]]) {
                         List<Integer> copy = new ArrayList<>();

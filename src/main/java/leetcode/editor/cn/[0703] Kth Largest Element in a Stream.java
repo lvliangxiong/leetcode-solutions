@@ -51,7 +51,7 @@ class KthLargestElementInAStream {
         int capacity; // 堆的最大容量
 
         public KthLargest(int k, int[] nums) {
-            this.capacity = k;
+            capacity = k;
             heap = new int[k];
             for (int num : nums) {
                 insert(num);
@@ -60,6 +60,12 @@ class KthLargestElementInAStream {
 
         /**
          * left child index.
+         * <pre>
+         *                0
+         *          1          2
+         *       3    4     5     6
+         *     7  8  9 10 11 12 13 14
+         * </pre>
          *
          * @param i
          * @return
@@ -138,8 +144,8 @@ class KthLargestElementInAStream {
 
         private void insert(int num) {
             if (size == capacity) {
-                // 如果堆已满，并且尝试加入的新元素的值不大于堆顶元素，则说明该元素必不是第 k 大元素，因此可以直接丢弃。
-                // 如果堆已满，并且尝试加入的新元素的值大于堆顶元素，则说明第 k 大元素需要进行更新，此时移除堆顶元素，并插入新元素。
+                // 如果堆已满，并且尝试加入的新元素的值 <= 堆顶元素，则说明该元素必不是第 k 大元素，因此可以直接丢弃。
+                // 如果堆已满，并且尝试加入的新元素的值 > 堆顶元素，则说明第 k 大元素需要进行更新，此时移除堆顶元素，并插入新元素。
                 if (num <= peek()) return;
                 else removeTop();
             }

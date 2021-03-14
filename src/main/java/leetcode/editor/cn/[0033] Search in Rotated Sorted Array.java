@@ -57,7 +57,7 @@ class SearchInRotatedSortedArray {
             if (target < nums[0] && target > nums[n - 1]) return -1;
             boolean targetInFirstHalf = target >= nums[0];
             while (low < high) {
-                // split to two sub array at mid, i.e. [0, mid] and [mid+1, n-1]
+                // split to two sub array at mid, i.e. [low, mid] and [mid+1, high]
                 int mid = (low + high) >>> 1;
                 if (nums[mid] == target) return mid;
                 if (nums[mid] >= nums[0]) {

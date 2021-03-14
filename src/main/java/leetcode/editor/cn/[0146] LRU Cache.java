@@ -33,8 +33,8 @@ class LRUCache {
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        head = new DoublyLinkedListNode();
-        tail = new DoublyLinkedListNode();
+        head = new DoublyLinkedListNode(); // sentinel node
+        tail = new DoublyLinkedListNode(); // sentinel node
         head.next = tail;
         tail.pre = head;
     }
@@ -42,6 +42,7 @@ class LRUCache {
     public int get(int key) {
         DoublyLinkedListNode node = nodes.get(key);
         if (node != null) {
+            // key exists in the cache
             update(node, node.value);
             return node.value;
         }
@@ -107,8 +108,8 @@ class LRUCache {
      */
     private void insert(int key, int value) {
         DoublyLinkedListNode node = new DoublyLinkedListNode(key, value);
-        nodes.put(key, node);
-        link(node, head);
+        nodes.put(key, node); // add to map
+        link(node, head); // add to linked list
         size++;
     }
 
@@ -116,9 +117,9 @@ class LRUCache {
      * invalidate the node at the tail, which is exactly the LRU, i.e. the least recently used node.
      */
     private void invalidate() {
-        DoublyLinkedListNode lru = tail.pre;
-        nodes.remove(lru.key);
-        unlink(lru);
+        DoublyLinkedListNode lruNode = tail.pre;
+        nodes.remove(lruNode.key);
+        unlink(lruNode);
         size--;
     }
 
@@ -131,13 +132,12 @@ class LRUCache {
             current = current.next;
         }
         if (sb.length() > 2) {
-            sb.deleteCharAt(sb.length() - 1);
-            sb.deleteCharAt(sb.length() - 1);
+            sb.setLength(sb.length() - 2);
         }
         return sb.toString();
     }
 
-    static class DoublyLinkedListNode {
+    private static class DoublyLinkedListNode {
         int key;
         int value;
         DoublyLinkedListNode pre;

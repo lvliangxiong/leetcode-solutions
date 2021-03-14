@@ -57,6 +57,11 @@ class LongestPalindromicSubsequence {
              * dp[i][j] = dp[i+1][j-1] + 2 if s[i] == s[j] else max(dp[i][j-1], dp[i+1][j])
              * 边界条件：
              * dp[i][i] = 1 and dp[i][i+1] = 2 if s[i] == s[j] else 1
+             *
+             * ...  dp[i-1][j-1]   dp[i-1][j]   dp[i-1][j+1]
+             * ...  dp[i][j-1]     dp[i][j]     dp[i][j+1]
+             * ...  dp[i+1][j-1]   dp[i+1][j]   dp[i+1][j+1]
+             *
              * */
             int[][] dp = new int[n][n];
             char[] chs = s.toCharArray();
@@ -94,13 +99,14 @@ class LongestPalindromicSubsequence {
             int[] dp = new int[n];
             char[] chs = s.toCharArray();
             for (int i = n - 1; i >= 0; i--) {
-                dp[i] = 1;
-                int bottomLeft = 0;
+                dp[i] = 1; // dp[i][i]
+                int bottomLeft = 0; // 对于 dp[i][i+1] 来说，其左下方是 dp[i+1][i] = 0，因此这里初始值为 0
                 for (int j = i + 1; j < n; j++) {
-                    int temp = dp[j]; // 保存这个位置的原始值
+                    int temp = dp[j]; // 保存这个位置的原始值，其实就是 dp[i+1][j]
                     if (chs[i] == chs[j]) {
                         dp[j] = bottomLeft + 2; // 这里 bottomLeft 相当于 dp[i+1][j-1]
                     } else {
+                        // 这里的 dp[j]相当于 dp[i+1][j]，dp[j-1] 就是 dp[i][j-1]
                         dp[j] = Math.max(dp[j], dp[j - 1]);
                     }
                     bottomLeft = temp; // 更新 bottomLeft，用于下一轮求解 dp

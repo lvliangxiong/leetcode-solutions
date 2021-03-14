@@ -24,9 +24,10 @@ class ContainerWithMostWater {
             int n = height.length, ans = Integer.MIN_VALUE;
             int left = 0, right = n - 1;
             while (left != right) {
-                int minH = Math.min(height[left], height[right]);
+                int minH = Math.min(height[left], height[right]); // minH 为左右边界的较小值
                 int area = minH * (right - left); // 计算出当前位置组成的 container 的容量
-                if (area > ans) ans = area;
+                if (area > ans) ans = area; // 更新 ans
+                // 移动到下一个高度大于 minH 的位置，否则计算出来的面积必小于上次的计算结果！
                 while (left < right && height[left] <= minH) left++; // 加速迭代
                 while (left < right && height[right] <= minH) right--; // 加速迭代
             }

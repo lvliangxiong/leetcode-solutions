@@ -84,7 +84,7 @@ class MedianOfTwoSortedArrays {
 
                 // 逐步缩小 k
                 int half = k >> 1;
-                // [startIndex, newIndex] 区间最多包含了 half 个元素
+                // [startIndex, newIndex] 区间最多包含了 half 个元素，即尝试对每个数组分别向后推进 half
                 int newIndex1 = Math.min(startIndex1 + half, len1) - 1;
                 int newIndex2 = Math.min(startIndex2 + half, len2) - 1;
                 // pivot 之前（不包含 pivot）最多包含了 half-1 个元素

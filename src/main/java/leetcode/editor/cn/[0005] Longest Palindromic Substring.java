@@ -25,35 +25,32 @@ class LongestPalindromicSubstring {
     class Solution {
         /**
          * 中心扩展算法
+         * <p>
+         * index:   0   1   2   3
+         * str:     a   b   c   d
+         * center:  0 1 2 3 4 5 6
+         * <p>
+         * 时间复杂度为 O(n^2)
          *
          * @param s
          * @return
          */
         public String longestPalindrome(String s) {
-            int len = s.length(), max = 0, center = 0;
-            if (len <= 1) return s;
+            if (s == null || s.length() == 0) return "";
+            // 保证了 s 的长度至少为 1
             char[] chars = s.toCharArray();
-            int count = (len << 1) + 1; // n 个字符的字符串，有 2n+1 个中心
-            for (int i = 0; i < count; i++) {
-                int length;
-                if ((i & 1) == 0) {
-                    // i 为偶数，扩展后的回文字符串长度为奇数
-                    length = expand(chars, (i >> 1) - 1, (i >> 1) + 1);
-                } else {
-                    // i 为奇数，扩展后的回文字符串长度为偶数
-                    length = expand(chars, i - 1 >> 1, i + 1 >> 1);
-                }
-                if (max < length) {
-                    // 更新当前已查找到的最大子回文串的长度和中心位置
-                    max = length;
-                    center = i;
+            int maxLen = 1, start = 0, end = 0;
+            for (int i = 0; i < chars.length; i++) {
+                int len1 = expand(chars, i, i); // 以 i 为中心的最长回文子串
+                int len2 = expand(chars, i, i + 1); // 以 i 和 i+1 之间的位置为中心的最长回文子串
+                int len = Math.max(len1, len2);
+                if (maxLen < len) {
+                    start = i - ((len - 1) >> 1);
+                    end = i + (len >> 1);
+                    maxLen = end - start + 1;
                 }
             }
-            if ((center & 1) == 0) {
-                return s.substring((center >> 1) - (max - 1 >> 1), (center >> 1) + (max + 1 >> 1));
-            } else {
-                return s.substring((center + 1 >> 1) - (max >> 1), (center + 1 >> 1) + (max >> 1));
-            }
+            return s.substring(start, end + 1);
         }
 
         private int expand(char[] chars, int left, int right) {
@@ -77,9 +74,9 @@ class LongestPalindromicSubstring {
             for (int i = 0; i < len; i++)
                 chars[i] = (i & 1) == 0 ? '#' : s.charAt(i - 1 >> 1);
 
-            int center = -1; // 具有最右边界的回文子串的对称中心
+            int center = -1; // 当前已知的具有最右边界的回文子串的对称中心
             int right = -1; // 以 center 为中心的最长回文子串的右边界
-            int[] arms = new int[len]; // 存储已计算过的『臂长』
+            int[] arms = new int[len]; // 存储已计算过的『臂长』，例如长度为 2n+1 的回文子串，其臂长就是 n
             int start = 0, end = -1; // 遍历过程中的最长子串
 
             // 注意添加了 '#' 后，中心扩展的位置（用字符 # 代替了原字符之间的位置）
@@ -166,19 +163,18 @@ class LongestPalindromicSubstring {
         public String longestPalindrome(String s) {
             int n = s.length();
             if (n <= 1) return s;
-            /*
-             * dp[i][j] = dp[i+1][j-1] if s[i] == s[j] else false
-             * */
             boolean[] dp = new boolean[n];
             char[] chs = s.toCharArray();
             int ansLen = 1, ansStart = 0, ansEnd = 0;
             for (int i = n - 1; i >= 0; i--) {
-                dp[i] = true;
+                dp[i] = true; // dp[i][i]
                 for (int j = n - 1; j > i; j--) {
                     if (chs[i] == chs[j]) {
                         if (j == i + 1)
+                            // dp[i][i+1]
                             dp[j] = true;
                         else
+                            // dp[i][j] = dp[i+1][j-1] if s[i] == s[j] else false
                             dp[j] = dp[j - 1];
                     } else {
                         dp[j] = false;
