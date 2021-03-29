@@ -50,13 +50,16 @@ class LongestHappyPrefix {
         public String longestPrefix(String s) {
             int n = s.length(), ans = 0;
             char[] chs = s.toCharArray();
+            // 暴力枚举每一种组合
             for (int i = n - 2; i >= 0; i--) {
+                // [0, i] <=====> [n-1-i,n-1]
                 int j = n - 1, k = i;
                 while (i >= 0 && chs[i] == chs[j]) {
                     j--;
                     i--;
                 }
                 if (i == -1) {
+                    // 成功找到最长的 happy prefix
                     int len = n - 1 - j;
                     if (len > ans) ans = len;
                     break;
@@ -92,24 +95,24 @@ class LongestHappyPrefix {
 
     class KMPSolution {
         /**
-         * KMP 算法中，当字符串匹配失败时，会根据 dp 数组将模式串 pat 的状态进行更新。例如 txt 在匹配 pat 时，在第 i 个字符出现的
-         * 不匹配的情况，那么 KMP 算法就会找到 pat 的前 i-1 个字符组成的子串的 happy prefix，重新比较 txt 的第 i 个字符和 pat
-         * 的 happy prefix 的后续字符。
+         * KMP 算法中，当字符串匹配失败时，会根据 dp 数组将模式串 pat 的状态进行更新。例如 txt 在匹配 pat 时，在第 i 个字符出现
+         * 的不匹配的情况，那么 KMP 算法就会找到 pat 的前 i-1 个字符组成的子串的 longest happy prefix，重新比较 txt 的第 i 个
+         * 字符和该 longest happy prefix 的下一个字符。
          *
          * @param s
          * @return
-         * @see KMP#buildDP()
+         * @see com.joey.learning.oj.algorithm.string.KMP#buildDP()
          */
         public String longestPrefix(String s) {
             int n = s.length();
             char[] chs = s.toCharArray();
 
-            /* ends[i] 是字符串 s 的 [0, i] 子串的 happy prefix 末尾索引 */
+            /* ends[i] 是字符串 s 的 [0, i] 子串的 longest happy prefix 末尾索引 */
             int[] ends = new int[n];
-            Arrays.fill(ends, -1); // -1 代表不存在 happy prefix
+            Arrays.fill(ends, -1); // -1 代表不存在 longest happy prefix
 
             for (int i = 1; i < n; i++) {
-                int j = ends[i - 1]; // [0, i-1] 的 happy prefix 末尾索引
+                int j = ends[i - 1]; // [0, i-1] 的 longest happy prefix 末尾索引
                 /* [0, j] 子串和 [(i-1)-j ,i-1] 子串相同，因此比较 chs[j+1] 和 chs[i]，
                  * 如果该位置的字符相同，则有 ends[i] = ends[i-1] + 1 = j + 1 */
                 while (j != -1 && chs[j + 1] != chs[i]) {

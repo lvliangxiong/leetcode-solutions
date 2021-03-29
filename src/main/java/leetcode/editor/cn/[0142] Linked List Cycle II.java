@@ -25,6 +25,7 @@ class LinkedListCycleIi {
          * @return
          */
         public Node detectCycle(Node head) {
+            // 1. 判断是否有环
             if (head == null || head.next == null) return null;
             Node tortoise = head.next;
             Node rabbit = head.next.next;
@@ -33,6 +34,7 @@ class LinkedListCycleIi {
                 rabbit = rabbit.next.next;
             }
             if (tortoise != rabbit) return null; // no loop
+            // 2. 获得环的位置
             Node be = head;
             while (be != tortoise) {
                 tortoise = tortoise.next;

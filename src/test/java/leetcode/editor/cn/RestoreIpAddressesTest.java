@@ -16,6 +16,7 @@ class RestoreIpAddressesTest {
     void restoreIpAddresses() {
         RestoreIpAddresses.Solution solution = new RestoreIpAddresses().new Solution();
         List<String> ips = solution.restoreIpAddresses("25525511135");
+        Assertions.assertEquals(2, ips.size());
         for (String ip : ips) {
             for (String num : ip.split(".")) {
                 Assertions.assertTrue(Integer.parseInt(num) <= 255);

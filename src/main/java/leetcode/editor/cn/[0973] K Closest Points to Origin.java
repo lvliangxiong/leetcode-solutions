@@ -3,10 +3,8 @@ package leetcode.editor.cn;
 import javafx.util.Pair;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -33,8 +31,6 @@ import java.util.stream.Collectors;
  * Output: [[3,3],[-2,4]]
  * (The answer [[-2,4],[3,3]] would also be accepted.)
  *
- *
- *
  * Note:
  *
  *     1 <= K <= points.length <= 10000
@@ -50,10 +46,8 @@ class KClosestPointsToOrigin {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[][] kClosest(int[][] points, int K) {
-            // 大根堆，维护给定数组中最小的 K 个点的信息，堆顶是该堆中最大的元素
-            PriorityQueue<Pair<int[], Integer>> queue =
-                    new PriorityQueue<>(Comparator.comparingInt(
-                            (ToIntFunction<Pair<int[], Integer>>) p -> (Integer) p.getValue()).reversed());
+            // 大根堆，维护给定数组中距离原点最小的 K 个点的信息，堆顶是该堆中距离原点最远的元素
+            PriorityQueue<Pair<int[], Integer>> queue = new PriorityQueue<>((p1, p2) -> p2.getValue() - p1.getValue());
             int topK = Integer.MIN_VALUE; // 堆顶的点的距离原点的距离
             for (int[] point : points) {
                 int distance = point[0] * point[0] + point[1] * point[1];
@@ -61,10 +55,10 @@ class KClosestPointsToOrigin {
                 if (queue.size() < K) {
                     queue.offer(new Pair<>(point, distance));
                     // 更新堆顶元素的距离
-                    topK = distance > topK ? distance : topK;
+                    topK = Math.max(distance, topK);
                     continue;
                 }
-                // 堆已满时，仅在当前的 point 与原点的距离比堆顶元素的距离小时，才将该点加入到堆中
+                // 堆已满时，仅在当前的 point 与原点的距离比堆顶元素距离原点的距离小时，才将该点加入到堆中
                 if (distance < topK) {
                     queue.poll(); // 移除堆顶元素
                     queue.offer(new Pair<>(point, distance)); // 加入新元素
@@ -79,6 +73,7 @@ class KClosestPointsToOrigin {
 
     /**
      * @see KSmallestNumber.Solution#getLeastNumbers(int[], int)
+     * @see SortAnArray.Solution#quickSort(int[], int, int)
      */
     class QuickSelectSolution {
         Random random = new Random();
@@ -88,22 +83,22 @@ class KClosestPointsToOrigin {
             return Arrays.copyOf(points, K);
         }
 
-        private void quickSelect(int[][] points, int K, int left, int right) {
+        public void quickSelect(int[][] points, int K, int left, int right) {
             // 保证 [left, right] 区间至少有两个元素
             if (left >= right || points == null || points.length <= 1 || left < 0 || right >= points.length) return;
 
-            int pivot = partition(points, left, right);
+            int i = partition(points, left, right);
 
-            if (pivot == K || pivot == K - 1)
+            if (i == K || i == K - 1)
                 return;
-            else if (pivot < K - 1)
-                quickSelect(points, pivot + 1, right, K);
+            else if (i < K - 1)
+                quickSelect(points, i + 1, right, K);
             else
-                quickSelect(points, left, pivot - 1, K);
+                quickSelect(points, left, i - 1, K);
         }
 
         private int partition(int[][] points, int left, int right) {
-            int pivotId = left + random.nextInt(right - left + 1);
+            int pivotId = left + random.nextInt(right - left + 1); // belongs to [left, right]
             int pivotDistance = dist(points[pivotId]);
             swap(points, right, pivotId); // 将随机选取的 pivot 放在最右侧
 

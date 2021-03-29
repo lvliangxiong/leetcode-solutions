@@ -63,7 +63,7 @@ class ValidParentheses {
                     // 开括号，则压入栈
                     stack.push(ch);
                 } else {
-                    // 闭括号，则与栈顶元素抵消
+                    // 闭括号，则尝试与栈顶元素抵消
                     Character top = stack.peek();
                     if (top != null && ch.equals(mapping.get(top))) {
                         stack.pop();

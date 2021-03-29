@@ -20,7 +20,8 @@ class ReverseNodesInKGroup {
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            return reverseKGroupIteratively(head, k);
+            // return reverseKGroupIteratively(head, k);
+            return reverseKGroupRecursively(head, k);
         }
 
         private ListNode reverseKGroupRecursively(ListNode head, int k) {
@@ -30,15 +31,16 @@ class ReverseNodesInKGroup {
             ListNode current = header;
             for (int i = 0; i < k; i++) {
                 current = current.next;
+                // 尝试将 current 指向第 k 个节点，如果中途 current == null，说明整个链表不足 k 个节点
                 if (current == null) return header.next;
             }
+
             // head 开头的链表至少有 k 个节点
-            ListNode remaining = current.next;
+            ListNode remaining = current.next; // remaining 是第 k+1 个节点
             current.next = null;
-            ListNode ans = reverseRecursively(header.next); // reverse the k nodes after header
-            remaining = reverseKGroupRecursively(remaining, k);
-            head.next = remaining;
-            return ans;
+            reverseRecursively(head); // 反转后，current 变成了开头的节点，head 变成了末尾的节点
+            head.next = reverseKGroupRecursively(remaining, k);
+            return current;
         }
 
         /**
@@ -52,6 +54,7 @@ class ReverseNodesInKGroup {
             ListNode node = head.next;
             ListNode ans = reverseRecursively(node);
             node.next = head;
+            head.next = null;
             return ans;
         }
 
@@ -86,6 +89,7 @@ class ReverseNodesInKGroup {
          *
          * @param head
          * @return
+         * @see ReverseLinkedList.Solution#reverseListIteratively(ListNode)
          */
         private ListNode reverseIteratively(ListNode head) {
             if (head == null || head.next == null) return head;

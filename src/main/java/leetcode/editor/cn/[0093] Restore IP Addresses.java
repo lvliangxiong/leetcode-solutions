@@ -23,40 +23,53 @@ class RestoreIpAddresses {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         private List<String> solutions;
+        private char[] chs;
+        int[] ip = new int[4];
 
+        /**
+         * 递归遍历所有可能的组合
+         *
+         * @param s
+         * @return
+         */
         public List<String> restoreIpAddresses(String s) {
             solutions = new ArrayList<>();
             if (s.length() > 12) return solutions;
-            backtrack(s.toCharArray(), 0, null, new StringBuilder(), 0);
+            chs = s.toCharArray();
+
+            helper(0, 0);
             return solutions;
         }
 
-        private void backtrack(char[] chars, int index, Integer num, StringBuilder sb, int count) {
-            if (count > 4) return;
-            if (count == 4 && num != null) return;
-            if (index == chars.length) {
-                if (count == 3) {
-                    if (num <= 255) {
-                        sb.append(num);
-                        solutions.add(sb.toString());
+        private void helper(int startIndex, int count) {
+            if (startIndex == chs.length) {
+                if (count == 4) {
+                    // 成功找到一种解法
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < 4; i++) {
+                        sb.append(ip[i]);
+                        if (i != 3) sb.append('.');
                     }
+                    solutions.add(sb.toString());
                 }
                 return;
             }
+            // 还有没有处理的数字，但是已经分割出了 4 个数字
+            if (count == 4) return;
 
-            // 两种选择:
-            // op1：将索引为 index 的 char 合并到 num 中
-            // op2：重新开辟一个新数
-
-            if (num == null || num != 0) {
-                int newNum = (num == null ? 0 : num * 10) + chars[index] - '0';
-                if (newNum <= 255) {
-                    backtrack(chars, index + 1, newNum, new StringBuilder(sb), count);
+            // 枚举本次分割数字的方法
+            if (chs[startIndex] == '0') {
+                ip[count] = 0;
+                helper(startIndex + 1, count + 1);
+            } else {
+                int num = 0, cur = startIndex;
+                while (cur < chs.length) {
+                    num = num * 10 + chs[cur++] - '0';
+                    if (num <= 0xFF) {
+                        ip[count] = num;
+                        helper(cur, count + 1);
+                    } else break;
                 }
-            }
-            if (num != null) {
-                backtrack(chars, index + 1, chars[index] - '0',
-                        sb.append(num).append('.'), count + 1);
             }
         }
     }

@@ -56,17 +56,23 @@ class SerializeAndDeserializeBinaryTree {
 
         // Encodes a tree to a single string.
         public String serialize(TreeNode root) {
+            if (root == null) return "[]";
             Integer[] arr = toArray(root);
             StringBuilder sb = new StringBuilder();
             sb.append('[');
             for (Integer num : arr) {
                 sb.append(num).append(',');
             }
-            if (arr.length > 0) sb.setLength(sb.length() - 1);
-            sb.append(']');
+            if (arr.length > 0) sb.setCharAt(sb.length() - 1, ']');
             return sb.toString();
         }
 
+        /**
+         * 层序遍历的方式，将二叉树进行序列化。
+         *
+         * @param root
+         * @return
+         */
         private Integer[] toArray(TreeNode root) {
             if (root == null) return new Integer[0];
             // BFS traversal
@@ -141,18 +147,62 @@ class SerializeAndDeserializeBinaryTree {
 
 
     /**
-     * T -> (T) num (T) | X
+     * 使用先序遍历和递归进行序列化和反序列化！
      */
-    public class BNFCodec {
-        int index = 0;
+    public class PreorderCodec {
 
         public String serialize(TreeNode root) {
-            // String concatenate by + operator is really expensive, use StringBuilder or StringBuffer instead.
+            StringBuilder sb = new StringBuilder();
+            serializeRecursively(root, sb);
+            return sb.toString();
+        }
+
+        public void serializeRecursively(TreeNode root, StringBuilder sb) {
+            if (root == null) {
+                sb.append("None,");
+            } else {
+                sb.append(root.val).append(",");
+                serializeRecursively(root.left, sb);
+                serializeRecursively(root.right, sb);
+            }
+        }
+
+        public TreeNode deserialize(String data) {
+            String[] nodeArr = data.split(","); // trailing empty strings are not included.
+            Deque<String> queue = new ArrayDeque<>(Arrays.asList(nodeArr));
+            return deserializeRecursively(queue);
+        }
+
+        public TreeNode deserializeRecursively(Deque<String> queue) {
+            String node = queue.pollFirst();
+            if (node.equals("None")) {
+                return null;
+            }
+
+            TreeNode root = new TreeNode(Integer.parseInt(node));
+            root.left = deserializeRecursively(queue);
+            root.right = deserializeRecursively(queue);
+
+            return root;
+        }
+    }
+
+    public class BNFCodec {
+
+        public String serialize(TreeNode root) {
             StringBuilder sb = new StringBuilder();
             serializeHelper(root, sb);
             return sb.toString();
         }
 
+        /**
+         * (left child tree) root (right child tree)
+         * <p>
+         * 中序遍历 + 递归
+         *
+         * @param root
+         * @param sb
+         */
         private void serializeHelper(TreeNode root, StringBuilder sb) {
             if (root == null) sb.append('X');
             else {
@@ -166,11 +216,15 @@ class SerializeAndDeserializeBinaryTree {
             }
         }
 
+        int index;
+
         public TreeNode deserialize(String data) {
+            index = 0;
             return parse(data);
         }
 
-        public TreeNode parse(String data) {
+
+        private TreeNode parse(String data) {
             // X 代表空树
             if (data.charAt(index) == 'X') {
                 ++index;
@@ -184,14 +238,14 @@ class SerializeAndDeserializeBinaryTree {
             return cur;
         }
 
-        public TreeNode parseSubtree(String data) {
+        private TreeNode parseSubtree(String data) {
             ++index; // 跳过左括号
             TreeNode subtree = parse(data);
             ++index; // 跳过右括号
             return subtree;
         }
 
-        public int parseInt(String data) {
+        private int parseInt(String data) {
             int x = 0, sign = 1;
             // 当前字符为符号位 -
             if (!Character.isDigit(data.charAt(index))) {

@@ -52,24 +52,36 @@ class PathSumIi {
         private List<List<Integer>> paths = new ArrayList<>();
 
         public List<List<Integer>> pathSum(TreeNode root, int sum) {
-            dfs(root, sum, new ArrayList<>());
+            if (root != null)
+                dfs(root, sum, new ArrayList<>());
             return paths;
         }
 
+        /**
+         * 递归
+         *
+         * @param root
+         * @param target
+         * @param path
+         */
         private void dfs(TreeNode root, int target, ArrayList<Integer> path) {
-            if (root == null) return; // end at a non-leaf node
-            path.add(root.val); // add this node anyway
+            path.add(root.val); // add this node to path
 
             if (root.left == null && root.right == null) {
                 // if it is leaf node
                 if (target == root.val)
                     paths.add(path);
             } else {
-                // if it is a non-leaf node and non-null node
+                // if it is a non-leaf node
                 int nextTarget = target - root.val;
-                ArrayList<Integer> antherPath = new ArrayList<>(path);
-                dfs(root.left, nextTarget, path);
-                dfs(root.right, nextTarget, antherPath);
+                if (root.left == null ^ root.right == null) {
+                    dfs(root.left == null ? root.right : root.left, nextTarget, path);
+                } else {
+                    ArrayList<Integer> anotherPath = new ArrayList<>(path);
+                    dfs(root.left, nextTarget, path); // go left
+                    dfs(root.right, nextTarget, anotherPath); // go right
+                }
+
             }
         }
     }
@@ -84,8 +96,14 @@ class PathSumIi {
             return ans;
         }
 
+        /**
+         * 回溯
+         *
+         * @param root
+         * @param target
+         */
         private void backtrack(TreeNode root, int target) {
-            path.add(root.val); // add current node anyway
+            path.add(root.val); // add current node
 
             if (root.left == null && root.right == null) {
                 // leaf node

@@ -41,17 +41,17 @@ package leetcode.editor.cn;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class MyHashMap {
-    static final double LOAD_FACTOR = 0.5;
+    public static final double LOAD_FACTOR = 0.5;
 
-    Node[] table;
-    int size;
-    int capacity;
+    private Node[] table;
+    private int size;
+    private int capacity;
 
     /**
      * Initialize your data structure here.
      */
     public MyHashMap() {
-        this(17);
+        this(16);
     }
 
     public MyHashMap(int capacity) {
@@ -60,12 +60,11 @@ class MyHashMap {
     }
 
     private void grow(int newCapacity) {
-        Node[] buffer = table;
         capacity = newCapacity;
+        Node[] oldTable = table;
         table = new Node[capacity];
-        int old = size;
         size = 0; // 重置 size
-        for (Node head : buffer) {
+        for (Node head : oldTable) {
             while (head != null) {
                 put(head.key, head.value);
                 head = head.next;
@@ -83,24 +82,24 @@ class MyHashMap {
             // insert
             table[h] = new Node(key, value);
         } else {
-            Node tail = head;
-            while (head != null) {
+            Node cur = head, tail = null;
+            while (cur != null) {
                 // found same key, then update value
-                if (head.key == key) {
-                    head.value = value;
+                if (cur.key == key) {
+                    cur.value = value;
                     return;
                 }
-                tail = head;
-                head = head.next;
+                if (cur.next == null) tail = cur;
+                cur = cur.next;
             }
-            // not found, then insert at the tail
+            // not found, then insert behind the tail (cur)
             Node node = new Node(key, value);
             tail.next = node;
             node.pre = tail;
         }
         size++;
         if (size > LOAD_FACTOR * capacity) {
-            grow((capacity << 1) - 1);
+            grow(capacity << 1);
         }
     }
 
@@ -111,9 +110,10 @@ class MyHashMap {
         int h = hash(key);
         Node head = table[h];
         if (head == null) return -1;
-        while (head != null) {
-            if (head.key == key) return head.value;
-            head = head.next;
+        Node cur = head;
+        while (cur != null) {
+            if (cur.key == key) return cur.value;
+            cur = cur.next;
         }
         return -1;
     }
@@ -125,27 +125,29 @@ class MyHashMap {
         int h = hash(key);
         Node head = table[h];
         if (head == null) return; // not found
+
         boolean found = false;
-        Node target = head;
-        while (target != null) {
-            if (target.key == key) {
+        Node cur = head;
+        while (cur != null) {
+            if (cur.key == key) {
                 found = true;
                 break; // found
             }
-            target = target.next;
+            cur = cur.next;
         }
+
         if (found) {
             // remove the node
-            if (target.next != null) {
-                target.next.pre = target.pre;
+            if (cur.next != null) {
+                cur.next.pre = cur.pre;
             }
-            if (target.pre != null) {
-                target.pre.next = target.next;
+            if (cur.pre != null) {
+                cur.pre.next = cur.next;
             } else {
-                table[h] = target.next;
+                table[h] = cur.next;
             }
-            target.pre = null;
-            target.next = null;
+            cur.pre = null;
+            cur.next = null;
             size--;
         }
     }

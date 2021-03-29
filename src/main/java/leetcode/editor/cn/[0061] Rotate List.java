@@ -43,37 +43,35 @@ class RotateList {
      * </pre>
      */
     class Solution {
+        /**
+         * 1. 计算出链表长度 len
+         * 2. 如果 len <= k，则 k %= len
+         * 3. 如果 k == 0，直接返回 head
+         * 4. 此时必有 len > k，因此找到倒数第 k+1 个节点，并将其后面的节点移动到前面来！
+         *
+         * @param head
+         * @param k
+         * @return
+         */
         public ListNode rotateRight(ListNode head, int k) {
             if (head == null || k == 0) return head;
-            ListNode curr = head;
-            int i = 0;
-            // Find the k-th node start from the head.
-            while (i < k && curr != null) {
-                curr = curr.next;
-                i++;
+            ListNode cur = head;
+            int len = 0;
+            while (cur != null) {
+                cur = cur.next;
+                len++;
             }
-            // If the number of nodes equals to k or 1, just return head.
-            if ((i == 1 || i == k) && curr == null) return head;
-            // If the number of nodes is less than k, reduce the scale of k and retry.
-            if (i < k) {
-                // i is the number of nodes in the list
-                k %= i;
-                if (k == 0) return head;
-                // Recompute the k-th node of the list start from the start
-                i = 0;
-                curr = head;
-                while (i < k && curr != null) {
-                    curr = curr.next;
-                    i++;
-                }
+            if (len <= k) k %= len;
+            if (k == 0) return head;
+            cur = head;
+            for (int i = 0; i < k; i++) {
+                cur = cur.next; // 循环完成后 head ==> 0-th，cur ==> k-th
             }
-            // Find the k-th node start from the end.
-            ListNode slow = head, fast = curr;
+            ListNode slow = head, fast = cur;
             while (fast.next != null) {
                 slow = slow.next;
                 fast = fast.next;
             }
-            // slow is the k-th node from the end, and fast the is the end.
             ListNode tmp = slow.next;
             slow.next = null;
             fast.next = head;

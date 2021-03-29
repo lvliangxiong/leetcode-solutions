@@ -64,12 +64,14 @@ class MedianOfTwoSortedArrays {
         }
 
         /**
-         * 求两个排序数组中的第 K 小数问题
+         * 求两个排序数组中的第 K 小数问题，思路类似于 QuickSelect 方法！
          *
          * @param nums1
          * @param nums2
          * @param k
          * @return
+         * @see KClosestPointsToOrigin.QuickSelectSolution#quickSelect(int[][], int, int, int)
+         * @see KSmallestNumber.Solution#getLeastNumbers(int[], int)
          */
         private int getKthElement(int[] nums1, int[] nums2, int k) {
             int len1 = nums1.length, len2 = nums2.length;

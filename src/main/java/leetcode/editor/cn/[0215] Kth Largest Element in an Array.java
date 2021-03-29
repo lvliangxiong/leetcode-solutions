@@ -65,13 +65,14 @@ class KthLargestElementInAnArray {
         }
 
         public int quickSelect(int[] arr, int left, int right, int target) {
-            int index = randomPartition(arr, left, right);
-            if (index == target) {
-                return arr[index];
-            } else {
-                return index < target ? quickSelect(arr, index + 1, right, target)
-                        : quickSelect(arr, left, index - 1, target);
+            if (left < right) {
+                int index = randomPartition(arr, left, right);
+                if (index != target) {
+                    return index < target ? quickSelect(arr, index + 1, right, target)
+                            : quickSelect(arr, left, index - 1, target);
+                }
             }
+            return arr[target];
         }
 
         public int randomPartition(int[] arr, int left, int right) {

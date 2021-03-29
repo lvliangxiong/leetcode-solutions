@@ -64,7 +64,7 @@ class RemoveDuplicatesFromSortedArrayIi {
             while (i < len) {
                 int count = 0;
                 int num = nums[i];
-                // 计算出 nums 中值等于 num 的元素的个数，完成查找后
+                // 计算出 nums 中值等于 num 的元素的个数
                 while (i < len && nums[i] == num) {
                     count++;
                     i++;

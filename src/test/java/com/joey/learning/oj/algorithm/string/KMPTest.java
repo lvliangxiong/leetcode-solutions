@@ -1,13 +1,8 @@
-package leetcode.editor.cn;
+package com.joey.learning.oj.algorithm.string;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author LiangxiongLyu
- * @version 1.0
- * @date 8/24/2020
- */
 class KMPTest {
     @Test
     void search() {

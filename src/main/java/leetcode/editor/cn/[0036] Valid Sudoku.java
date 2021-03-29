@@ -56,6 +56,7 @@ class ValidSudoku {
             int[] rows = new int[9];
             int[] columns = new int[9];
             int[] boxes = new int[9];
+
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
                     char ch = board[i][j];

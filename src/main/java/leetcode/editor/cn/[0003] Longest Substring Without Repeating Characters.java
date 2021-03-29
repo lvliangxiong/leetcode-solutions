@@ -35,7 +35,7 @@ class LongestSubstringWithoutRepeatingCharacters {
     class Solution {
         /**
          * 使用 HashMap 记录遍历过的字符的索引位置。
-         * 使用 数组 进行记录当然会更快，但是由于题目没有给出字符串的字符范围，所以不太好进行数组大小的声明。
+         * 使用『数组』进行记录当然会更快，但是由于题目没有给出字符串的字符范围，所以不太好进行数组大小的声明。
          *
          * @param s
          * @return
@@ -52,7 +52,7 @@ class LongestSubstringWithoutRepeatingCharacters {
                 if (position.containsKey(ch)) {
                     start = Math.max(start, position.get(ch) + 1);
                 }
-                max = Math.max(max, current - start + 1);
+                max = Math.max(max, current - start + 1); // [start, current]
                 position.put(ch, current++);
             }
             return max;
@@ -72,6 +72,7 @@ class LongestSubstringWithoutRepeatingCharacters {
             int start = 0, end = 0, current = 1, max = 1;
             while (current < n) {
                 char ch = chars[current];
+                // 检查 [start, end] 之间的子串是否存在 ch 字符
                 for (int i = start; i <= end; i++) {
                     if (chars[i] == ch) {
                         start = i + 1; // 更新 start

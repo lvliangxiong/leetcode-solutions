@@ -37,18 +37,24 @@ class RemoveDuplicatesFromSortedList {
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
             if (head == null || head.next == null) return head;
-            ListNode cur = head, ans = null, pre = null;
-            while (cur != null) {
-                // 移动 cur 到与当前节点相同的所有重复节点中最后一个节点
-                while (cur != null && cur.next != null && cur.val == cur.next.val) {
+            ListNode dummyHead = new ListNode(0, head);
+            ListNode cur = dummyHead;
+            while (cur.next != null) {
+                if (cur.next.next != null && cur.next.val == cur.next.next.val) {
+                    // 存在重复值，则找到相同的所有节点中的最后一个
+                    ListNode end = cur.next;
+                    int num = end.val;
+                    while (end.next != null && end.next.val == num) {
+                        end = end.next;
+                    }
+                    cur.next = end; // 留一个
+                    cur = end;
+                } else {
+                    // 下一个数不存在重复值
                     cur = cur.next;
                 }
-                if (ans == null) ans = cur;
-                if (pre != null) pre.next = cur;
-                pre = cur;
-                cur = cur.next;
             }
-            return ans == null ? head : ans;
+            return dummyHead.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

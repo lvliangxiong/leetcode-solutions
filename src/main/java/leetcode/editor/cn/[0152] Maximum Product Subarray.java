@@ -39,8 +39,9 @@ class MaximumProductSubarray {
             int min = 1, max = 1, ans = Integer.MIN_VALUE;
             for (int num : nums) {
                 int m = Math.max(Math.max(num * min, num * max), num);
-                min = Math.min(Math.min(num * min, num * max), num);
+                int n = Math.min(Math.min(num * min, num * max), num);
                 max = m;
+                min = n;
                 if (ans < max) ans = max;
             }
             return ans;

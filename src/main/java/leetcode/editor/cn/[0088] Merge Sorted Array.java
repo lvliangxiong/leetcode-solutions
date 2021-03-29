@@ -33,6 +33,14 @@ class MergeSortedArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 从后向前进行合并！
+         *
+         * @param nums1
+         * @param m
+         * @param nums2
+         * @param n
+         */
         public void merge(int[] nums1, int m, int[] nums2, int n) {
             // two get pointers for comparing elements in nums1 and nums2
             int p1 = m - 1;

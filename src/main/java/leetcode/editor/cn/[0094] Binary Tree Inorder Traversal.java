@@ -1,9 +1,12 @@
 package leetcode.editor.cn;
 
 
-import leetcode.editor.cn.tree.TreeNode;
+import leetcode.editor.cn.tree.binarytree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * <pre>
@@ -41,8 +44,36 @@ class BinaryTreeInorderTraversal {
      * </pre>
      */
     class Solution {
+        /**
+         * @param root
+         * @return
+         * @see BinaryTreePreorderTraversal.Solution#preorderTraversal(TreeNode)
+         */
         public List<Integer> inorderTraversal(TreeNode root) {
-            return morrisInorderTraversal2(root);
+            List<Integer> list = new ArrayList<>();
+            Deque<TreeNode> stack = new ArrayDeque<>();
+            TreeNode cur = root;
+            while (!stack.isEmpty() || cur != null) {
+                // 循环压入当前节点及其所有左子节点
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+                // 弹出栈顶元素，加入遍历列表中，并将『当前节点』指向栈顶元素的右节点
+                cur = stack.pop();
+                list.add(cur.val);
+                cur = cur.right;
+            }
+            return list;
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
+
+    class InorderTraversalByRecursionSolution {
+        public List<Integer> inorderTraversal(TreeNode root) {
+            ArrayList<Integer> snapshot = new ArrayList<>();
+            inorderRecursive(root, snapshot);
+            return snapshot;
         }
 
         /**
@@ -52,68 +83,18 @@ class BinaryTreeInorderTraversal {
          * @param snapshot
          */
         private void inorderRecursive(TreeNode root, List<Integer> snapshot) {
-            if (root.left != null) {
+            if (root != null) {
                 inorderRecursive(root.left, snapshot);
-            }
-            snapshot.add(root.val);
-            if (root.right != null) {
+                snapshot.add(root.val);
                 inorderRecursive(root.right, snapshot);
             }
         }
+    }
 
-        /**
-         * 迭代中序遍历
-         *
-         * @param root
-         * @return
-         */
-        public List<Integer> inorderIterative1(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            TreeNode current = root;
-            Deque<TreeNode> stack = new ArrayDeque<>();
-            Set<TreeNode> visited = new HashSet<>();
-            stack.push(current);
-            while (!stack.isEmpty()) {
-                // 循环压入当前栈顶节点的所有未遍历左节点
-                current = stack.peek();
-                while (current.left != null && !visited.contains(current.left)) {
-                    stack.push(current.left);
-                    current = current.left;
-                }
-                // 弹出栈顶元素，加入遍历列表，并将栈顶元素的右节点压栈
-                list.add(current.val);
-                visited.add(stack.pop());
-                if (current.right != null) {
-                    stack.push(current.right);
-                }
-            }
-            return list;
-        }
+    class MorrisTraversalSolution {
 
-        /**
-         * 迭代中序遍历
-         *
-         * @param root
-         * @return
-         */
-        public List<Integer> inorderIterative2(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            TreeNode current = root;
-            Deque<TreeNode> stack = new ArrayDeque<>();
-            while (!stack.isEmpty() || current != null) {
-                // 循环压入当前栈顶节点及其所有左子节点
-                while (current != null) {
-                    stack.push(current);
-                    current = current.left;
-                }
-                // 弹出栈顶元素，加入遍历列表中，并将『当前节点』指向栈顶元素的右节点
-                if (!stack.isEmpty()) {
-                    current = stack.pop();
-                    list.add(current.val);
-                    current = current.right;
-                }
-            }
-            return list;
+        public List<Integer> inorderTraversal(TreeNode root) {
+            return morrisInorderTraversal(root);
         }
 
         /**
@@ -124,7 +105,7 @@ class BinaryTreeInorderTraversal {
          * @param root
          * @return
          */
-        public List<Integer> morrisInorderTraversal1(TreeNode root) {
+        public List<Integer> morrisInorderTraversal(TreeNode root) {
             TreeNode current = root;
             TreeNode predecessor;
             List<Integer> ret = new ArrayList<>();
@@ -155,14 +136,13 @@ class BinaryTreeInorderTraversal {
             return ret;
         }
 
-
         /**
          * Morris Traversal, this implementation doesn't destroy the original tree structure.
          *
          * @param root
          * @return
          */
-        public List<Integer> morrisInorderTraversal2(TreeNode root) {
+        public List<Integer> optimisedMorrisInorderTraversal(TreeNode root) {
             TreeNode current = root;
             TreeNode predecessor; // 当前节点的前驱节点
             List<Integer> ret = new ArrayList<>();
@@ -191,6 +171,5 @@ class BinaryTreeInorderTraversal {
             return ret;
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
 
 }

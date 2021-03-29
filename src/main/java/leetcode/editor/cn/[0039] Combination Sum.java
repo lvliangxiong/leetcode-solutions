@@ -81,7 +81,7 @@ class CombinationSum {
             for (int j = most; j >= 0; j--) {
                 List<List<Integer>> list = combinationSum(candidates, remained, begin + 1);
                 if (list.size() > 0) {
-                    // 一次性添加 j 个 candidates[begin] 是可行解
+                    // 一次性添加 j 个 candidates[begin] 的方案是可行解
                     for (List<Integer> com : list) {
                         for (int k = 0; k < j; k++) {
                             com.add(candidates[begin]);
@@ -115,6 +115,16 @@ class CombinationSum {
             return result;
         }
 
+        /**
+         * 考虑每次选择元素的时候，如果选择了索引为 i 的元素，那么后续的选择仅仅能选择 i 及之后的元素！避免出现重复解！
+         *
+         * @param candidates
+         * @param begin
+         * @param len
+         * @param target
+         * @param path
+         * @param result
+         */
         private void dfs(int[] candidates, int begin, int len, int target, Deque<Integer> path,
                          List<List<Integer>> result) {
             // 由于进入更深层的时候，小于 0 的部分被剪枝，因此递归终止条件值只判断等于 0 的情况
@@ -124,7 +134,7 @@ class CombinationSum {
             }
 
             for (int i = begin; i < len; i++) {
-                // 重点理解这里剪枝，前提是候选数组已经有序
+                // 重点理解这里的剪枝，前提是候选数组已经有序
                 if (target < candidates[i]) {
                     break;
                 }

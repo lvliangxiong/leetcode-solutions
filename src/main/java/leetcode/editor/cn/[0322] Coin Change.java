@@ -26,6 +26,12 @@ class CoinChange {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /**
+         * 为什么尽量使用大面值的贪心策略无法使用？
+         * <pre>
+         * 例如：1 2 3 5 7 10  =====>  14
+         * 有两种方式： 14 = 10 + 2 + 2 （贪心）
+         *             14 = 7 + 7
+         * </pre>
          * 模板式背包问题解，但是产生了许多根本没有用到的解，速度很慢。
          *
          * @param coins
@@ -37,19 +43,25 @@ class CoinChange {
             if (len == 0) return -1;
             Arrays.sort(coins);
             int[] dp = new int[amount + 1];
+            // 初始化，仅能使用 coins[0] 的情况
             for (int j = 0; j <= amount; j++) {
                 if (j % coins[0] == 0) dp[j] = j / coins[0];
                 else dp[j] = -1;
             }
+            // dp[i][j] = min{dp[i-1][j], dp[i-1][j-coins[i]]+1, .... , dp[i-1][j-most*coins[i]]+most}
             for (int i = 1; i < len; i++) { // you can use [0, i]-th coin in the coins
                 for (int j = amount; j >= 0; j--) { // target number of money
                     int most = j / coins[i]; // the most number of i-th coin you can choose
-                    for (int k = most; k >= 0; k--) { // iterate possible i-th coin number
+                    int min = dp[j];
+                    for (int k = most; k >= 1; k--) { // iterate possible i-th coin number
                         int count = dp[j - k * coins[i]];
                         if (count != -1)
-                            dp[j] = count + k;
-                        dp[j] = dp[j] == -1 ? count + k : Math.min(dp[j], count + k);
+                            if (min != -1)
+                                min = Math.min(min, count + k);
+                            else
+                                min = count + k;
                     }
+                    dp[j] = min;
                     if (i == len - 1 && j == amount) break;
                 }
             }
@@ -63,7 +75,7 @@ class CoinChange {
          * 自下而上的动态规划。
          * <p>
          * 考虑这样一个问题，对于固定 amount 的钱，我们使用硬币进行兑换，可以将此问题，抽象为『多次选择多个硬币，使得最终的面值
-         * 和刚好为 amount』，因此第一次选择时，必然也是 coins 数组中的一种，这里进行枚举：
+         * 和刚好为 amount』，因此每做一次选择时，必然是 coins 数组中的一种，这里进行枚举：
          * dp[i] = min(dp[i-coins[j]] + 1) where j = [0, ... , n-1]
          * dp[0] = 0
          * dp[i] = -1 when n = 0, i > 0
@@ -84,37 +96,6 @@ class CoinChange {
                 }
             }
             return dp[amount] > amount ? -1 : dp[amount];
-        }
-    }
-
-    class DfsSolution {
-        int min = Integer.MAX_VALUE;
-
-        /**
-         * DFS + cutting
-         *
-         * @param coins
-         * @param amount
-         * @return
-         */
-        public int coinChange(int[] coins, int amount) {
-            Arrays.sort(coins); // 先排序，便于剪枝
-            dfs(coins.length - 1 /*从大的硬币开始尝试，类似于贪心*/, coins, 0, amount);
-            return min == Integer.MAX_VALUE ? -1 : min;
-        }
-
-        private void dfs(int index, int[] coins, int count, int remained) {
-            if (remained == 0) {
-                min = Math.min(count, min);
-                return;
-            }
-            if (index < 0) {
-                return;
-            }
-            int most = remained / coins[index];
-            for (int k = most; k >= 0 && count + k < min; k--) {
-                dfs(index - 1, coins, count + k, remained - k * coins[index]);
-            }
         }
     }
 }

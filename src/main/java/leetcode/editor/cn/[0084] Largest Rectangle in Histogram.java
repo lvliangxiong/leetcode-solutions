@@ -58,6 +58,7 @@ class LargestRectangleInHistogram {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
+
     class DpSolution {
         /**
          * 利用动态规划，对于每一个柱体，计算出其左右边界。这里计算出『左右边界』的方式其实和单调栈计算左右边界的原理有

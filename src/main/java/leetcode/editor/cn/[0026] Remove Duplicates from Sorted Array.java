@@ -55,12 +55,11 @@ class RemoveDuplicatesFromSortedArray {
             int n = nums.length, p = 0, i = 0;
             if (n <= 1) return n;
             while (i < n) {
-                if (i != p)
-                    nums[p] = nums[i];
+                nums[p++] = nums[i];
                 int num = nums[i];
+                // i 更新到下一个和 num 不相等的位置，如果全部相等，那么 i = n
                 while (i < n && nums[i] == num)
-                    i++; // i 更新到下一个和 num 不相等的位置，如果全部相等，那么 i = n
-                p++;
+                    i++;
             }
             return p;
         }

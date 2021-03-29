@@ -44,37 +44,40 @@ class SearchInRotatedSortedArrayIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean search(int[] nums, int target) {
-            int n = nums.length;
-            if (n == 1) return nums[0] == target;
-            int low = 0, high = n - 1;
-            if (target < nums[0] && target > nums[n - 1]) return false;
-            if (target == nums[0]) return true;
-            boolean targetInFirstHalf = target > nums[0];
+            if (null == nums || nums.length == 0)
+                return false;
+
+            int low = 0, high = nums.length - 1;
             while (low < high) {
-                // split to two sub array at mid, i.e. [0, mid] and [mid+1, n-1]
+                // to avoid duplicates
+                while (low < high && nums[low] == nums[low + 1])
+                    ++low;
+                while (low < high && nums[high] == nums[high - 1])
+                    --high;
+
+                // 循环之后，low <= high
+                if (low == high) break;
+
+                // the code below is exactly the same with Problem 33.
                 int mid = (low + high) >>> 1;
-                if (nums[mid] == target) return true;
-                if (nums[mid] == nums[0]) {
-                    // scan element by element
-                    for (int i = low; i <= high; i++) {
-                        if (nums[i] == target) return true;
-                    }
-                    return false;
-                } else if (nums[mid] > nums[0]) {
-                    // mid locates at first half
-                    if (!targetInFirstHalf || nums[mid] < target)
-                        low = mid + 1;
-                    else
+                if (nums[mid] == target)
+                    return true;
+
+                if (nums[mid] >= nums[low]) {
+                    // mid locates in the first half
+                    if (target >= nums[low] && target < nums[mid])
                         high = mid;
+                    else
+                        low = mid + 1;
                 } else {
-                    // mid locates at latter half
-                    if (targetInFirstHalf || nums[mid] > target)
-                        high = mid;
-                    else
+                    // mid locates in the latter half
+                    if (target <= nums[high] && target > nums[mid])
                         low = mid + 1;
+                    else
+                        high = mid;
                 }
             }
-            return nums[low] == target ? true : false;
+            return nums[low] == target;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

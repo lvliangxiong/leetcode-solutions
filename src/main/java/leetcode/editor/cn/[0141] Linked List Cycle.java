@@ -26,7 +26,7 @@ class LinkedListCycle {
                 tortoise = tortoise.next;
                 rabbit = rabbit.next.next;
             }
-            return rabbit == tortoise ? true : false;
+            return rabbit == tortoise;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

@@ -65,16 +65,15 @@ class EditDistance {
             if (m * n == 0)
                 return m + n;
 
-            // DP 数组
             // dp[m][n] 表示 word1 前 m 个字符组成的子串和 word2 前 n 个字符组成的子串之间的距离
             int[][] dp = new int[m + 1][n + 1];
 
             // 边界状态初始化
-            for (int i = 0; i < m + 1; i++) {
+            for (int i = 0; i <= m; i++) {
                 // word1 前 i 个字符组成的子串和空串的距离
                 dp[i][0] = i;
             }
-            for (int j = 0; j < n + 1; j++) {
+            for (int j = 0; j <= n; j++) {
                 // word2 前 j 个字符组成的子串和空串的距离
                 dp[0][j] = j;
             }
@@ -86,9 +85,8 @@ class EditDistance {
                     // word2[0] word2[1] .... word2[j-1] word2[j]
                     int insertJ = dp[i - 1][j] + 1; // word2 添加一个字符 word1[i]
                     int insertI = dp[i][j - 1] + 1; // word1 添加一个字符 word2[j]
-                    int replaceIJ = dp[i - 1][j - 1]; // 尝试将 word1[i] 替换为 word2[j]
+                    int replaceIJ = dp[i - 1][j - 1]; // 如果本身就相等，就不需要进行替换
                     if (word1.charAt(i - 1) != word2.charAt(j - 1))
-                        // 如果本身就相等，就不需要进行替换
                         replaceIJ += 1;
                     dp[i][j] = Math.min(insertJ, Math.min(insertI, replaceIJ));
                 }

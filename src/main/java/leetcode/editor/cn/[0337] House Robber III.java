@@ -20,14 +20,19 @@ class HouseRobberIii {
      * </pre>
      */
     class Solution {
-        Map<TreeNode, int[]> mappings = new HashMap<>();
+        /**
+         * 保存中间结果，key 为树中的节点，而 value 是一个整形数组。
+         * [0] 代表在以 key 为根节点的树中，不 rob 根节点能获得的最大收益。
+         * [1] 代表在以 key 为根节点的树中，rob 根节点能获得的最大收益。
+         */
+        Map<TreeNode, int[]> memo = new HashMap<>();
 
         /**
-         * dp[root][1] = root.val + max(dp[root.left][0], dp[root.right][0])
-         * dp[root][0] = max(dp[root.left][0], dp[root.left][1]) + max(dp[root.right][0], dp[root.right][1])
-         * where 1 represents rob the root, 0 represents not.
+         * dp[root][1] = root.val + (dp[root.left][0] + dp[root.right][0])
+         * dp[root][0] = max(dp[root.left][0] + dp[root.left][1]) + max(dp[root.right][0], dp[root.right][1])
+         * where 1 represents rob the house, 0 represents not.
          * <p>
-         * 『记忆化递归』实现
+         * 『记忆化递归』实现！
          *
          * @param root
          * @return
@@ -40,35 +45,36 @@ class HouseRobberIii {
             if (root == null) {
                 return 0;
             }
-            if (mappings.containsKey(root)) {
-                int[] ret = mappings.get(root);
+            if (memo.containsKey(root)) {
+                int[] ret = memo.get(root);
                 return robTheRoot ? ret[1] : ret[0];
             } else {
                 int r = root.val + rob(root.left, false) + rob(root.right, false);
                 int nr = Math.max(rob(root.left, true), rob(root.left, false)) +
                         Math.max(rob(root.right, true), rob(root.right, false));
-                mappings.put(root, new int[]{nr, r});
+                memo.put(root, new int[]{nr, r});
                 return robTheRoot ? r : nr;
             }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+
     /**
-     * 自底而上的递归实现
+     * O(n)，相当于同时返回了两种情况，即包含了 rob，也包含了 notRob 的情况！
      */
-    class Solution2 {
+    class RecursionSolution {
         public int rob(TreeNode root) {
-            int[] rootStatus = dfs(root);
+            int[] rootStatus = helper(root);
             return Math.max(rootStatus[0], rootStatus[1]);
         }
 
-        public int[] dfs(TreeNode node) {
+        public int[] helper(TreeNode node) {
             if (node == null) {
                 return new int[]{0, 0};
             }
-            int[] l = dfs(node.left);
-            int[] r = dfs(node.right);
+            int[] l = helper(node.left);
+            int[] r = helper(node.right);
             int selected = node.val + l[1] + r[1];
             int notSelected = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
             return new int[]{selected, notSelected};
@@ -78,7 +84,7 @@ class HouseRobberIii {
     /**
      * 后序遍历实现
      */
-    class Solution3 {
+    class PostorderSolution {
         public int rob(TreeNode root) {
             if (root == null) {
                 return 0;

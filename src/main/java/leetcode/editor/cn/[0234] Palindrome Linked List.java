@@ -93,4 +93,27 @@ class PalindromeLinkedList {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
+    class RecursionSolution {
+        private ListNode frontPointer; // 链表头向链表尾迭代
+
+        public boolean isPalindrome(ListNode head) {
+            frontPointer = head;
+            return recursivelyCheck(head);
+        }
+
+        /**
+         * 递归回来的时候，currentNode 是从链表尾向链表头迭代的！
+         *
+         * @param currentNode
+         * @return
+         */
+        private boolean recursivelyCheck(ListNode currentNode) {
+            if (currentNode == null)
+                return true;
+            boolean res = recursivelyCheck(currentNode.next) && (frontPointer.val == currentNode.val);
+            frontPointer = frontPointer.next;
+            return res;
+        }
+    }
+
 }

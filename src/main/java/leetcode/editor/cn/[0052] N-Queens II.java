@@ -45,18 +45,18 @@ class NQueensIi {
          *
          * @param row
          * @param columns
-         * @param dales
          * @param hills
+         * @param dales
          */
-        public void helper(int row, int columns, int dales, int hills) {
+        public void helper(int row, int columns, int hills, int dales) {
             if (row == n) {
                 count++;
             } else {
-                /* columns | dales | hills 的二进制表示中，1 代表该位置（列）处于其它 Queen 的攻击范围。
+                /* columns | hills | dales 的二进制表示中，1 代表该位置（列）处于其它 Queen 的攻击范围。
                  * 取反后， 1 表示不处于其它 Queen 的攻击范围的列，是可以放置 Queen 的。
                  * (1 << n) - 1 的结果就是低位是 n 个 1，高位全是 0 的整数。
-                 * 这里使用 (1 << n) - 1 与取反的结果进行按位与，可以消除取反时产生的多余的高位 1。*/
-                int availablePositions = ((1 << n) - 1) & (~(columns | dales | hills));
+                 * 这里使用 (1 << n) - 1 与取反的结果进行按位与，可以消除取反时产生的多余的高位 1（将多余的高位置为 0）。*/
+                int availablePositions = ((1 << n) - 1) & (~(columns | hills | dales));
                 while (availablePositions != 0) {
                     /* x & (−x) 可以获得 x 的二进制表示中的最低位的 1 的位置，此时 position 的二进制表示中的唯一一个 1 即为
                      * Queen 应该被放置的位置。*/
@@ -70,8 +70,8 @@ class NQueensIi {
 
                     helper(row + 1/*下一行*/,
                             columns | position/*新增的 Queue 的列不能再放置 Queue*/,
-                            (dales | position) << 1/*行数增 1，hill 被占据的位置整体左移 1 位，等效于 135 度斜线*/,
-                            (hills | position) >> 1);
+                            (hills | position) << 1/*行数增 1，hills 被占据的位置整体左移 1 位，等效于 45 度斜线*/,
+                            (dales | position) >> 1);
                 }
             }
         }

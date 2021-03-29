@@ -1,7 +1,5 @@
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 /**
  * <pre>
  * Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
@@ -75,18 +73,16 @@ class RegularExpressionMatching {
              *      dp[i][j] = dp[i-1][j-1]
              */
             boolean[][] dp = new boolean[m + 1][n + 1];
-            // 空串和空串是匹配的，空串和任意字符都不匹配，即 dp[0][0] = true，dp[i][0] = false (i != 0)
+            // 空串和空串是匹配的，空串还和类似于 "a*" 这样的字符串匹配
             dp[0][0] = true;
             for (int i = 0; i <= m; i++) {
                 for (int j = 1; j <= n; j++) {
-                    if (p.charAt(j - 1) == '*') {
-                        // p 中第 j 个字符为 *
+                    if (p.charAt(j - 1) == '*') { // p 的第 j 个字符为 *，这里默认给出的 p 的开头第一个字符不可能是 *
                         dp[i][j] = dp[i][j - 2]; // * 重复前面一个字符 0 次
                         if (match(s, i, p, j - 1)) {
                             dp[i][j] = dp[i][j] || dp[i - 1][j];
                         }
-                    } else {
-                        // p 中第 j 个字符不是 *，则比较 s 的第 i 个字符和 p 的第 j 个字符
+                    } else { // p 中第 j 个字符不是 *，则比较 s 的第 i 个字符和 p 的第 j 个字符
                         if (match(s, i, p, j)) {
                             dp[i][j] = dp[i - 1][j - 1];
                         }

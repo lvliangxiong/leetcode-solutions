@@ -58,40 +58,21 @@ class BalancedBinaryTree {
      */
     class Solution {
         /**
-         * 自底而上的迭代
+         * 返回平衡树的高度，如果不是平衡的，返回 -1。
          *
          * @param root
          * @return
          */
-        private TreeInfo computeTreeInfo(TreeNode root) {
-            if (root == null) return new TreeInfo(true, 0);
-            TreeInfo left = computeTreeInfo(root.left);
-            TreeInfo right = computeTreeInfo(root.right);
-            return new TreeInfo(left.isBalanced &&
-                    right.isBalanced && Math.abs(left.height - right.height) <= 1,
-                    Math.max(left.height, right.height) + 1);
+        private int computeTreeInfo(TreeNode root) {
+            if (root == null) return 0;
+            int leftHeight = computeTreeInfo(root.left);
+            int rightHeight = computeTreeInfo(root.right);
+            if (leftHeight == -1 || rightHeight == -1 || Math.abs(leftHeight - rightHeight) > 1) return -1;
+            return Math.max(leftHeight, rightHeight) + 1;
         }
 
         public boolean isBalanced(TreeNode root) {
-            return computeTreeInfo(root).isBalanced;
-        }
-    }
-
-    final class TreeInfo {
-        boolean isBalanced;
-        int height;
-
-        TreeInfo(boolean isBalanced, int height) {
-            this.isBalanced = isBalanced;
-            this.height = height;
-        }
-
-        int getHeight() {
-            return height;
-        }
-
-        boolean isBalanced() {
-            return isBalanced;
+            return computeTreeInfo(root) >= 0;
         }
     }
 

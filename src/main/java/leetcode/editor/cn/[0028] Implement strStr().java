@@ -42,6 +42,7 @@ class ImplementStrstr {
      * 另外由于 KMP 适用于字符串中包含有大量的重复片段的情况，但是在实际具有语义的句子中，这个算法的表现可能也只是一般。
      */
     class Solution {
+
         /**
          * KMP 字符串搜索算法：永不后退『主串』上的指针，只后退『模式串』上的指针。
          *
@@ -61,7 +62,7 @@ class ImplementStrstr {
                 if (j == -1 || h[i] == ne[j]) {
                     j++;
                     i++;
-                    if (j == m) return i - j;
+                    if (j == m) return i - j; // 成功匹配
                 } else j = failed[j];
             }
             return -1;
@@ -82,18 +83,23 @@ class ImplementStrstr {
              * 0 代表将当前『主串』的不匹配字符和『模式串』的起始位置进行重新匹配，如果还是不匹配，将进入到 -1 状态。
              * 注意这两者的区别。*/
             failed[0] = -1;
-            int i = 0;
-            int k = -1;
+
+            int i = 0; // 当前位置
+            int k = -1; // 当前位置匹配失败后，『模式串指针』应该回退到的位置，即 failed[i]
+
             // [0, k) 子串是 [0, i) 子串的最长 happy prefix
             while (i < n - 1) {
                 // 根据当前位置上 failed 数组的值计算下一个位置的匹配失败后的回退位置
                 if (k == -1 || needle[i] == needle[k]) {
+                    /* 这里如果 needle[i] == needle[k]，那么 [0, k] 子串是 [0, i] 子串的最长 happy prefix，因此如果
+                     * i+1 位置不匹配时，那么可以尝试和 k+1 匹配！*/
                     i++;
                     k++;
+                    // 这里进行了一个加速
                     if (needle[i] == needle[k]) {
-                        failed[i] = failed[k]; // 这里进行了一个加速
+                        failed[i] = failed[k];
                     } else {
-                        failed[i] = k;
+                        failed[i] = k; // 回到 k 尝试重新匹配
                     }
                 } else {
                     k = failed[k];

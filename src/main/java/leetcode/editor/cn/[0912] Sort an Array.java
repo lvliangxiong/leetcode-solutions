@@ -69,8 +69,9 @@ class SortAnArray {
                     swap(nums, i, j);
                 }
             }
-            swap(nums, i + 1, high); // 将 pivot 移动到正确的中间位置
-            return i + 1; // i 为最终的拆分位置
+            i++;
+            swap(nums, i, high); // 将 pivot 移动到正确的中间位置
+            return i; // i 为最终的拆分位置
         }
 
         /**
@@ -80,16 +81,16 @@ class SortAnArray {
          * @param low
          * @param high
          */
-        private void quickSort(int[] nums, int low, int high) {
+        public void quickSort(int[] nums, int low, int high) {
             if (low < high) {
                 // [low, high] 至少两个元素
                 int lo = low, hi = high;
                 int pivot = nums[low]; // 基准值
                 while (low < high) {
-                    while (low < high && nums[high] >= pivot) high--;
-                    if (low < high) swap(nums, low++, high); // 交换之后，high 指向的值就是 pivot
-                    while (low < high && nums[low] < pivot) low++;
-                    if (low < high) swap(nums, low, high--); // 交换之后，low 指向得值就是 pivot
+                    while (low < high && nums[high] >= pivot) high--; // high 指向遇到的第一个 < pivot 的值的位置
+                    if (low < high) swap(nums, low++, high); // 交换之后，high 的值就是 pivot
+                    while (low < high && nums[low] < pivot) low++; // low 指向遇到的第一个 >= pivot 的值的位置
+                    if (low < high) swap(nums, low, high--); // 交换之后，low 的值就是 pivot
                 }
                 // 最终，low == high，指向的值就是 pivot
                 quickSort(nums, lo, low - 1);
@@ -134,15 +135,18 @@ class SortAnArray {
         }
 
         /**
-         * 和快排很相似，快排是拆分的时候就已经将两个区间进行了有序化，而归并则是合并的时候再进行有序化！
+         * 和快排很相似，快排是拆分的时候就已经将两个区间进行了有序化，而归并则是先直接拆分，
+         * 在合并的时候再进行『合并两个有序数组』的操作！
          *
          * @param nums
          * @param low
          * @param high
          * @see MergeTwoSortedLists.Solution#mergeTwoLists(ListNode, ListNode)
+         * @see MergeSortedArray.Solution#merge(int[], int, int[], int)
          */
         private void mergeSort(int[] nums, int low, int high) {
             if (low < high) {
+                // 类似于二分法一样的拆分
                 int mid = (low + high) >>> 1;
                 mergeSort(nums, low, mid);
                 mergeSort(nums, mid + 1, high);
@@ -200,7 +204,7 @@ class SortAnArray {
         }
 
         /**
-         * 这里重复使用了 downHeap 方法进行最大堆的初始构建！避免了写 upHeap 方法！
+         * 这里重复使用了 downHeap 方法进行最大堆的初始构建！避免了再写一个 upHeap 方法！
          *
          * @param nums
          * @param end

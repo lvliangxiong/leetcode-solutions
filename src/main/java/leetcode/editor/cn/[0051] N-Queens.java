@@ -38,11 +38,11 @@ class NQueens {
     class Solution {
         int n;
 
-        String[] boards; // 预先构造好 solution 中 String 的枚举，减少运算量
+        String[] boards; // 预先构造好 solution 中 String 的枚举，减少运算量，并且保证了同一行中不会出现两个 Q。
 
         List<List<String>> solutions = new ArrayList<>();
 
-        int[] queens; // Queen 的放置位置
+        int[] queens; // 每一行 Queen 的放置位置
 
         boolean[] attackableCols; // 已处于其它 Queen 攻击范围的 col
 
@@ -67,6 +67,7 @@ class NQueens {
             this.n = n;
             boards = new String[n];
             queens = new int[n];
+
             attackableCols = new boolean[n];
             // 同一条 45 度斜线上 row + col 为定值，范围 [0, 2n-2]
             attackableHills = new boolean[n << 1];
@@ -128,7 +129,7 @@ class NQueens {
         private void addSolution() {
             List<String> solution = new ArrayList<>();
             for (int i = 0; i < n; i++) {
-                // Queens[i] 表示第 i 行上 Queen 在哪一个位置上
+                // queens[i] 表示第 i 行上 Queen 在哪一个位置上（列号）
                 solution.add(boards[queens[i]]);
             }
             solutions.add(solution);

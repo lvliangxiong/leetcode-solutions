@@ -43,13 +43,13 @@ class FirstMissingPositive {
         public int firstMissingPositive(int[] nums) {
             int n = nums.length;
             for (int i = 0; i < n; i++) {
-                // 原始数组中 <= 0 的数，全部设置为 n+1
+                // 将原始数组中 <= 0 的数，全部设置为 n+1
                 if (nums[i] <= 0) nums[i] = n + 1;
             }
-            for (int i = 0; i < n; i++) {
-                int num = Math.abs(nums[i]);
+            for (int num : nums) {
+                num = num > 0 ? num : -num; // 这里 num 可能是负数，因为在循环的过程中对数组进行了修改
                 if (num >= 1 && num <= n && nums[num - 1] > 0) {
-                    // 原始数组中元素为 1 ~ n 的元素是没有变化的，也是我们需要进行记录的
+                    // 原始数组中元素为 [1, n] 的元素是没有变化的，遇到这样的数
                     nums[num - 1] *= -1;
                 }
             }
@@ -68,8 +68,8 @@ class FirstMissingPositive {
         public int firstMissingPositive(int[] nums) {
             int n = nums.length;
             for (int i = 0; i < n; ++i) {
-                // 将 1 ~ n 之间的 nums[i] 移动到索引为 nums[i]-1 的位置上
-                while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+                // 将 1 ~ n 之间的 num 移动到索引为 num-1 的位置上
+                while (nums[i] >= 1 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
                     int temp = nums[nums[i] - 1];
                     nums[nums[i] - 1] = nums[i];
                     nums[i] = temp;

@@ -96,16 +96,16 @@ class FindInMountainArray {
         }
 
         private int binarySearch(MountainArray mountain, int low, int high, int target) {
-            boolean increase = mountain.get(low) < mountain.get(high);
+            boolean isIncreasingArr = mountain.get(low) < mountain.get(high);
             while (low < high) {
                 int mid = (low + high) >>> 1;
                 int midValue = mountain.get(mid);
                 if (midValue == target) return mid;
                 if (midValue < target) {
-                    if (increase) low = mid + 1;
+                    if (isIncreasingArr) low = mid + 1;
                     else high = mid;
                 } else {
-                    if (increase) high = mid;
+                    if (isIncreasingArr) high = mid;
                     else low = mid + 1;
                 }
             }

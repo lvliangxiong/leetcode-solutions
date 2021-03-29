@@ -42,9 +42,11 @@ class RemoveNthNodeFromEndOfList {
         public ListNode removeNthFromEnd(ListNode head, int n) {
             ListNode cur = head;
             for (int i = 0; i < n; i++) {
-                cur = cur.next;
+                cur = cur.next; // cur 是链表中的第 n+1 个节点
             }
             if (cur == null) return head.next; // remove the first node
+
+            // 当 cur 移动到最后一个节点时，preN 刚好是倒数第 n+1 个节点
             ListNode preN = head;
             while (cur.next != null) {
                 preN = preN.next;

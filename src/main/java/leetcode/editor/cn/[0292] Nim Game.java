@@ -50,9 +50,9 @@ class NimGame {
         public boolean canWinNim(int n) {
             /* 以 dp[i] 表示还剩 i 个石头时，先手玩家是否会赢。
              *
-             * 那么就有 dp[i] = !(dp[i-1] && dp[i-2] && dp[i-3])，此递推关系式表示只有当 dp[i-1] dp[i-2] dp[i-3] 全部为 true，
-             * 也就是说不管先手玩家拿走 1 颗石头，还是 2 颗石头，还是 3 颗石头，最终都是对手赢的情况下，先手玩家还会输，否则先手玩家总
-             * 可以找到一种赢的方案。
+             * 那么就有 dp[i] = !(dp[i-1] && dp[i-2] && dp[i-3])。
+             * 此递推关系式表示只有当 dp[i-1] dp[i-2] dp[i-3] 全部为 true，也就是说不管先手玩家拿走 1 颗石头，还是 2 颗石头，
+             * 还是 3 颗石头，最终都是对手赢的情况下，先手玩家才一定会输，否则先手玩家总可以找到一种赢的方案。
              *
              * dp[1] = true, dp[2] = true, dp[3] = true,
              * dp[4] = false, dp[5] = true, dp[6] = true, dp[7] = true,
@@ -62,7 +62,7 @@ class NimGame {
              * dp[4*k] = false, dp[other] = true;
              * 因此只需要判断给定的 n 是否是 4 的倍数即可。
              * */
-            return n % 4 == 0 ? false : true;
+            return n % 4 != 0;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

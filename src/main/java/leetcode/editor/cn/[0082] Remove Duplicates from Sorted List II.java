@@ -21,31 +21,23 @@ class RemoveDuplicatesFromSortedListIi {
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
             if (head == null || head.next == null) return head;
-            ListNode ans = null, pre = null;
-            while (head != null) {
-                if (head.next != null && head.val == head.next.val) {
-                    // Find duplicates, then remove all nodes whose val equals to cur.val
-                    ListNode cur = head;
-                    while (cur != null && cur.val == head.val) {
-                        ListNode temp = cur.next;
-                        cur.next = null; // 方便垃圾回收
-                        cur = temp;
+            ListNode dummyHead = new ListNode(0, head);
+            ListNode cur = dummyHead;
+            while (cur.next != null) {
+                if (cur.next.next != null && cur.next.val == cur.next.next.val) {
+                    // 存在重复值，则找到相同的所有节点中的最后一个
+                    ListNode end = cur.next;
+                    int num = end.val;
+                    while (end.next != null && end.next.val == num) {
+                        end = end.next;
                     }
-                    head = cur;
-                    continue;
+                    cur.next = end.next; // 直接删除所有重复的节点
+                } else {
+                    // 下一个数不存在重复值
+                    cur = cur.next;
                 }
-                // Unique node found
-                if (ans == null) {
-                    ans = head;
-                }
-                if (pre != null) {
-                    pre.next = head;
-                }
-                pre = head;
-                head = head.next;
-                pre.next = null;
             }
-            return ans;
+            return dummyHead.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
@@ -54,6 +46,7 @@ class RemoveDuplicatesFromSortedListIi {
         public ListNode deleteDuplicates(ListNode head) {
             if (head == null || head.next == null) return head;
             if (head.val == head.next.val) {
+                // 出现重复，直接跳过所有和 head 的值一样的节点
                 ListNode cur = head;
                 while (cur != null && cur.val == head.val) {
                     cur = cur.next;

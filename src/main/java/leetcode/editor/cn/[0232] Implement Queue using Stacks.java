@@ -82,7 +82,7 @@ class ImplementQueueUsingStacks {
          */
         public int peek() {
             checkAndFix();
-            return popStack.peekFirst();
+            return popStack.peek();
         }
 
         /**

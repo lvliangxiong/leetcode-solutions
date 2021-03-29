@@ -45,7 +45,7 @@ class SpiralMatrix {
                 ans.add(matrix[rowStart][col]);
             for (int row = rowStart + 1; row <= rowEnd; row++)
                 ans.add(matrix[row][colEnd]);
-            if (rowStart == rowEnd || colStart == colEnd) return;
+            if (rowStart == rowEnd || colStart == colEnd) return; // 仅有一行或者一列的情况
             for (int col = colEnd - 1; col >= colStart; col--)
                 ans.add(matrix[rowEnd][col]);
             for (int row = rowEnd - 1; row > rowStart; row--)
